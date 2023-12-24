@@ -2,261 +2,91 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
-    url: '/dashboard',
-    iconComponent: { name: 'cil-speedometer' },
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
+    name: 'Tableau de bord',
+    url: '/dashboard'
   },
   {
     title: true,
-    name: 'Theme'
+    name: 'Mouvement de stock'
   },
   {
-    name: 'Colors',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-drop' }
+    name: 'Entree',
+    url: '/mouvement/entree'
   },
   {
-    name: 'Typography',
-    url: '/theme/typography',
-    linkProps: { fragment: 'someAnchor' },
-    iconComponent: { name: 'cil-pencil' }
+    name: 'Sortie',
+    url: '/mouvement/sortie'
   },
   {
-    name: 'Components',
+    name: 'Paramétrage',
     title: true
   },
   {
-    name: 'Base',
-    url: '/base',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'Accordion',
-        url: '/base/accordion'
-      },
-      {
-        name: 'Breadcrumbs',
-        url: '/base/breadcrumbs'
-      },
-      {
-        name: 'Cards',
-        url: '/base/cards'
-      },
-      {
-        name: 'Carousel',
-        url: '/base/carousel'
-      },
-      {
-        name: 'Collapse',
-        url: '/base/collapse'
-      },
-      {
-        name: 'List Group',
-        url: '/base/list-group'
-      },
-      {
-        name: 'Navs & Tabs',
-        url: '/base/navs'
-      },
-      {
-        name: 'Pagination',
-        url: '/base/pagination'
-      },
-      {
-        name: 'Placeholder',
-        url: '/base/placeholder'
-      },
-      {
-        name: 'Popovers',
-        url: '/base/popovers'
-      },
-      {
-        name: 'Progress',
-        url: '/base/progress'
-      },
-      {
-        name: 'Spinners',
-        url: '/base/spinners'
-      },
-      {
-        name: 'Tables',
-        url: '/base/tables'
-      },
-      {
-        name: 'Tabs',
-        url: '/base/tabs'
-      },
-      {
-        name: 'Tooltips',
-        url: '/base/tooltips'
-      }
-    ]
+    name: 'Médailles',
+    url: '/param/medailles'
   },
   {
-    name: 'Buttons',
-    url: '/buttons',
-    iconComponent: { name: 'cil-cursor' },
-    children: [
-      {
-        name: 'Buttons',
-        url: '/buttons/buttons'
-      },
-      {
-        name: 'Button groups',
-        url: '/buttons/button-groups'
-      },
-      {
-        name: 'Dropdowns',
-        url: '/buttons/dropdowns'
-      }
-    ]
+    name: 'Grades/Dignités',
+    url: '/param/grades-dignites'
   },
   {
-    name: 'Forms',
-    url: '/forms',
-    iconComponent: { name: 'cil-notes' },
-    children: [
-      {
-        name: 'Form Control',
-        url: '/forms/form-control'
-      },
-      {
-        name: 'Select',
-        url: '/forms/select'
-      },
-      {
-        name: 'Checks & Radios',
-        url: '/forms/checks-radios'
-      },
-      {
-        name: 'Range',
-        url: '/forms/range'
-      },
-      {
-        name: 'Input Group',
-        url: '/forms/input-group'
-      },
-      {
-        name: 'Floating Labels',
-        url: '/forms/floating-labels'
-      },
-      {
-        name: 'Layout',
-        url: '/forms/layout'
-      },
-      {
-        name: 'Validation',
-        url: '/forms/validation'
-      }
-    ]
+    name: 'Fournisseurs',
+    url: '/param/fournisseurs'
   },
   {
-    name: 'Charts',
-    url: '/charts',
-    iconComponent: { name: 'cil-chart-pie' }
+    name: 'Ordonnateurs',
+    url: '/param/ordonateurs'
   },
   {
-    name: 'Icons',
-    iconComponent: { name: 'cil-star' },
-    url: '/icons',
-    children: [
-      {
-        name: 'CoreUI Free',
-        url: '/icons/coreui-icons',
-        badge: {
-          color: 'success',
-          text: 'FREE'
-        }
-      },
-      {
-        name: 'CoreUI Flags',
-        url: '/icons/flags'
-      },
-      {
-        name: 'CoreUI Brands',
-        url: '/icons/brands'
-      }
-    ]
+    name: 'Distinctions',
+    url: '/param/distinctions'
   },
   {
-    name: 'Notifications',
-    url: '/notifications',
-    iconComponent: { name: 'cil-bell' },
-    children: [
-      {
-        name: 'Alerts',
-        url: '/notifications/alerts'
-      },
-      {
-        name: 'Badges',
-        url: '/notifications/badges'
-      },
-      {
-        name: 'Modal',
-        url: '/notifications/modal'
-      },
-      {
-        name: 'Toast',
-        url: '/notifications/toasts'
-      }
-    ]
+    name: 'Dépôt',
+    url: '/param/dépots'
   },
   {
-    name: 'Widgets',
-    url: '/widgets',
-    iconComponent: { name: 'cil-calculator' },
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
+    name: 'Magasins',
+    url: '/param/magasins'
   },
   {
-    title: true,
-    name: 'Extras'
+    name: 'Détenteurs',
+    url: '/param/detenteurs'
   },
   {
-    name: 'Pages',
-    url: '/login',
-    iconComponent: { name: 'cil-star' },
-    children: [
-      {
-        name: 'Login',
-        url: '/login'
-      },
-      {
-        name: 'Register',
-        url: '/register'
-      },
-      {
-        name: 'Error 404',
-        url: '/404'
-      },
-      {
-        name: 'Error 500',
-        url: '/500'
-      }
-    ]
+    name: 'Structure bénéficiaire',
+    url: '/param/structure-beneficiaire'
   },
   {
-    title: true,
-    name: 'Links',
-    class: 'py-0'
+    name: 'Statisques',
+    title: true
   },
   {
-    name: 'Docs',
-    url: 'https://coreui.io/angular/docs/templates/installation',
-    iconComponent: { name: 'cil-description' },
-    attributes: { target: '_blank', class: '-text-dark' },
-    class: 'mt-auto'
+    name: 'Statistiques',
+    url: '/param/statistiques'
   },
   {
-    name: 'Try CoreUI PRO',
-    url: 'https://coreui.io/product/angular-dashboard-template/',
-    iconComponent: { name: 'cil-layers' },
-    attributes: { target: '_blank' }
+    name: 'États',
+    url: '/param/etats'
+  },
+  {
+    name: 'Sécurtié',
+    title: true
+  },
+  {
+    name: 'Profils',
+    url: '/param/profils'
+  },
+  {
+    name: 'Utilisateurs',
+    url: '/param/utilisateurs'
+  },
+  {
+    name: 'Droits',
+    url: '/param/droits'
+  },
+  {
+    name: 'Audit',
+    url: '/param/audit'
   }
 ];
