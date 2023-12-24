@@ -1,5 +1,14 @@
 <c-card class="mb-4">
-  <c-card-header>Structures Bénéficiaires</c-card-header>
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Structures Bénéficiaires
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end btn-sm">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
   <c-card-body>
     <table [striped]="true" cTable>
       <thead>
