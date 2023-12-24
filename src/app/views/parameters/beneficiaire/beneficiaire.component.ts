@@ -8,12 +8,10 @@ import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
 
 @Component({
   selector: 'app-beneficiaire',
-  standalone: true,
-  imports: [],
   templateUrl: './beneficiaire.component.html',
   styleUrl: './beneficiaire.component.scss'
 })
-export class BeneficiaireComponent implements OnInit, OnDestroy {
+export class BeneficiaireComponent {
 
   beneficiaires?: IBeneficiaire[];
   eventSubscriber?: Subscription;
@@ -115,5 +113,4 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
   }
-
 }
