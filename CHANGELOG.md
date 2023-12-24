@@ -1,41 +1,124 @@
-## v2.1.2
-- Update: `@coreui/coreui` to `2.0.6`
-- Update: `bootstrap` to `4.1.3`
-- Update: `popper.js` to `1.14.4`
-- Update: `@babel/cli` to `^7.0.0`
-- Update: `@babel/core` to `^7.0.0`
-- Update: `@babel/plugin-proposal-object-rest-spread` to `^7.0.0`
-- Update: `@babel/preset-env` to `^7.0.0`
-- Update: `autoprefixer` to `^9.1.5`
-- Update: `babel-eslint` to `^9.0.0`
-- Update: `browser-sync` to `^2.24.7`
-- Update: `clean-css-cli` to `^4.2.2`
-- Update: `copyfiles` to `^2.1.0`
-- Update: `cross-env` to `^5.2.0`
-- Update: `eslint` to `^5.5.0`
-- Update: `eslint-plugin-compat` to `^2.5.1`
-- Update: `node-sass` to `^4.9.3`
-- Update: `nodemon` to `^1.18.4`
-- Update: `postcss-cli` to `^6.0.0`
-- Update: `shelljs` to `^0.8.2`
-- Update: `stylelint` to `^9.5.0`
-- Update: `stylelint-order` to `^1.0.0`
-- Update: `stylelint-scss` to `^3.3.0`
+### [coreui-free-angular-admin-template](https://coreui.io/angular/) changelog
 
+---
 
-## v2.1.1
-- Update: @coreui/coreui to 2.0.3
-- Update: @babel/cli to 7.0.0-beta.53
-- Update: @babel/core to 7.0.0-beta.53
-- Update: @babel/plugin-proposal-object-rest-spread to 7.0.0-beta.53
-- Update: @babel/preset-env to 7.0.0-beta.53
-- Update: babel-eslint to 8.2.6
-- Update: bootstrap to 4.1.2
-- Update: eslint-plugin-compat to 2.5.0
-- Update: nodemon to 1.18.1                                     
+#### `4.7.0`
 
-## v2.1.0
-- **Feat: Add pug support**
-- Update: @coreui/coreui-icons to 0.3.0
-- Update: @coreui/coreui to 2.0.3
-- Update: perfect-scrollbar to 1.4.0
+- chore(dependencies): update to `Angular 17`
+  - `Angular 17`
+  - `TypeScript ~5.2`
+  - `zone.js ~0.14.2`
+  - `@coreui/angular ~4.7.0`
+  - `@coreui/angular-chartjs ~4.7.0`
+  - `@coreui/icons-angular ~4.7.0`
+
+```shell
+ng update @angular/core@17 @angular/cli@17 @angular/cdk@17 @coreui/angular@~4.7 @coreui/angular-chartjs@~4.7 @coreui/icons-angular@~4.7
+
+```
+
+---
+
+#### `4.5.28`
+
+- chore(dependencies): update
+
+---
+
+#### `4.5.27`
+
+- chore(dependencies): update
+
+see: [Babel vulnerable to arbitrary code execution when compiling specifically crafted malicious code](https://github.com/coreui/coreui-angular/security/dependabot/31)
+
+---
+
+#### `4.5.25`
+
+- chore(dependencies): update 
+
+---
+
+#### `4.5.16`
+
+- chore(dependencies): update to `Angular 16.2`
+- fix(carousels): remove routerLink directives from carousel controls
+- chore: add CoreUI links to the sidebar-nav, minor refactors
+- refactor(styles): scrollbar tweaks
+- refactor(styles): scss variables - disable deprecation messages
+
+---
+
+#### `4.5.2`
+
+- chore(dependencies): update to `Angular 16.1`
+
+---
+
+#### `4.5.0`
+
+- chore(dependencies): update to `Angular 16`
+- refactor: remove deprecated ngx-perfect-scrollbar, use `ngx-scrollbar` instead
+- fix: getStyle() add nullish check
+- refactor(toasters): use takeUntilDestroyed() operator
+
+---
+
+#### `4.3.13`
+
+- docs(LICENSE): add missing license info
+- chore(dependencies): update
+
+---
+
+#### `4.3.12`
+
+- chore(dependencies): update
+
+---
+
+#### `4.3.11`
+
+- chore(dependencies): update `@angular/*` to version `^15.2.7`
+- standalone components:
+  - chore(dependencies): update `@coreui/angular` to version `~4.4.1`
+  - chore(dependencies): update `@coreui/angular-chartjs` to version `~4.4.1`
+  - chore(dependencies): update `@coreui/icons-angular` to version `~4.4.1`
+- fix(widgets): breakpoints
+
+---
+
+#### `4.3.10`
+
+- chore(dependencies): update `@angular/*` to version `^15.2.4`
+- chore(dependencies): update `@coreui/angular` to version `~4.3.17`
+- chore(dependencies): update `@coreui/angular-chartjs` to version `~4.3.17`
+- chore(dependencies): update `@coreui/icons-angular` to version `~4.3.17`
+- chore(dependencies): update `@coreui/icons` to version `^3.0.1`
+- chore(dependencies): update `@coreui/charts` to version `^3.1.1`
+- chore(dependencies): update `@coreui/utils` to version `^2.0.1`
+
+imports update required :boom: :exclamation:
+- from `import {getStyle, ...} from '@coreui/utils/src`
+- to `import  {getStyle, ...} from '@coreui/utils` 
+
+---
+
+#### `4.3.9`
+
+- chore: dependencies update
+- fix(widgets): add missing pointBackgroundColor
+
+---
+
+#### `4.3.0`
+
+update to:
+- `Angular 15`
+- `TypeScript 4.8`
+- `RxJS 7.5`
+
+refactor: 
+- refactor(AppComponent): change selector to `app-root`
+
+---
