@@ -1,42 +1,39 @@
-<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-    <c-container>
-      <c-row class="justify-content-center">
-        <c-col lg="7" md="9" xl="6">
-          <c-card class="mx-4">
-            <c-card-body class="p-4">
-              <form cForm>
-                <h1>Register</h1>
-                <p class="text-medium-emphasis">Beneficiaires</p>
-                <c-input-group class="mb-3">
-                  <span cInputGroupText>
-                    <svg cIcon name="cilUser"></svg>
-                  </span>
-                  <input autoComplete="name" cFormControl placeholder="Username" />
-                </c-input-group>
-                <c-input-group class="mb-3">
-                  <span cInputGroupText>&#64;</span>
-                  <input autoComplete="email" cFormControl placeholder="Email" />
-                </c-input-group>
-                <c-input-group class="mb-3">
-                  <span cInputGroupText>
-                    <svg cIcon name="cilLockLocked"></svg>
-                  </span>
-                  <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
-                </c-input-group>
-                <c-input-group class="mb-4">
-                  <span cInputGroupText>
-                    <svg cIcon name="cilLockLocked"></svg>
-                  </span>
-                  <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
-                </c-input-group>
-                <div class="d-grid">
-                  <button cButton color="success">Create Account</button>
-                </div>
-              </form>
-            </c-card-body>
-          </c-card>
-        </c-col>
-      </c-row>
-    </c-container>
-  </div>
-  
+<c-card class="mb-4">
+  <c-card-header>Structures Bénéficiaires</c-card-header>
+  <c-card-body>
+    <table [striped]="true" cTable>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Sigle</th>
+          <th scope="col">Raison sociale</th>
+          <th scope="col">N° de téléphone fixe</th>
+          <th scope="col">N° de téléphone mobile</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let beneficiaire of beneficiaires; index as i">
+          <td><span>{{i}}</span></td>
+          <td>
+            <span>{{beneficiaire.sigle}}</span>
+          </td>
+          <td>
+            <span>{{beneficiaire.raisonSociale}}</span>
+          </td>
+          <td>
+            <span>{{beneficiaire.telephoneFix}}</span>
+          </td>
+          <td>
+            <span>{{beneficiaire.telephoneMobile}}</span>
+          </td>
+          <td>
+            <span>{{beneficiaire.email}}</span>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </c-card-body>
+</c-card>

@@ -11,7 +11,7 @@ import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
   templateUrl: './beneficiaire.component.html',
   styleUrl: './beneficiaire.component.scss'
 })
-export class BeneficiaireComponent {
+export class BeneficiaireComponent implements OnInit, OnDestroy {
 
   beneficiaires?: IBeneficiaire[];
   eventSubscriber?: Subscription;
@@ -29,7 +29,7 @@ export class BeneficiaireComponent {
   ) {}
 
   ngOnInit(): void {
-      console.log('Dans ben com, ngOnInit');
+      this.handleNavigation();
   }
 
   ngOnDestroy(): void {
@@ -56,19 +56,19 @@ export class BeneficiaireComponent {
   }
 
   protected handleNavigation(): void {
-    
-    combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
-      const page = params.get('page');
-      const pageNumber = page !== null ? +page : 1;
-      const sort = (params.get('sort') ?? data['defaultSort']).split(',');
-      const predicate = sort[0];
-      const ascending = sort[1] === 'asc';
-      if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
-        this.predicate = predicate;
-        this.ascending = ascending;
-        this.loadPage(pageNumber, true);
-      }
-    }).subscribe();
+    this.loadPage();
+    // combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
+    //   const page = params.get('page');
+    //   const pageNumber = page !== null ? +page : 1;
+    //   const sort = (params.get('sort') ?? data['defaultSort']).split(',');
+    //   const predicate = sort[0];
+    //   const ascending = sort[1] === 'asc';
+    //   if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
+    //     this.predicate = predicate;
+    //     this.ascending = ascending;
+    //     this.loadPage(pageNumber, true);
+    //   }
+    // }).subscribe();
     
   }
 
