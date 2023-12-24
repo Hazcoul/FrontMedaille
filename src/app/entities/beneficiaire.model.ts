@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export interface IBeneficiaire {
     idBeneficiaire: number | null;
     sigle?: string | null;
@@ -7,9 +9,9 @@ export interface IBeneficiaire {
     email?: string | null;
     adresse?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Beneficiaire implements IBeneficiaire {
@@ -22,8 +24,8 @@ export class Beneficiaire implements IBeneficiaire {
         public email?: string | null,
         public adresse?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }
