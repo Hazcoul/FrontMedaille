@@ -1,0 +1,32 @@
+<c-card class="mb-4">
+    <c-card-header>Ordonnateurs</c-card-header>
+    <c-card-body>
+      <table [striped]="true" cTable>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Matricule</th>
+            <th scope="col">Civilite</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Fonction</th>
+            <th scope="col">Telephone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ordonnateur of ordonnateurs; index as i">
+            <td><span>{{i}}</span></td>
+            <td><span>{{ordonnateur.matricule}}</span></td>
+            <td><span>{{ordonnateur.civilite}}</span></td>
+            <td><span>{{ordonnateur.nom}}</span></td>
+            <td><span>{{ordonnateur.prenom}}</span></td>
+            <td><span>{{ordonnateur.fonction}}</span></td>
+            <td><span>{{ordonnateur.telephone}}</span></td>
+            <td><span>{{ordonnateur.email}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </c-card-body>
+  </c-card>
