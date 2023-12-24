@@ -31,11 +31,11 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-      
+      console.log('Dans ben com, ngOnInit');
   }
 
   ngOnDestroy(): void {
-      
+    console.log('Dans ben com, ngOnDestroy');
   }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -58,6 +58,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   }
 
   protected handleNavigation(): void {
+    
     combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
       const page = params.get('page');
       const pageNumber = page !== null ? +page : 1;
@@ -70,6 +71,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
         this.loadPage(pageNumber, true);
       }
     }).subscribe();
+    
   }
 
   trackId(index: number, item: IBeneficiaire): number {

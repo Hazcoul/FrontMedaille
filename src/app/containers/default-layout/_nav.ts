@@ -18,44 +18,44 @@ export const navItems: INavData[] = [
     url: '/mouvement/sortie'
   },
   {
-    name: 'Paramétrage',
+    name: 'parametresétrage',
     title: true
   },
   {
     name: 'Médailles',
-    url: '/param/medailles'
+    url: '/parametres/medailles'
   },
   {
     name: 'Grades/Dignités',
-    url: '/param/grades-dignites'
+    url: '/parametres/grades-dignites'
   },
   {
     name: 'Fournisseurs',
-    url: '/param/fournisseurs'
+    url: '/parametres/fournisseurs'
   },
   {
     name: 'Ordonnateurs',
-    url: '/param/ordonateurs'
+    url: '/parametres/ordonateurs'
   },
   {
     name: 'Distinctions',
-    url: '/param/distinctions'
+    url: '/parametres/distinctions'
   },
   {
     name: 'Dépôt',
-    url: '/param/dépots'
+    url: '/parametres/dépots'
   },
   {
     name: 'Magasins',
-    url: '/param/magasins'
+    url: '/parametres/magasins'
   },
   {
     name: 'Détenteurs',
-    url: '/param/detenteurs'
+    url: '/parametres/detenteurs'
   },
   {
     name: 'Structure bénéficiaire',
-    url: '/param/structure-beneficiaire'
+    url: '/parametres/beneficiaire'
   },
   {
     name: 'Statisques',
@@ -63,11 +63,11 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Statistiques',
-    url: '/param/statistiques'
+    url: '/parametres/statistiques'
   },
   {
     name: 'États',
-    url: '/param/etats'
+    url: '/parametres/etats'
   },
   {
     name: 'Sécurtié',
@@ -75,18 +75,18 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Profils',
-    url: '/param/profils'
+    url: '/parametres/profils'
   },
   {
     name: 'Utilisateurs',
-    url: '/param/utilisateurs'
+    url: '/parametres/utilisateurs'
   },
   {
     name: 'Droits',
-    url: '/param/droits'
+    url: '/parametres/droits'
   },
   {
     name: 'Audit',
-    url: '/param/audit'
+    url: '/parametres/audit'
   }
 ];
