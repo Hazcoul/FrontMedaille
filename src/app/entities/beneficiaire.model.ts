@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 
 export interface IBeneficiaire {
-    idBeneficiaire: number | null;
+    idBeneficiaire?: number | null;
     sigle?: string | null;
     raisonSociale?: string | null;
     telephoneFix?: string | null;
@@ -16,7 +16,7 @@ export interface IBeneficiaire {
 
 export class Beneficiaire implements IBeneficiaire {
     constructor(
-        public idBeneficiaire: number | null,
+        public idBeneficiaire?: number | null,
         public sigle?: string | null,
         public raisonSociale?: string | null,
         public telephoneFix?: string | null,

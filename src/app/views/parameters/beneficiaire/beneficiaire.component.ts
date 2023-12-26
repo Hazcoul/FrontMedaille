@@ -5,6 +5,9 @@ import { Subscription, combineLatest } from 'rxjs';
 import { BeneficiaireService } from '../../../services/beneficiaire.service';
 import { IBeneficiaire } from '../../../entities/beneficiaire.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditComponent } from './add-edit/add-edit.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-beneficiaire',
@@ -25,7 +28,8 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   constructor(
     private beneficiaireService: BeneficiaireService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -88,8 +92,8 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
 
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
+    if (this.predicate !== 'idBeneficiaire') {
+      result.push('idBeneficiaire');
     }
     return result;
   }
@@ -112,5 +116,18 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(beneficiaire?: IBeneficiaire): void {
+    const modalRef = this.modalService.open(AddEditComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != beneficiaire?.idBeneficiaire) {
+      modalRef.componentInstance.beneficiaire = cloneDeep(beneficiaire);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }
