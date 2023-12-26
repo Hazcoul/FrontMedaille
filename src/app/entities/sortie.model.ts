@@ -3,6 +3,7 @@ import { IDetenteur } from "./detenteur";
 import { ILigneSortie } from "./ligne-sortie.model";
 import { IMagasin } from "./magasin.model";
 import { IOrdonnateur } from "./ordonnateur.model";
+import { Moment } from 'moment';
 
 export interface ISortie {
     idSortie: number | null;
@@ -19,9 +20,9 @@ export interface ISortie {
     status?: string | null;
     numeroSortie?: string | null
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Sortie implements ISortie {
@@ -40,8 +41,8 @@ export class Sortie implements ISortie {
         public status?: string | null,
         public numeroSortie?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }

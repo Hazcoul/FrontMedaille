@@ -2,18 +2,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
-import { DistinctionService } from '../../../services/distinction.service';
-import { IDistinction} from '../../../entities/distinction.model';
+import { gradeService } from '../../../services/grade.service';
+import { IGrade} from '../../../entities/grade.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
 
 @Component({
-  selector: 'app-distinction',
-  templateUrl: './distinction.component.html',
-  styleUrl: './distinction.component.scss'
+  selector: 'app-grade',
+  templateUrl: './grade.component.html',
+  styleUrl: './grade.component.scss'
 })
-export class DistinctionComponent implements OnInit, OnDestroy {
+export class GradeComponent implements OnInit, OnDestroy {
 
-  distinctions?: IDistinction[];
+  grades?: IGrade[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -23,7 +23,7 @@ export class DistinctionComponent implements OnInit, OnDestroy {
   ngbPaginationPage = 1;
 
   constructor(
-    private distinctionService: DistinctionService,
+    private gradeService: gradeService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -39,7 +39,7 @@ export class DistinctionComponent implements OnInit, OnDestroy {
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
 
-    this.distinctionService
+    this.gradeService
       .query({
         page: pageToLoad - 1,
         size: this.itemsPerPage,
@@ -47,7 +47,7 @@ export class DistinctionComponent implements OnInit, OnDestroy {
       })
       .subscribe(
         {
-          next: (res: HttpResponse<IDistinction[]>) => {
+          next: (res: HttpResponse<IGrade[]>) => {
             this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
           },
           error: () => this.onError(),
@@ -59,8 +59,8 @@ export class DistinctionComponent implements OnInit, OnDestroy {
     this.loadPage();    
   }
 
-  trackId(index: number, item: IDistinction): number {
-    return item.idDistinction!;
+  trackId(index: number, item: IGrade): number {
+    return item.idGrade!;
   }
 
   sort(): string[] {
@@ -71,11 +71,11 @@ export class DistinctionComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected onSuccess(data: IDistinction[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
+  protected onSuccess(data: IGrade[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
     if (navigate) {
-      this.router.navigate(['/parametre/distinction'], {
+      this.router.navigate(['/parametre/grade'], {
         queryParams: {
           page: this.page,
           size: this.itemsPerPage,
@@ -83,7 +83,7 @@ export class DistinctionComponent implements OnInit, OnDestroy {
         },
       });
     }
-    this.distinctions = data || [];
+    this.grades = data || [];
     this.ngbPaginationPage = this.page;
   }
 

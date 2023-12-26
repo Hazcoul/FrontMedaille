@@ -1,6 +1,7 @@
 import { IFournisseur } from "./fournisseur.model";
 import { ILigneEntree } from "./ligne-entree.model";
 import { IMagasin } from "./magasin.model";
+import {Moment} from 'moment';
 
 export interface IEntree {
     idEntree: number | null;
@@ -17,9 +18,9 @@ export interface IEntree {
     ligneEntrees?: ILigneEntree[];
     status?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Entree implements IEntree {
@@ -38,8 +39,8 @@ export class Entree implements IEntree {
         public ligneEntrees?: ILigneEntree[],
         public status?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }

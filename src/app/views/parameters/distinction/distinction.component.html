@@ -1,1 +1,30 @@
-<p>distinction works!</p>
+<c-card class="mb-4">
+    <c-card-header>Distinctions</c-card-header>
+    <c-card-body>
+      <table [striped]="true" cTable>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">Abreviation</th>
+            <th scope="col">Libellé</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Décret</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let distinction of distinctions; index as i">
+            <td><span>{{i}}</span></td>
+            <td><span>{{distinction.code}}</span></td>
+            <td><span>{{distinction.abreviation}}</span></td>
+            <td><span>{{distinction.libelle}}</span></td>
+            <td><span>{{distinction.categoryDistinction}}</span></td>
+            <td><span>{{distinction.referenceDecret}} du {{distinction.dateDecretCreation}}</span></td>
+            <td><span>{{distinction.description}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </c-card-body>
+  </c-card>

@@ -1,11 +1,12 @@
+import {Moment} from 'moment';
 export interface IDepot {
     idDepot: number | null;
     nomDepot?: string | null;
     description?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Depot implements IDepot {
@@ -14,8 +15,8 @@ export class Depot implements IDepot {
         public nomDepot?: string | null,
         public description?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }

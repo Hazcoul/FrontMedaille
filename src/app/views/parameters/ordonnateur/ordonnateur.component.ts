@@ -75,7 +75,7 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
     if (navigate) {
-      this.router.navigate(['/beneficiaires'], {
+      this.router.navigate(['/parametre/ordonnateur'], {
         queryParams: {
           page: this.page,
           size: this.itemsPerPage,
