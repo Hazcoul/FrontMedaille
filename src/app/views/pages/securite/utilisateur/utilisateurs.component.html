@@ -1,0 +1,59 @@
+<c-card class="mb-4">
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Utilisateurs
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end btn-sm" (click)="goToUpdateCreate()">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <table [striped]="true" cTable>
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Login</th>
+        <th scope="col">Nom</th>
+        <th scope="col">prenom</th>
+        <th scope="col">Matricule</th>
+        <th scope="col">N° de téléphone mobile</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of utilisateurs; index as i">
+        <td><span>{{i+1}}</span></td>
+        <td>
+          <span>{{user.login}}</span>
+        </td>
+        <td>
+          <span>{{user.nom}}</span>
+        </td>
+        <td>
+          <span>{{user.prenom}}</span>
+        </td>
+        <td>
+          <span>{{user.matricule}}</span>
+        </td>
+        <td>
+          <span>{{user.contact}}</span>
+        </td>
+        <td>
+          <span>{{user.email}}</span>
+        </td>
+        <td>
+          <div class="">
+            <button title="Modifier l'utilisateur" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
+            <button title="Activer le compte" class=""><i class="fa fa-check" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
+            <button title="Renvoyer  le mail" class=""><i class="fa fa-send" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
+            <button title="Supprimer l'utilisateur" (click)="removeUser(user)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </c-card-body>
+</c-card>

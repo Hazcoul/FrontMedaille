@@ -33,7 +33,12 @@ const routes: Routes = [
     data: {
       title: 'Register Page'
     }
-  }
+  },
+  {
+    path: "securite",
+    loadChildren: () =>
+      import("./securite/securite.module").then((m) => m.SecuriteModule),
+  },
 ];
 
 @NgModule({

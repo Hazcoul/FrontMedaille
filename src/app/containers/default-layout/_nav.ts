@@ -61,7 +61,7 @@ export const navItems: INavData[] = [
       },
     ]
   },
-  
+
   {
     name: 'Statistiques',
     url:'#',
@@ -76,26 +76,26 @@ export const navItems: INavData[] = [
       },
     ]
   },
-  
+
   {
     name: 'Sécurtié',
     url:'#',
     children: [
       {
         name: 'Profils',
-        url: '/parametres/profils'
+        url: '/pages/securite/profils'
       },
       {
         name: 'Utilisateurs',
-        url: '/parametres/utilisateurs'
+        url: '/pages/securite/utilisateurs'
       },
       {
         name: 'Droits',
-        url: '/parametres/droits'
+        url: '/pages/securite/droits'
       },
       {
         name: 'Audit',
-        url: '/parametres/audit'
+        url: '/pages/securite/audits'
       }
     ]
   },

@@ -1,0 +1,55 @@
+<c-card class="mb-4">
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Création utilisateur
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end btn-sm" (click)="goBack()">Retour</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <form #formUser="ngForm">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="nom">Nom</label>
+          <input type="text" class="form-control" id="nom"  name="nom" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="prenom">Prénom</label>
+          <input type="text" class="form-control" id="prenom" aria-describedby="prenom">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="matricule">Matricule</label>
+          <input type="text" name="matricule" class="form-control" id="matricule">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="contact">Contact</label>
+          <input type="text" class="form-control" id="contact" name="contact">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="login">Login</label>
+          <input type="text" class="form-control" id="login" name="login">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" id="email">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="email">Profil</label>
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>-- choisir le profil --</option>
+            <option value="1"></option>
+            <option value="1"></option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-end">
+        <button type="reset" class="btn btn-warning">Annuler</button>
+        <button type="submit" class="btn btn-success m-lg-2">Enregistrer</button>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

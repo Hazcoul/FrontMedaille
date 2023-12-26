@@ -34,7 +34,8 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule
+  UtilitiesModule,
+  
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
