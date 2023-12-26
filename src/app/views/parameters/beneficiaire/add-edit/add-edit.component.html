@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="modal-header bg-success text-white">
+        <h4 class="modal-tile"></h4>
+        <button style="color: red;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_sigle">Sigle :</label>
+                    <input cFormControl sizing="sm" id="field_sigle" type="text" 
+                        [(ngModel)]="beneficiaire.sigle" name="sigle"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_raisonSociale">Raison sociale :</label>
+                    <input cFormControl sizing="sm" id="field_raisonSociale" type="text" 
+                        [(ngModel)]="beneficiaire.raisonSociale" name="raisonSociale"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_telephoneFix">N° de téléphone fixe :</label>
+                    <input cFormControl sizing="sm" id="field_telephoneFix" type="text" 
+                        [(ngModel)]="beneficiaire.telephoneFix" name="telephoneFix"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_field_telephoneMobile">N° de téléphone mobile :</label>
+                    <input cFormControl sizing="sm" id="field_field_telephoneMobile" type="text" 
+                        [(ngModel)]="beneficiaire.telephoneMobile" name="telephoneMobile"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="12">
+                    <label cLabel for="field_email">Email :</label>
+                    <input cFormControl sizing="sm" id="field_email" type="text" 
+                        [(ngModel)]="beneficiaire.email" name="email"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="12">
+                    <label cLabel for="field_adresse">Adresse :</label>
+                    <textarea cFormControl id="field_adresse" rows="3"
+                        [(ngModel)]="beneficiaire.adresse" name="adresse"></textarea>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Enregistrer</button>
+        </div>
+    </form>
+</div>
