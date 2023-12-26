@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export interface IDetenteur {
     idDetenteur: number | null;
     matricule?: string | null;
@@ -8,9 +10,9 @@ export interface IDetenteur {
     telephone?: string | null;
     email?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Detenteur implements IDetenteur {
@@ -24,8 +26,8 @@ export class Detenteur implements IDetenteur {
         public telephone?: string | null,
         public email?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }

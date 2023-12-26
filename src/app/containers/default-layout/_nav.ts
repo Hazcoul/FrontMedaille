@@ -6,87 +6,97 @@ export const navItems: INavData[] = [
     url: '/dashboard'
   },
   {
-    title: true,
-    name: 'Mouvement de stock'
+    name: 'Mouvement de stock',
+    url:'#',
+    children: [
+      {
+        name: 'Entree',
+        url: '/mouvement/entree'
+      },
+      {
+        name: 'Sortie',
+        url: '/mouvement/sortie'
+      },
+    ]
   },
   {
-    name: 'Entree',
-    url: '/mouvement/entree'
+    name: 'Paramétrage',
+    url:'#',
+    children: [
+      {
+        name: 'Bénéficiaire',
+        url: '/parametre/beneficiaire'
+      },
+      {
+        name: 'Détenteurs',
+        url: '/parametre/detenteur'
+      },
+      {
+        name: 'Ordonnateurs',
+        url: '/parametre/ordonnateur'
+      },
+      {
+        name: 'Médailles',
+        url: '/parametres/medailles'
+      },
+      {
+        name: 'Grades/Dignités',
+        url: '/parametres/grades-dignites'
+      },
+      {
+        name: 'Fournisseurs',
+        url: '/parametres/fournisseurs'
+      },
+      {
+        name: 'Distinctions',
+        url: '/parametres/distinctions'
+      },
+      {
+        name: 'Dépôt',
+        url: '/parametre/depot'
+      },
+      {
+        name: 'Magasins',
+        url: '/parametres/magasins'
+      },
+    ]
   },
-  {
-    name: 'Sortie',
-    url: '/mouvement/sortie'
-  },
-  {
-    name: 'parametresétrage',
-    title: true
-  },
-  {
-    name: 'Médailles',
-    url: '/parametres/medailles'
-  },
-  {
-    name: 'Grades/Dignités',
-    url: '/parametres/grades-dignites'
-  },
-  {
-    name: 'Fournisseurs',
-    url: '/parametres/fournisseurs'
-  },
-  {
-    name: 'Ordonnateurs',
-    url: '/parametres/ordonateurs'
-  },
-  {
-    name: 'Distinctions',
-    url: '/parametres/distinctions'
-  },
-  {
-    name: 'Dépôt',
-    url: '/parametres/dépots'
-  },
-  {
-    name: 'Magasins',
-    url: '/parametres/magasins'
-  },
-  {
-    name: 'Détenteurs',
-    url: '/parametres/detenteurs'
-  },
-  {
-    name: 'Structure bénéficiaire',
-    url: '/parametres/beneficiaire'
-  },
-  {
-    name: 'Statisques',
-    title: true
-  },
+  
   {
     name: 'Statistiques',
-    url: '/parametres/statistiques'
+    url:'#',
+    children: [
+      {
+        name: 'Statistiques',
+        url: '/parametre/statistiques'
+      },
+      {
+        name: 'États',
+        url: '/parametres/etats'
+      },
+    ]
   },
-  {
-    name: 'États',
-    url: '/parametres/etats'
-  },
+  
   {
     name: 'Sécurtié',
-    title: true
+    url:'#',
+    children: [
+      {
+        name: 'Profils',
+        url: '/parametres/profils'
+      },
+      {
+        name: 'Utilisateurs',
+        url: '/parametres/utilisateurs'
+      },
+      {
+        name: 'Droits',
+        url: '/parametres/droits'
+      },
+      {
+        name: 'Audit',
+        url: '/parametres/audit'
+      }
+    ]
   },
-  {
-    name: 'Profils',
-    url: '/parametres/profils'
-  },
-  {
-    name: 'Utilisateurs',
-    url: '/parametres/utilisateurs'
-  },
-  {
-    name: 'Droits',
-    url: '/parametres/droits'
-  },
-  {
-    name: 'Audit',
-    url: '/parametres/audit'
-  }
 ];
