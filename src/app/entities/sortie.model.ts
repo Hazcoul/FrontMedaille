@@ -3,9 +3,10 @@ import { IDetenteur } from "./detenteur";
 import { ILigneSortie } from "./ligne-sortie.model";
 import { IMagasin } from "./magasin.model";
 import { IOrdonnateur } from "./ordonnateur.model";
+import { Moment } from 'moment';
 
 export interface ISortie {
-    idSortie: number | null;
+    idSortie?: number | null;
     dateSortie?: Date;
     motifSortie?: string | null;
     validerLe?: Date;
@@ -19,14 +20,14 @@ export interface ISortie {
     status?: string | null;
     numeroSortie?: string | null
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Sortie implements ISortie {
     constructor(
-        public idSortie: number | null,
+        public idSortie?: number | null,
         public dateSortie?: Date,
         public motifSortie?: string | null,
         public validerLe?: Date,
@@ -40,8 +41,8 @@ export class Sortie implements ISortie {
         public status?: string | null,
         public numeroSortie?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }

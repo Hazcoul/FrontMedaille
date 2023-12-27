@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="modal-header bg-success text-white">
+        <h4 class="modal-tile"></h4>
+        <button style="color: red;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_sigle">Medaille :</label>
+                    <select aria-label="Small select example" cSelect sizing="sm" [(ngModel)]="ligneEntree.medaille" name="medaille">
+                        <option>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_raisonSociale">Quantité :</label>
+                    <input cFormControl sizing="sm" id="field_raisonSociale" type="text" 
+                        [(ngModel)]="ligneEntree.quantiteLigne" name="raisonSociale"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_telephoneFix">Prix unitaire :</label>
+                    <input cFormControl sizing="sm" id="field_telephoneFix" type="text" 
+                        [(ngModel)]="ligneEntree.prixUnitaire" name="telephoneFix"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_field_telephoneMobile">Montant :</label>
+                    <input cFormControl sizing="sm" id="field_field_telephoneMobile" type="text" 
+                        [(ngModel)]="ligneEntree.montantLigne" name="telephoneMobile" [readOnly]="true"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="12">
+                    <label cLabel for="field_email">Clôturer l'entrée? :</label>
+                    <input cFormControl sizing="sm" id="field_email" type="text" 
+                        [(ngModel)]="ligneEntree.isCloseEntree" name="email"/>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Enregistrer</button>
+        </div>
+    </form>
+</div>

@@ -2,7 +2,7 @@ import { IEntree } from "./entree.model";
 import { IMedaille } from "./medaille.model";
 
 export interface ILigneEntree {
-    idLigneEntree: number | null;
+    idLigneEntree?: number | null;
     quantiteLigne?: number | null;
     prixUnitaire?: number | null;
     montantLigne?: number | null;
@@ -17,7 +17,7 @@ export interface ILigneEntree {
 
 export class LigneEntree implements ILigneEntree {
     constructor(
-        public idLigneEntree: number | null,
+        public idLigneEntree?: number | null,
         public quantiteLigne?: number | null,
         public prixUnitaire?: number | null,
         public montantLigne?: number | null,

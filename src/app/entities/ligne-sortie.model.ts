@@ -2,7 +2,7 @@ import { IMedaille } from "./medaille.model";
 import { ISortie } from "./sortie.model";
 
 export interface ILigneSortie {
-    idLigneSortie: number | null;
+    idLigneSortie?: number | null;
     quantiteLigne?: number | null;
     isCloseSortie?: boolean | null;
     sortie?: ISortie;
@@ -15,7 +15,7 @@ export interface ILigneSortie {
 
 export class LigneSortie implements ILigneSortie {
     constructor(
-        public idLigneSortie: number | null,
+        public idLigneSortie?: number | null,
         public quantiteLigne?: number | null,
         public isCloseSortie?: boolean | null,
         public sortie?: ISortie,
