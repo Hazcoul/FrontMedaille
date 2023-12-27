@@ -4,7 +4,7 @@ import {Distinction} from "../../../../entities/distinction.model";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {MedailleService} from "../../../../services/medaille.service";
 import Swal from "sweetalert2";
-import {gradeService} from "../../../../services/grade.service";
+import {GradeService} from "../../../../services/grade.service";
 import {DistinctionService} from "../../../../services/distinction.service";
 import {Grade} from "../../../../entities/grade.model";
 
@@ -22,7 +22,7 @@ export class CreateUpdateMedailleComponent {
   constructor(
     private medailleService: MedailleService,
     private activeModal: NgbActiveModal,
-    private gradeService: gradeService,
+    private gradeService: GradeService,
     private distinctionService: DistinctionService
   ) {}
 
