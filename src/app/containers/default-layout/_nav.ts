@@ -57,7 +57,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Magasins',
-        url: '/parametre/magasins'
+        url: '/parametre/magasin'
       },
     ]
   },
@@ -68,11 +68,11 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Statistiques',
-        url: '/parametre/statistiques'
+        url: '/stats/statistiques'
       },
       {
         name: 'États',
-        url: '/parametre/etats'
+        url: '/stats/etats'
       },
     ]
   },
