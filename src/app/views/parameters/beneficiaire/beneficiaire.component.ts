@@ -21,7 +21,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate!: string;
+  predicate= "idBeneficiaire"
   ascending!: boolean;
   ngbPaginationPage = 1;
 
@@ -73,7 +73,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
     //     this.loadPage(pageNumber, true);
     //   }
     // }).subscribe();
-    
+
   }
 
   trackId(index: number, item: IBeneficiaire): number {

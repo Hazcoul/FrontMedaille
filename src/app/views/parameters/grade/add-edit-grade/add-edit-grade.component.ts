@@ -14,6 +14,7 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   grade: IGrade = new Grade();
+  typesGrades = ["GRADE","DIGNITE"]
 
   constructor(
     private gradeService: GradeService,
@@ -21,11 +22,11 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-      
+
   }
 
   ngOnDestroy(): void {
-      
+
   }
 
   goBack(): void {

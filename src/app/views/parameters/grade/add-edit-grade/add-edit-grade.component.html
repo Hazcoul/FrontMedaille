@@ -1,27 +1,31 @@
 <div class="card">
     <div class="modal-header text-white">
         <h4 class="modal-tile">Ajouter/Modifier un grade</h4>
-        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();">
             <span aria-hidden="true">X</span>
         </button>
     </div>
     <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
         <div class="modal-body">
             <c-row>
-                <c-col md="6">
-                    <label cLabel for="field_typeGrade">Type :</label>
-                    <input cFormControl sizing="sm" id="field_typeGrade" type="text" 
-                        [(ngModel)]="grade.typeGrade" name="typeGrade"/>
-                </c-col>
+              <c-col md="6">
+                <label cLabel for="typeGrade">Distinction :</label>
+                <ng-select [items]="typesGrades"
+                           name="typeGrade"
+                           id="typeGrade"
+                           [multiple]=false
+                           [(ngModel)]="grade.typeGrade">
+                </ng-select>
+              </c-col>
                 <c-col md="6">
                     <label cLabel for="field_libelle">Libelle :</label>
-                    <input cFormControl sizing="sm" id="field_libelle" type="text" 
+                    <input cFormControl sizing="sm" id="field_libelle" type="text"
                         [(ngModel)]="grade.libelle" name="libelle"/>
                 </c-col>
             </c-row>
             <c-row>
                 <label cLabel for="field_description">Description :</label>
-                <textarea cFormControl sizing="sm" id="field_description" type="text" 
+                <textarea cFormControl sizing="sm" id="field_description" type="text"
                      name="description">{{grade.description}}</textarea>
             </c-row>
         </div>

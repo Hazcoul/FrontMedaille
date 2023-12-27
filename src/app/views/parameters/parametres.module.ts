@@ -33,6 +33,8 @@ import { AddEditOrdonnateurComponent } from './ordonnateur/add-edit-ordonnateur/
 import { AddEditGradeComponent } from './grade/add-edit-grade/add-edit-grade.component';
 import { AddEditFournisseurComponent } from './fournisseur/add-edit-fournisseur/add-edit-fournisseur.component';
 import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-magasin.component';
+import { DetailDistinctionComponent } from './distinction/detail-distinction/detail-distinction.component';
+import { DetailGradeComponent } from './grade/detail-grade/detail-grade.component';
 
 
 
@@ -58,7 +60,9 @@ import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-mag
     AddEditMagasinComponent,
     AddEditDistinctionComponent,
     DetailMedailleComponent,
-    CreateUpdateMedailleComponent
+    CreateUpdateMedailleComponent,
+    DetailDistinctionComponent,
+    DetailGradeComponent
 
   ],
   imports: [

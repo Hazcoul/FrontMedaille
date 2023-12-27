@@ -14,6 +14,7 @@ export class AddEditDistinctionComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   distinction: IDistinction = new Distinction();
+  categoryDistinctions = ['Ordres nationaux','Ordres spécifiques','Médailles'];
 
   constructor(
     private distinctionService: DistinctionService,
@@ -21,11 +22,11 @@ export class AddEditDistinctionComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-      
+
   }
 
   ngOnDestroy(): void {
-      
+
   }
 
   goBack(): void {
@@ -33,6 +34,7 @@ export class AddEditDistinctionComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
+    console.warn("DISTINCTION",this.distinction);
     this.isSaving = true;
     if (this.distinction?.idDistinction !== undefined) {
       this.subscribeToSaveResponse(this.distinctionService.update(this.distinction));
