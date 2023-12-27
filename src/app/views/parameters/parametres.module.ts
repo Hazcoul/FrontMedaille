@@ -26,6 +26,10 @@ import { GradeComponent } from './grade/grade.component';
 import { MagasinComponent } from './magasin/magasin.component';
 import { MedailleComponent } from './medaille/medaille.component';
 import { AddEditDistinctionComponent } from './distinction/add-edit-distinction/add-edit-distinction.component';
+import { AddEditOrdonnateurComponent } from './ordonnateur/add-edit-ordonnateur/add-edit-ordonnateur.component';
+import { AddEditGradeComponent } from './grade/add-edit-grade/add-edit-grade.component';
+import { AddEditFournisseurComponent } from './fournisseur/add-edit-fournisseur/add-edit-fournisseur.component';
+import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-magasin.component';
 
 
 
@@ -44,7 +48,11 @@ import { AddEditDistinctionComponent } from './distinction/add-edit-distinction/
     MedailleComponent,
     FournisseurComponent,
     AddEditDetenteurComponent,
-    AddEditDistinctionComponent
+    AddEditDistinctionComponent,
+    AddEditOrdonnateurComponent,
+    AddEditGradeComponent,
+    AddEditFournisseurComponent,
+    AddEditMagasinComponent
   ],
   imports: [
     CommonModule,

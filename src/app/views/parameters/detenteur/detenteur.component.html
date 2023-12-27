@@ -1,13 +1,15 @@
 <c-card class="mb-4">
-    <c-card-header><c-row>
-      <c-col md="10">
-        Détenteurs
-      </c-col>
-      <c-col md="2">
-        <button cButton color="primary" variant="outline" class="float-end" size="sm"
-          (click)="openAddEditModal()">Ajouter</button>
-      </c-col>
-    </c-row></c-card-header>
+    <c-card-header>
+      <c-row>
+        <c-col md="10">
+          Détenteurs
+        </c-col>
+        <c-col md="2">
+          <button cButton color="primary" variant="outline" class="float-end" size="sm"
+            (click)="openAddEditModal()">Ajouter</button>
+        </c-col>
+      </c-row>
+    </c-card-header>
     <c-card-body>
       <table [striped]="true" cTable>
         <thead>

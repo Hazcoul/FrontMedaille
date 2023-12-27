@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="modal-header bg-success text-white">
+        <h4 class="modal-tile">Ajouter/Modifier un fournisseur</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_sigle">Type :</label>
+                    <input cFormControl sizing="sm" id="field_sigle" type="text" 
+                        [(ngModel)]="fournisseur.sigle" name="sigle"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_libelle">Libelle :</label>
+                    <input cFormControl sizing="sm" id="field_libelle" type="text" 
+                        [(ngModel)]="fournisseur.libelle" name="libelle"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_telephoneFix">Téléphone Fixe:</label>
+                    <input cFormControl sizing="sm" id="field_telephoneFix" type="text" 
+                        [(ngModel)]="fournisseur.telephoneFix" name="telephoneFix"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_telephoneMobile">Téléphone Mobile :</label>
+                    <input cFormControl sizing="sm" id="field_telephoneMobile" type="text" 
+                        [(ngModel)]="fournisseur.telephoneMobile" name="telephoneMobile"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_email">Email :</label>
+                    <input cFormControl sizing="sm" id="field_email" type="text" 
+                        [(ngModel)]="fournisseur.email" name="email"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_adresse">Adresse :</label>
+                    <input cFormControl sizing="sm" id="field_adresse" type="text" 
+                        [(ngModel)]="fournisseur.adresse" name="adresse"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_numeroIfu">Numero IFU :</label>
+                    <input cFormControl sizing="sm" id="field_numeroIfu" type="text" 
+                        [(ngModel)]="fournisseur.numeroIfu" name="numeroIfu"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_nomCompletPersonneRessource">Nom Complet Personne Ressource :</label>
+                    <input cFormControl sizing="sm" id="field_nomCompletPersonneRessource" type="text" 
+                        [(ngModel)]="fournisseur.nomCompletPersonneRessource" name="nomCompletPersonneRessource"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_telephonePersonneRessource">Téléphone Personne Ressource :</label>
+                    <input cFormControl sizing="sm" id="field_telephonePersonneRessource" type="text" 
+                        [(ngModel)]="fournisseur.telephonePersonneRessource" name="telephonePersonneRessource"/>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Enregistrer</button>
+        </div>
+    </form>
+</div>

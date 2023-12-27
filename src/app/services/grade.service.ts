@@ -12,7 +12,7 @@ type EntityArrayResponseType = HttpResponse<IGrade[]>;
 @Injectable({
   providedIn: 'root'
 })
-export class gradeService {
+export class GradeService {
 
   public resourceUrl = SERVER_API_URL + 'api/grades';
 

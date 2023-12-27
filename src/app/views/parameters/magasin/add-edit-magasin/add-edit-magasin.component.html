@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="modal-header bg-success text-white">
+        <h4 class="modal-tile">Ajouter/Modifier un magasin</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_nomMagasin">Nom :</label>
+                    <input cFormControl sizing="sm" id="field_nomMagasin" type="text" 
+                        [(ngModel)]="magasin.nomMagasin" name="nomMagasin"/>
+                </c-col>
+                <c-col md="3">
+                    <label cLabel for="field_capacite">Capacite :</label>
+                    <input cFormControl sizing="sm" id="field_capacite" type="text" 
+                        [(ngModel)]="magasin.capacite" name="capacite"/>
+                </c-col>
+                <c-col md="3">
+                    <label cLabel for="field_depot">Dépot:</label>
+                    <input cFormControl sizing="sm" id="field_depot" type="text" 
+                        [(ngModel)]="magasin.depot" name="depot"/>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Enregistrer</button>
+        </div>
+    </form>
+</div>

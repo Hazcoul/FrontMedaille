@@ -2,9 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
-import { gradeService } from '../../../services/grade.service';
+import { GradeService } from '../../../services/grade.service';
 import { IGrade} from '../../../entities/grade.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditGradeComponent } from './add-edit-grade/add-edit-grade.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-grade',
@@ -23,9 +26,10 @@ export class GradeComponent implements OnInit, OnDestroy {
   ngbPaginationPage = 1;
 
   constructor(
-    private gradeService: gradeService,
+    private gradeService: GradeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +93,18 @@ export class GradeComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(grade?: IGrade): void {
+    const modalRef = this.modalService.open(AddEditGradeComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != grade?.idGrade) {
+      modalRef.componentInstance.grade = cloneDeep(grade);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }

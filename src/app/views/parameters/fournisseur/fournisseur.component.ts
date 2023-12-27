@@ -5,6 +5,9 @@ import { Subscription, combineLatest } from 'rxjs';
 import { FournisseurService } from '../../../services/fournisseur.service';
 import { IFournisseur} from '../../../entities/fournisseur.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditFournisseurComponent } from './add-edit-fournisseur/add-edit-fournisseur.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-fournisseur',
@@ -25,7 +28,8 @@ export class FournisseurComponent implements OnInit, OnDestroy {
   constructor(
     private fournisseurService: FournisseurService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +93,18 @@ export class FournisseurComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(fournisseur?: IFournisseur): void {
+    const modalRef = this.modalService.open(AddEditFournisseurComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != fournisseur?.idFournisseur) {
+      modalRef.componentInstance.fournisseur = cloneDeep(fournisseur);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }
