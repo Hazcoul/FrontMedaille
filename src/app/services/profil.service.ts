@@ -1,41 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import * as moment from 'moment';
-import { IBeneficiaire } from '../entities/beneficiaire.model';
+import { Observable } from 'rxjs';
 import { SERVER_API_URL } from '../app.constants';
 import { createRequestOption } from '../shared/util/request.util';
-import {IUtilisateur} from "../entities/utilisateur.model";
+import {IProfil} from "../entities/profil.model";
 
-type EntityResponseType = HttpResponse<IUtilisateur>;
-type EntityArrayResponseType = HttpResponse<IUtilisateur[]>;
+type EntityResponseType = HttpResponse<IProfil>;
+type EntityArrayResponseType = HttpResponse<IProfil[]>;
 
 @Injectable({
   providedIn: 'root'
 })
-export class UtilisateurService {
+export class ProfilService {
 
-  public resourceUrl = SERVER_API_URL + 'api/auth/utilisateurs';
+  public resourceUrl = SERVER_API_URL + 'api/auth/profils';
 
   constructor(protected http: HttpClient) {}
 
-  create(user: IUtilisateur): Observable<EntityResponseType> {
-    return this.http.post<IUtilisateur>(`${this.resourceUrl}/new`, user, { observe: 'response' })
+  create(profil: IProfil): Observable<EntityResponseType> {
+    return this.http.post<IProfil>(`${this.resourceUrl}/new`, profil, { observe: 'response' })
   }
 
-  update(user: IUtilisateur): Observable<EntityResponseType> {
+  update(profil: IProfil): Observable<EntityResponseType> {
     return this.http
-      .put<IUtilisateur>(this.resourceUrl, user, { observe: 'response' })}
+      .put<IProfil>(this.resourceUrl, profil, { observe: 'response' })}
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<IUtilisateur>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .get<IProfil>(`${this.resourceUrl}/${id}`, { observe: 'response' })
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
-      .get<IUtilisateur[]>(`${this.resourceUrl}/list`, { params: options, observe: 'response' })
+      .get<IProfil[]>(`${this.resourceUrl}/list`, { params: options, observe: 'response' })
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

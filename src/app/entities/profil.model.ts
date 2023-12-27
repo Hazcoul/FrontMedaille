@@ -1,21 +1,19 @@
-export interface IUtilisateur {
+import {Privilege} from "./privilege.model";
+
+export interface IProfil {
   id?: number;
-  matricule?: string;
-  nom?: string;
-  prenom?: string;
-  contact?: string;
-  login?: string;
-  email?: string;
+  code?: string;
+  libelle?: string;
+  description?: string;
+  privilegeCollection?: Privilege
 }
 
-export class Utilisateur implements IUtilisateur {
+export class Profil implements IProfil {
     constructor(
       public id?: number,
-      public matricule?: string,
-      public nom?: string,
-      public prenom?: string,
-      public contact?: string,
-      public login?: string,
-      public email?: string,
+      public code?: string,
+      public libelle?: string,
+      public description?: string,
+      public privilegeCollection?: Privilege
     ) {}
 }

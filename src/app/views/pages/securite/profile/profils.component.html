@@ -1,1 +1,45 @@
-<p>profils works!</p>
+<c-card class="mb-4">
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Profils
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end btn-sm" (click)="openAddEditModal()">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <table [striped]="true" cTable>
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Code</th>
+        <th scope="col">libelle</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let profil of profils; index as i">
+        <td><span>{{i+1}}</span></td>
+        <td>
+          <span>{{profil.code}}</span>
+        </td>
+        <td>
+          <span>{{profil.libelle}}</span>
+        </td>
+        <td>
+          <span>{{profil.description}}</span>
+        </td>
+        <td>
+          <div class="">
+            <button title="Modifier le profil" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
+            <button title="Supprimer le profil" (click)="removeProfil(profil)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </c-card-body>
+</c-card>

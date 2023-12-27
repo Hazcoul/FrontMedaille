@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Profil} from "../../../../../entities/profil.model";
 
 @Component({
   selector: 'app-create-update-utilisateur',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './create-update-utilisateur.component.scss'
 })
 export class CreateUpdateUtilisateurComponent {
+  profils: Profil[] = [];
+  profilsselected: Profil[] = [];
 
   goBack() {
     window.history.back()

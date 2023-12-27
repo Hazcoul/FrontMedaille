@@ -1,11 +1,11 @@
-export interface IProfil {
+export interface IPrivilege {
   id?: number;
   code?: string;
   libelle?: string;
   description?: string;
 }
 
-export class Profil implements IProfil {
+export class Privilege implements IPrivilege {
     constructor(
       public id?: number,
       public code?: string,

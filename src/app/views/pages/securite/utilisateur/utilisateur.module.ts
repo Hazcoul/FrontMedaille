@@ -10,10 +10,11 @@ import {
   CardBodyComponent,
   CardComponent,
   CardHeaderComponent,
-  ColComponent,
+  ColComponent, FormLabelDirective,
   RowComponent, TableDirective
 } from "@coreui/angular";
 import {FormsModule} from "@angular/forms";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -22,17 +23,19 @@ import {FormsModule} from "@angular/forms";
     CreateUpdateUtilisateurComponent,
     DetailUtilisateurComponent
   ],
-    imports: [
-        CommonModule,
-        UtilisateurRoutingModule,
-        ButtonDirective,
-        CardBodyComponent,
-        CardComponent,
-        CardHeaderComponent,
-        ColComponent,
-        RowComponent,
-        TableDirective,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    UtilisateurRoutingModule,
+    ButtonDirective,
+    CardBodyComponent,
+    CardComponent,
+    CardHeaderComponent,
+    ColComponent,
+    RowComponent,
+    TableDirective,
+    FormsModule,
+    NgSelectModule,
+    FormLabelDirective
+  ]
 })
 export class UtilisateurModule { }

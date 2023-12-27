@@ -3,8 +3,8 @@
   <c-card-body>
     <c-row>
       <c-col sm="5">
-        <h4 class="card-title mb-0" id="traffic">Traffic</h4>
-        <div class="small text-medium-emphasis">January - December 2021</div>
+        <h4 class="card-title mb-0" id="traffic">Mouvement du stock</h4>
+        <div class="small text-medium-emphasis">Evolution des entrées sorties par mois</div>
       </c-col>
       <c-col class="d-none d-md-block" sm="7">
         <button cButton class="float-end" color="primary">
@@ -16,7 +16,7 @@
               class="btn-check"
               formControlName="trafficRadio"
               type="radio"
-              value="Day"
+              value="Jour"
             />
             <label
               (click)="setTrafficPeriod('Day')"
@@ -30,7 +30,7 @@
               class="btn-check"
               formControlName="trafficRadio"
               type="radio"
-              value="Month"
+              value="Mois"
             />
             <label
               (click)="setTrafficPeriod('Month')"
@@ -68,7 +68,7 @@
     </c-chart>
   </c-card-body>
   <c-card-footer>
-    <c-row class="text-center" [md]="5" [xs]="1">
+ <!--   <c-row class="text-center" [md]="5" [xs]="1">
       <c-col class="mb-sm-2 mb-0">
         <div class="text-medium-emphasis">Visits</div>
         <strong>29.703 Users (40%)</strong>
@@ -104,15 +104,15 @@
           <c-progress-bar value="40"></c-progress-bar>
         </c-progress>
       </c-col>
-    </c-row>
+    </c-row>-->
   </c-card-footer>
 </c-card>
 
-<app-widgets-brand [withCharts]="true"></app-widgets-brand>
+<!--<app-widgets-brand [withCharts]="true"></app-widgets-brand>-->
 
 <c-row>
   <c-col xs>
-    <c-card class="mb-4">
+   <!-- <c-card class="mb-4">
       <c-card-header>Traffic {{ "&" }} Sales</c-card-header>
       <c-card-body>
         <c-row>
@@ -359,13 +359,13 @@
           </c-col>
         </c-row>
       </c-card-body>
-    </c-card>
+    </c-card>-->
   </c-col>
 </c-row>
 <c-row>
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>Users</c-card-header>
+     <!-- <c-card-header>Users</c-card-header>
       <c-card-body>
         <table
           [hover]="true"
@@ -441,7 +441,7 @@
             </tr>
           </tbody>
         </table>
-      </c-card-body>
+      </c-card-body>-->
     </c-card>
   </c-col>
 </c-row>

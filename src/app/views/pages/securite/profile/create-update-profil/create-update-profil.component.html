@@ -1,1 +1,50 @@
-<p>create-update-profil works!</p>
+<div class="card">
+  <div class="modal-header bg-success text-white">
+    <h4 class="text-center">Création de profil</h4>
+    <button style="color: red;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
+            (click)="close();">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+    <div class="modal-body">
+      <c-row>
+        <c-col md="6">
+          <label cLabel for="field_sigle">Code :</label>
+          <input cFormControl sizing="sm" id="field_sigle" type="text"
+                 [(ngModel)]="profil.code" name="sigle"/>
+        </c-col>
+        <c-col md="6">
+          <label cLabel for="field_raisonSociale">Libelle :</label>
+          <input cFormControl sizing="sm" id="field_raisonSociale" type="text"
+                 [(ngModel)]="profil.libelle" name="raisonSociale"/>
+        </c-col>
+      </c-row>
+      <c-row class="mt-2">
+        <c-col md="12">
+          <label cLabel for="field_raisonSociale">privilèges :</label>
+          <ng-select [items]="privileges"
+                     bindLabel="text"
+                     bindValue="id"
+                     name="privilege"
+                     [multiple]=true
+                     [(ngModel)]="selectedBrand">
+          </ng-select>
+        </c-col>
+      </c-row>
+
+    <c-row>
+        <c-col md="12">
+          <label cLabel for="field_adresse">Adresse :</label>
+          <textarea cFormControl id="field_adresse" rows="3"
+                    [(ngModel)]="profil.description" name="adresse"></textarea>
+        </c-col>
+      </c-row>
+    </div>
+    <div class="modal-footer">
+      <button cButton color="success" variant="outline" class="float-end" size="sm"
+              (click)="save()">Enregistrer
+      </button>
+    </div>
+  </form>
+</div>
