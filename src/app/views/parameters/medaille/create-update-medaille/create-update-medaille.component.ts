@@ -1,0 +1,126 @@
+import { Component } from '@angular/core';
+import {Medaille} from "../../../../entities/medaille.model";
+import {Distinction} from "../../../../entities/distinction.model";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {MedailleService} from "../../../../services/medaille.service";
+import Swal from "sweetalert2";
+import {gradeService} from "../../../../services/grade.service";
+import {DistinctionService} from "../../../../services/distinction.service";
+import {Grade} from "../../../../entities/grade.model";
+
+@Component({
+  selector: 'app-create-update-medaille',
+  templateUrl: './create-update-medaille.component.html',
+  styleUrl: './create-update-medaille.component.scss'
+})
+export class CreateUpdateMedailleComponent {
+  medaille: Medaille = new Medaille();
+  grades: Grade[] = [];
+  distinctions: Distinction[]= [];
+  file: File | null = null;
+
+  constructor(
+    private medailleService: MedailleService,
+    private activeModal: NgbActiveModal,
+    private gradeService: gradeService,
+    private distinctionService: DistinctionService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadAllGrades();
+    this.loadAlldistinctions();
+  }
+
+  saveOrUpdate() {
+    console.warn("Medaille TO SAVE",this.medaille);
+    if (this.medaille.idMedaille) {
+      console.warn("RENTRE ICI",this.medaille);
+      this.medailleService.update(this.medaille).subscribe(
+        {
+          next: () => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Modification effectuée avec succès',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.activeModal.close(true);
+
+          },
+          error: (error) => {
+            console.error("error" + JSON.stringify(error));
+            Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Une erreur est survenue',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+          }
+        });
+    } else {
+      this.medailleService.createMedailleWithImage(this.file,this.medaille).subscribe({
+        next: () => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: "Enregistre effectuée avec succès lors de l'ajout",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.activeModal.close(true);        },
+        error: (error) => {
+          console.error("error" + JSON.stringify(error));
+          Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: "Une erreur est survenue lors de l'enregistrement",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    }
+  }
+
+  onChange(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      console.warn("file",file);
+    }
+  }
+
+
+  close() {
+    console.log("close");
+    this.activeModal.dismiss();
+  }
+
+  loadAllGrades(): void {
+    this.gradeService.query().subscribe({
+      next: (result) => {
+        if (result && result.body) {
+        this.grades = result.body || [];
+        }
+      }
+    });
+  }
+
+  loadAlldistinctions(): void {
+    this.distinctionService.query().subscribe({
+      next: (result) => {
+        if (result && result.body) {
+         this.distinctions = result.body || [];
+        }
+      }
+    });
+  }
+
+
+  changeStatus($event: Event) {
+    console.warn("statut",$event.returnValue);
+  }
+}
