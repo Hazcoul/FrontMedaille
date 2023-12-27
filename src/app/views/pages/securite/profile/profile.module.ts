@@ -5,6 +5,17 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { CreateUpdateProfilComponent } from './create-update-profil/create-update-profil.component';
 import { DetailProfilComponent } from './detail-profil/detail-profil.component';
 import { ProfilsComponent } from './profils.component';
+import {
+    ButtonDirective,
+    CardBodyComponent,
+    CardComponent,
+    CardHeaderComponent,
+    ColComponent, FormControlDirective, FormLabelDirective,
+    RowComponent, TableDirective
+} from "@coreui/angular";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {IconDirective} from "@coreui/icons-angular";
 
 
 @NgModule({
@@ -13,9 +24,22 @@ import { ProfilsComponent } from './profils.component';
     DetailProfilComponent,
     ProfilsComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        ButtonDirective,
+        CardBodyComponent,
+        CardComponent,
+        CardHeaderComponent,
+        ColComponent,
+        RowComponent,
+        TableDirective,
+        FormControlDirective,
+        FormLabelDirective,
+        FormsModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        IconDirective
+    ]
 })
 export class ProfileModule { }

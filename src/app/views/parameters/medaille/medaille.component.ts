@@ -56,7 +56,7 @@ export class MedailleComponent implements OnInit, OnDestroy {
   }
 
   protected handleNavigation(): void {
-    this.loadPage();    
+    this.loadPage();
   }
 
   trackId(index: number, item: IMedaille): number {
@@ -89,5 +89,9 @@ export class MedailleComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal() {
+
   }
 }

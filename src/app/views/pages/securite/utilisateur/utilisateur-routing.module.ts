@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path:"creation",
     component: CreateUpdateUtilisateurComponent
+  },
+  {
+    path:"modification/:id",
+    component: CreateUpdateUtilisateurComponent
   }
 ];
 

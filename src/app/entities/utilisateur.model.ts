@@ -1,3 +1,5 @@
+import {Profil} from "./profil.model";
+
 export interface IUtilisateur {
   id?: number;
   matricule?: string;
@@ -6,6 +8,8 @@ export interface IUtilisateur {
   contact?: string;
   login?: string;
   email?: string;
+  profils?: string[];
+  profilsObjet?: Profil[];
 }
 
 export class Utilisateur implements IUtilisateur {
@@ -17,5 +21,7 @@ export class Utilisateur implements IUtilisateur {
       public contact?: string,
       public login?: string,
       public email?: string,
+      public profils?: string[],
+      public profilsobjet?: Profil[],
     ) {}
 }

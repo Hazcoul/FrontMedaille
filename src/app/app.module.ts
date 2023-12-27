@@ -35,11 +35,11 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -77,7 +77,8 @@ const APP_CONTAINERS = [
     CardModule,
     NgScrollbarModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ],
   providers: [
     {

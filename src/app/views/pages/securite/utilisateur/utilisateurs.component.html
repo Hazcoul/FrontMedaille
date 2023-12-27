@@ -46,7 +46,7 @@
         </td>
         <td>
           <div class="">
-            <button title="Modifier l'utilisateur" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
+            <button title="Modifier l'utilisateur" (click)="goToEditPage(user)" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
             <button title="Activer le compte" class=""><i class="fa fa-check" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
             <button title="Renvoyer  le mail" class=""><i class="fa fa-send" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
             <button title="Supprimer l'utilisateur" (click)="removeUser(user)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>

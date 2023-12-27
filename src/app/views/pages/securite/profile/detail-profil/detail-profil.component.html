@@ -1,1 +1,50 @@
-<p>detail-profil works!</p>
+<div class="card">
+  <div class="modal-header bg-success text-white">
+    <h4 class="text-center">Détail de profil</h4>
+    <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
+            (click)="close();">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="text-info mb-2">Information du profil</span>
+          <div class="table-responsive">
+            <table class="table table-sm no-border">
+              <tbody>
+              <tr>
+                <th>Libelle</th>
+                <td>: {{profil.code}}</td>
+                <th>Description</th>
+                <td>: {{ profil.libelle}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="text-info mt-4">Liste des privilèges</span>
+          <div class="table-responsive">
+            <table class="table table-sm no-border">
+              <tbody>
+              <tr *ngFor="let item of profil.privilegeCollection">
+                <th>Libelle</th>
+                <td>: {{item.code}}</td>
+                <th>Description</th>
+                <td>: {{ item.libelle}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button cButton color="success" variant="outline" class="float-end" size="sm"
+              (click)="close()">Fermer
+      </button>
+    </div>
+  </form>
+</div>
