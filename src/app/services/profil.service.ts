@@ -23,7 +23,7 @@ export class ProfilService {
 
   update(profil: IProfil): Observable<EntityResponseType> {
     return this.http
-      .put<IProfil>(this.resourceUrl, profil, { observe: 'response' })}
+      .put<IProfil>(`${this.resourceUrl}/update`, profil, { observe: 'response' })}
 
   find(id: number): Observable<EntityResponseType> {
     return this.http

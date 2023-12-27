@@ -3,13 +3,15 @@ import {ITEMS_PER_PAGE} from "../../../../shared/constants/pagination.constant";
 import {Router} from "@angular/router";
 import {HttpHeaders, HttpResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
-import {IProfil} from "../../../../entities/profil.model";
+import {IProfil, Profil} from "../../../../entities/profil.model";
 import {ProfilService} from "../../../../services/profil.service";
 import {IBeneficiaire} from "../../../../entities/beneficiaire.model";
 import {AddEditComponent} from "../../../parameters/beneficiaire/add-edit/add-edit.component";
 import {cloneDeep} from "lodash-es";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CreateUpdateProfilComponent} from "./create-update-profil/create-update-profil.component";
+import {DetailProfilComponent} from "./detail-profil/detail-profil.component";
+import {Utilisateur} from "../../../../entities/utilisateur.model";
 
 @Component({
   selector: 'app-profils',
@@ -114,14 +116,11 @@ export class ProfilsComponent {
     });
   }
 
-  removeProfil(profil: IProfil) {
 
-  }
-
-  openAddEditModal(beneficiaire?: IBeneficiaire): void {
+  openAddEditModal(profil?: IProfil): void {
     const modalRef = this.modalService.open(CreateUpdateProfilComponent, { size: 'lg', backdrop: 'static' });
-    if(undefined != beneficiaire?.idBeneficiaire) {
-      modalRef.componentInstance.beneficiaire = cloneDeep(beneficiaire);
+    if(undefined != profil?.id) {
+      modalRef.componentInstance.profil = cloneDeep(profil);
     }
     modalRef.result.then(() => {
         this.loadPage();
@@ -130,4 +129,50 @@ export class ProfilsComponent {
         console.log(error)
       })
   }
+
+  openModalDetail(profil: IProfil) {
+    const modalRef = this.modalService.open(DetailProfilComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != profil?.id) {
+      modalRef.componentInstance.profil = cloneDeep(profil);
+    }
+    modalRef.result.then(() => {
+        this.loadPage();
+      },
+      error => {
+        console.log(error)
+      })
+  }
+
+  removeProfil(profil: Profil) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(profil);
+      }
+    });
+  }
+
+  delete(profil: IProfil) {
+    this.profilService.delete(profil.id!).subscribe(() => {
+     this.loadPage();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Suppression effectuée avec succès',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+    }, (error) => {
+      console.error("profil " + JSON.stringify(error));
+    });
+  }
+
 }

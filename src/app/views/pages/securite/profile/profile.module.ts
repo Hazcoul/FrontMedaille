@@ -15,6 +15,7 @@ import {
 } from "@coreui/angular";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {IconDirective} from "@coreui/icons-angular";
 
 
 @NgModule({
@@ -23,21 +24,22 @@ import {NgSelectModule} from "@ng-select/ng-select";
     DetailProfilComponent,
     ProfilsComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    ButtonDirective,
-    CardBodyComponent,
-    CardComponent,
-    CardHeaderComponent,
-    ColComponent,
-    RowComponent,
-    TableDirective,
-    FormControlDirective,
-    FormLabelDirective,
-    FormsModule,
-    ReactiveFormsModule,
-    NgSelectModule
-  ]
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        ButtonDirective,
+        CardBodyComponent,
+        CardComponent,
+        CardHeaderComponent,
+        ColComponent,
+        RowComponent,
+        TableDirective,
+        FormControlDirective,
+        FormLabelDirective,
+        FormsModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        IconDirective
+    ]
 })
 export class ProfileModule { }

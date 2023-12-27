@@ -16,7 +16,6 @@
         <th scope="col">#</th>
         <th scope="col">Code</th>
         <th scope="col">libelle</th>
-        <th scope="col">Description</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -30,14 +29,22 @@
           <span>{{profil.libelle}}</span>
         </td>
         <td>
-          <span>{{profil.description}}</span>
+          <button cButton color="primary" variant="outline" size="sm" (click)="openAddEditModal(profil)">
+            <svg cIcon name="cilPen" size="sm"></svg>
+          </button>
+          <button cButton color="info" (click)="openModalDetail(profil)" variant="outline" size="sm">
+            <svg cIcon name="cilEye" size="sm"></svg>
+          </button>
+          <button cButton color="danger" (click)="removeProfil(profil)" variant="outline" size="sm">
+            <svg cIcon name="cilX" size="sm"></svg>
+          </button>
         </td>
-        <td>
+        <!--<td>
           <div class="">
             <button title="Modifier le profil" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
             <button title="Supprimer le profil" (click)="removeProfil(profil)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
           </div>
-        </td>
+        </td>-->
       </tr>
       </tbody>
     </table>

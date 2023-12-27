@@ -1,8 +1,9 @@
+/*
 // Full tutorial coming soon!
 
 .card {
   --card-gradient: rgba(0, 0, 0, 0.8);
-  --card-gradient: #5e9ad9, #e271ad;
+  --card-gradient: #5e9ad9, #de6a4b;
   // --card-gradient: tomato, orange;
   --card-blend-mode: overlay;
   // --card-blend-mode: multiply;
@@ -13,16 +14,16 @@
   padding-bottom: 1rem;
   background-image: linear-gradient(
       var(--card-gradient),
-      white max(9.5rem, 27vh)
+      white max(9.5rem, 20vh)
   );
   overflow: hidden;
 
   img {
     border-radius: 0.5rem 0.5rem 0 0;
-    width: 100%;
+    width: 50%;
     object-fit: cover;
     // height: max(10rem, 25vh);
-    max-height: max(10rem, 30vh);
+    max-height: max(8rem, 30vh);
     aspect-ratio: 4/3;
     mix-blend-mode: var(--card-blend-mode);
     // filter: grayscale(100);
@@ -39,11 +40,11 @@
 
   &:hover,
   &:focus-within {
-    --card-gradient: #24a9d5 max(8.5rem, 20vh);
+    --card-gradient: #ee9d85 max(8.5rem, 30vh);
   }
 }
 
-/* Additional demo display styles */
+!* Additional demo display styles *!
 * {
   box-sizing: border-box;
 }
@@ -52,7 +53,7 @@ body {
   display: grid;
   place-content: center;
   justify-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
   margin: 0;
   padding: 1rem;
   line-height: 1.5;
@@ -83,3 +84,4 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+*/

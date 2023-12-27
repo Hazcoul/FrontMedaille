@@ -104,4 +104,8 @@ export class UtilisateursComponent {
       }
     });
   }
+
+  goToEditPage(user: Utilisateur){
+    this.router.navigate(['pages','securite','utilisateurs','modification',user.id]);
+  }
 }

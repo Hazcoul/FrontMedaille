@@ -5,7 +5,7 @@ export interface IProfil {
   code?: string;
   libelle?: string;
   description?: string;
-  privilegeCollection?: Privilege
+  privilegeCollection?: Privilege[]
 }
 
 export class Profil implements IProfil {
@@ -14,6 +14,6 @@ export class Profil implements IProfil {
       public code?: string,
       public libelle?: string,
       public description?: string,
-      public privilegeCollection?: Privilege
+      public privilegeCollection?: Privilege[]
     ) {}
 }

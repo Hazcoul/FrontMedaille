@@ -1,7 +1,7 @@
 <div class="card">
   <div class="modal-header bg-success text-white">
     <h4 class="text-center">Création de profil</h4>
-    <button style="color: red;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
+    <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
             (click)="close();">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -24,26 +24,25 @@
         <c-col md="12">
           <label cLabel for="field_raisonSociale">privilèges :</label>
           <ng-select [items]="privileges"
-                     bindLabel="text"
-                     bindValue="id"
+                     bindLabel="libelle"
                      name="privilege"
                      [multiple]=true
-                     [(ngModel)]="selectedBrand">
+                     [(ngModel)]="privilegesSelected">
           </ng-select>
         </c-col>
       </c-row>
 
-    <c-row>
+    <!--<c-row>
         <c-col md="12">
-          <label cLabel for="field_adresse">Adresse :</label>
+          <label cLabel for="field_adresse">Description :</label>
           <textarea cFormControl id="field_adresse" rows="3"
                     [(ngModel)]="profil.description" name="adresse"></textarea>
         </c-col>
-      </c-row>
+      </c-row>-->
     </div>
     <div class="modal-footer">
       <button cButton color="success" variant="outline" class="float-end" size="sm"
-              (click)="save()">Enregistrer
+              (click)="saveOrUpdate()">Enregistrer
       </button>
     </div>
   </form>
