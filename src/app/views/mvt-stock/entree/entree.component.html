@@ -11,50 +11,55 @@
       </c-row>
     </c-card-header>
     <c-card-body>
-      <table [striped]="true" cTable>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">N° commande</th>
-            <th scope="col">Exercice budgétaire</th>
-            <th scope="col">Magasin</th>
-            <th scope="col">Fournisseur</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let entree of entrees; index as i">
-            <td><span>{{i}}</span></td>
-            <td>
-              <span>{{entree.dateEntree}}</span>
-            </td>
-            <td>
-              <span>{{entree.numeroCmd}}</span>
-            </td>
-            <td>
-              <span>{{entree.exerciceBudgetaire}}</span>
-            </td>
-            <td>
-              <span>{{entree.magasin}}</span>
-            </td>
-            <td>
-              <span>{{entree.fournisseur}}</span>
-            </td>
-            <td>
-              <button cButton color="primary" variant="outline" size="sm">
-                <svg cIcon name="cilPen" size="sm"></svg>
-              </button>
-              <button cButton color="info" variant="outline" size="sm">
-                <svg cIcon name="cilEye" size="sm"></svg>
-              </button>
-              <button cButton color="danger" variant="outline" size="sm">
-                <svg cIcon name="cilX" size="sm"></svg>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <div *ngIf="entrees && entrees.length > 0">
+            <table [striped]="true" cTable>
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">N° commande</th>
+                    <th scope="col">Exercice budgétaire</th>
+                    <th scope="col">Magasin</th>
+                    <th scope="col">Fournisseur</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entree of entrees; index as i">
+                        <td><span>{{i}}</span></td>
+                        <td>
+                        <span>{{entree.dateEntree}}</span>
+                        </td>
+                        <td>
+                        <span>{{entree.numeroCmd}}</span>
+                        </td>
+                        <td>
+                        <span>{{entree.exerciceBudgetaire}}</span>
+                        </td>
+                        <td>
+                        <span>{{entree.magasin}}</span>
+                        </td>
+                        <td>
+                        <span>{{entree.fournisseur}}</span>
+                        </td>
+                        <td>
+                        <button cButton color="primary" variant="outline" size="sm">
+                            <svg cIcon name="cilPen" size="sm"></svg>
+                        </button>
+                        <button cButton color="info" variant="outline" size="sm">
+                            <svg cIcon name="cilEye" size="sm"></svg>
+                        </button>
+                        <button cButton color="danger" variant="outline" size="sm">
+                            <svg cIcon name="cilX" size="sm"></svg>
+                        </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="entrees && entrees.length == 0">
+            <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>
+        </div>
     </c-card-body>
   </c-card>
   

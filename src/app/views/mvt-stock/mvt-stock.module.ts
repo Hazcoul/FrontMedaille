@@ -6,7 +6,8 @@ import {
   CardModule,
   FormModule,
   GridModule,
-  TableModule
+  TableModule,
+  AlertModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,7 +40,8 @@ import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-
     TableModule,
     IconModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AlertModule
   ]
 })
 export class MvtStockModule { }
