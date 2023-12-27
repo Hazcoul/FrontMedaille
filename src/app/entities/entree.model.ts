@@ -2,7 +2,6 @@ import { IFournisseur } from "./fournisseur.model";
 import { ILigneEntree } from "./ligne-entree.model";
 import { IMagasin } from "./magasin.model";
 import { Moment } from 'moment';
-
 export interface IEntree {
     idEntree?: number | null;
     dateEntree?: Date;

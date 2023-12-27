@@ -1,5 +1,6 @@
 import { IEntree } from "./entree.model";
 import { IMedaille } from "./medaille.model";
+import { Moment } from 'moment';
 
 export interface ILigneEntree {
     idLigneEntree?: number | null;
@@ -10,9 +11,9 @@ export interface ILigneEntree {
     entree?: IEntree;
     medaille?: IMedaille;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class LigneEntree implements ILigneEntree {
@@ -25,9 +26,9 @@ export class LigneEntree implements ILigneEntree {
         public entree?: IEntree,
         public medaille?: IMedaille,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {
         this.isCloseEntree = false;
     }

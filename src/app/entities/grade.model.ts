@@ -1,12 +1,14 @@
+import {Moment} from 'moment';
+
 export interface IGrade {
     idGrade?: number | null;
     typeGrade?: string | null;
     libelle?: string | null;
     description?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Grade implements IGrade {
@@ -16,8 +18,8 @@ export class Grade implements IGrade {
         public libelle?: string | null,
         public description?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }

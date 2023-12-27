@@ -1,5 +1,7 @@
+import {Moment} from 'moment';
+
 export interface IFournisseur {
-    idFournisseur: number | null;
+    idFournisseur?: number | null;
     sigle?: string | null;
     libelle?: string | null;
     telephoneFix?: string | null;
@@ -10,14 +12,14 @@ export interface IFournisseur {
     nomCompletPersonneRessource?: string | null;
     telephonePersonneRessource?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Fournisseur implements IFournisseur {
     constructor(
-        public idFournisseur: number | null,
+        public idFournisseur?: number | null,
         public sigle?: string | null,
         public libelle?: string | null,
         public telephoneFix?: string | null,
@@ -28,8 +30,8 @@ export class Fournisseur implements IFournisseur {
         public nomCompletPersonneRessource?: string | null,
         public telephonePersonneRessource?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }
