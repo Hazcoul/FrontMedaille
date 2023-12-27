@@ -1,0 +1,115 @@
+<c-card class="mb-4">
+    <c-card-header>
+      <c-row>
+        <c-col md="10">
+          Edition d'entrées
+        </c-col>
+        <c-col md="2">
+          <button cButton color="info" variant="outline" class="float-end" size="sm"
+            [routerLink]="['/mouvement/entree']">Retour</button>
+        </c-col>
+      </c-row>
+    </c-card-header>
+    <c-card-body>
+        <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+            <div class="modal-body">
+                <c-row>
+                    <c-col md="4">
+                        <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                            <legend cLabel="col" class="pt-0">Informations sur la commande</legend>
+                            <c-row>
+                                <c-col md="12">
+                                    <label cLabel for="field_acquisition">Acquisition :</label>
+                                    <input cFormControl sizing="sm" id="field_acquisition" type="text" 
+                                        [(ngModel)]="entree.acquisition" name="acquisition">
+                                </c-col>
+                                <c-col md="12">
+                                    <label cLabel for="field_exerciceBudgetaire">Exercice budgétaire :</label>
+                                    <input cFormControl sizing="sm" id="field_exerciceBudgetaire" type="text" 
+                                        [(ngModel)]="entree.exerciceBudgetaire" name="exerciceBudgetaire"/>
+                                </c-col>
+                                <c-col md="12">
+                                    <label cLabel for="field_fournisseur">Fournisseur :</label>
+                                    <select aria-label="Small select example" cSelect sizing="sm" 
+                                        [(ngModel)]="entree.fournisseur" name="fournisseur" id="field_fournisseur">
+                                        <option>---Selectionner---</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </c-col>
+                                <c-col md="12">
+                                    <label cLabel for="field_magasin">Magasin :</label>
+                                    <select aria-label="Small select example" cSelect sizing="sm" 
+                                        [(ngModel)]="entree.magasin" name="magasin" id="field_magasin">
+                                        <option>---Selectionner---</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </c-col>
+                            </c-row>
+                        </fieldset>
+                    </c-col>
+                    <c-col md="8">
+                        <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                            <legend cLabel="col" class="pt-0">Lignes de la commande</legend>
+                            <table [striped]="true" cTable>
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Médaille</th>
+                                    <th scope="col">Quantité</th>
+                                    <th scope="col">Prix unitaire</th>
+                                    <th scope="col">Montant</th>
+                                    <th scope="col">Cloture</th>
+                                    <th scope="col">
+                                        <button cButton color="primary" variant="outline" size="sm"
+                                            (click)="openAddEditModal()">Ajouter</button>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let ligne of entree.ligneEntrees; index as i">
+                                    <td><span>{{i}}</span></td>
+                                    <td>
+                                      <span>{{ligne.medaille?.nomComplet}}</span>
+                                    </td>
+                                    <td>
+                                      <span>{{ligne.quantiteLigne}}</span>
+                                    </td>
+                                    <td>
+                                      <span>{{ligne.prixUnitaire}}</span>
+                                    </td>
+                                    <td>
+                                      <span>{{ligne.montantLigne}}</span>
+                                    </td>
+                                    <td>
+                                      <span>{{ligne.isCloseEntree}}</span>
+                                    </td>
+                                    <td>
+                                      <button cButton color="primary" variant="outline" size="sm">
+                                        <svg cIcon name="cilPen" size="sm"></svg>
+                                      </button>
+                                      <button cButton color="info" variant="outline" size="sm">
+                                        <svg cIcon name="cilEye" size="sm"></svg>
+                                      </button>
+                                      <button cButton color="danger" variant="outline" size="sm">
+                                        <svg cIcon name="cilX" size="sm"></svg>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </fieldset>
+                    </c-col>
+                </c-row>
+            </div>
+            <div class="modal-footer">
+                <button cButton color="success" variant="outline" class="float-end" size="sm"
+                    (click)="save()">Enregistrer</button>
+            </div>
+        </form>   
+    </c-card-body>
+  </c-card>
+  

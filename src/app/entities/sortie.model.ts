@@ -6,7 +6,7 @@ import { IOrdonnateur } from "./ordonnateur.model";
 import { Moment } from 'moment';
 
 export interface ISortie {
-    idSortie: number | null;
+    idSortie?: number | null;
     dateSortie?: Date;
     motifSortie?: string | null;
     validerLe?: Date;
@@ -27,7 +27,7 @@ export interface ISortie {
 
 export class Sortie implements ISortie {
     constructor(
-        public idSortie: number | null,
+        public idSortie?: number | null,
         public dateSortie?: Date,
         public motifSortie?: string | null,
         public validerLe?: Date,

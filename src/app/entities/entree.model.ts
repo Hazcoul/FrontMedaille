@@ -1,10 +1,9 @@
 import { IFournisseur } from "./fournisseur.model";
 import { ILigneEntree } from "./ligne-entree.model";
 import { IMagasin } from "./magasin.model";
-import {Moment} from 'moment';
-
+import { Moment } from 'moment';
 export interface IEntree {
-    idEntree: number | null;
+    idEntree?: number | null;
     dateEntree?: Date;
     numeroCmd?: string | null;
     validerLe?: Date;
@@ -25,7 +24,7 @@ export interface IEntree {
 
 export class Entree implements IEntree {
     constructor(
-        public idEntree: number | null,
+        public idEntree?: number | null,
         public dateEntree?: Date,
         public numeroCmd?: string | null,
         public validerLe?: Date,
