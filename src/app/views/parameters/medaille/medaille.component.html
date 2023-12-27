@@ -1,0 +1,32 @@
+<c-card class="mb-4">
+    <c-card-header>Medailles</c-card-header>
+    <c-card-body>
+      <table [striped]="true" cTable>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Quantité en stock</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Description</th>
+            <th scope="col">Hors d'usage?</th>
+            <th scope="col">Distinction</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medaille of medailles; index as i">
+            <td><span>{{i}}</span></td>
+            <td><span>{{medaille.nomComplet}}</span></td>
+            <td><span>{{medaille.stock}}</span></td>
+            <td><span> <img src="{{medaille.lienImage}}" alt="{{medaille.nomComplet}}"/></span></td>
+            <td><span>{{medaille.description}}</span></td>
+            <td><span>{{medaille.horsUsage}}</span></td>
+            <td><span>{{medaille.distinction}}</span></td>
+            <td><span>{{medaille.grade}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </c-card-body>
+  </c-card>

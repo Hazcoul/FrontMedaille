@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 
 export interface IOrdonnateur {
-    idOrdonnateur: number | null;
+    idOrdonnateur?: number | null;
     matricule?: string | null;
     nom?: string | null;
     prenom?: string | null;
@@ -17,7 +17,7 @@ export interface IOrdonnateur {
 
 export class Ordonnateur implements IOrdonnateur {
     constructor(
-        public idOrdonnateur: number | null,
+        public idOrdonnateur?: number | null,
         public matricule?: string | null,
         public nom?: string | null,
         public prenom?: string | null,

@@ -37,19 +37,19 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Médailles',
-        url: '/parametres/medailles'
+        url: '/parametre/medaille'
       },
       {
         name: 'Grades/Dignités',
-        url: '/parametres/grades-dignites'
+        url: '/parametre/grade'
       },
       {
         name: 'Fournisseurs',
-        url: '/parametres/fournisseurs'
+        url: '/parametre/fournisseur'
       },
       {
         name: 'Distinctions',
-        url: '/parametres/distinctions'
+        url: '/parametre/distinction'
       },
       {
         name: 'Dépôt',
@@ -57,7 +57,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Magasins',
-        url: '/parametres/magasins'
+        url: '/parametre/magasin'
       },
     ]
   },
@@ -68,11 +68,11 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Statistiques',
-        url: '/parametre/statistiques'
+        url: '/stats/statistiques'
       },
       {
         name: 'États',
-        url: '/parametres/etats'
+        url: '/stats/etats'
       },
     ]
   },

@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="modal-header bg-success text-white">
+        <h4 class="modal-tile">Ajouter/Modifier une distinction</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_code">Code :</label>
+                    <input cFormControl sizing="sm" id="field_code" type="text" 
+                        [(ngModel)]="distinction.code" name="code"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_abreviation">Abreviation :</label>
+                    <input cFormControl sizing="sm" id="field_abreviation" type="text" 
+                        [(ngModel)]="distinction.abreviation" name="abreviation"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_libelle">Libéllé :</label>
+                    <input cFormControl sizing="sm" id="field_libelle" type="text" 
+                        [(ngModel)]="distinction.libelle" name="libelle"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_categoryDistinction">Categorie:</label>
+                    <input cFormControl sizing="sm" id="field_categoryDistinction" type="text" 
+                        [(ngModel)]="distinction.categoryDistinction" name="categoryDistinction"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_referenceDecret">Reference Décret :</label>
+                    <input cFormControl sizing="sm" id="field_referenceDecret" type="text" 
+                        [(ngModel)]="distinction.referenceDecret" name="referenceDecret"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_dateDecretCreation">Date du décret :</label>
+                    <input cFormControl sizing="sm" id="field_dateDecretCreation" type="text" 
+                        [(ngModel)]="distinction.dateDecretCreation" name="dateDecretCreation"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <label cLabel for="field_description">Description :</label>
+                <textarea cFormControl sizing="sm" iD="field_description" type="text"
+                    name="description">{{distinction.description}}</textarea>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Enregistrer</button>
+        </div>
+    </form>
+</div>

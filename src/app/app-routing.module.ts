@@ -40,6 +40,10 @@ const routes: Routes = [
           import('./views/parameters/parametres.module').then((m) => m.ParametresModule)
       },
       {
+        path: 'mouvement',
+        loadChildren: () => import('./views/mvt-stock/mvt-stock.module').then((m) => m.MvtStockModule)
+      },
+      {
         path: 'buttons',
         loadChildren: () =>
           import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)

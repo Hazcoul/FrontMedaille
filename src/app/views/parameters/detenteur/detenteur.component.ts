@@ -5,6 +5,9 @@ import { Subscription, combineLatest } from 'rxjs';
 import { DetenteurService } from '../../../services/detenteur.service';
 import { IDetenteur} from '../../../entities/detenteur';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditDetenteurComponent } from './add-edit-detenteur/add-edit-detenteur.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-detenteur',
@@ -25,7 +28,8 @@ export class DetenteurComponent implements OnInit, OnDestroy {
   constructor(
     private detenteurService: DetenteurService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +93,18 @@ export class DetenteurComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(detenteur?: IDetenteur): void {
+    const modalRef = this.modalService.open(AddEditDetenteurComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != detenteur?.idDetenteur) {
+      modalRef.componentInstance.detenteur = cloneDeep(detenteur);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }

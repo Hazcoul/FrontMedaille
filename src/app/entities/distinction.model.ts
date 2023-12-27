@@ -1,5 +1,7 @@
+import { Moment} from 'moment';
+
 export interface IDistinction {
-    idDistinction: number | null;
+    idDistinction?: number | null;
     code?: string | null;
     abreviation?: string | null;
     libelle?: string | null;
@@ -8,14 +10,14 @@ export interface IDistinction {
     dateDecretCreation?: Date;
     description?: string | null;
     createdBy?: string;
-    createdDate?: Date;
+    createdDate?: Moment;
     lastModifiedBy?: string;
-    lastModifiedDate?: Date;
+    lastModifiedDate?: Moment;
 }
 
 export class Distinction implements IDistinction {
     constructor(
-        public idDistinction: number | null,
+        public idDistinction?: number | null,
         public code?: string | null,
         public abreviation?: string | null,
         public libelle?: string | null,
@@ -24,8 +26,8 @@ export class Distinction implements IDistinction {
         public dateDecretCreation?: Date,
         public description?: string | null,
         public createdBy?: string,
-        public createdDate?: Date,
+        public createdDate?: Moment,
         public lastModifiedBy?: string,
-        public lastModifiedDate?: Date,
+        public lastModifiedDate?: Moment,
     ) {}
 }
