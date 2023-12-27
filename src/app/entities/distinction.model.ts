@@ -1,7 +1,7 @@
 import { Moment} from 'moment';
 
 export interface IDistinction {
-    idDistinction: number | null;
+    idDistinction?: number | null;
     code?: string | null;
     abreviation?: string | null;
     libelle?: string | null;
@@ -17,7 +17,7 @@ export interface IDistinction {
 
 export class Distinction implements IDistinction {
     constructor(
-        public idDistinction: number | null,
+        public idDistinction?: number | null,
         public code?: string | null,
         public abreviation?: string | null,
         public libelle?: string | null,

@@ -1,7 +1,7 @@
 import {Moment} from 'moment';
 
 export interface IFournisseur {
-    idFournisseur: number | null;
+    idFournisseur?: number | null;
     sigle?: string | null;
     libelle?: string | null;
     telephoneFix?: string | null;
@@ -19,7 +19,7 @@ export interface IFournisseur {
 
 export class Fournisseur implements IFournisseur {
     constructor(
-        public idFournisseur: number | null,
+        public idFournisseur?: number | null,
         public sigle?: string | null,
         public libelle?: string | null,
         public telephoneFix?: string | null,

@@ -1,6 +1,6 @@
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 export interface IDepot {
-    idDepot: number | null;
+    idDepot?: number | null;
     nomDepot?: string | null;
     description?: string | null;
     createdBy?: string;
@@ -11,7 +11,7 @@ export interface IDepot {
 
 export class Depot implements IDepot {
     constructor(
-        public idDepot: number | null,
+        public idDepot?: number | null,
         public nomDepot?: string | null,
         public description?: string | null,
         public createdBy?: string,

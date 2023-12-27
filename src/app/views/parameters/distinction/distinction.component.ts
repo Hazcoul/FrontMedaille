@@ -5,6 +5,9 @@ import { Subscription, combineLatest } from 'rxjs';
 import { DistinctionService } from '../../../services/distinction.service';
 import { IDistinction} from '../../../entities/distinction.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditDistinctionComponent } from './add-edit-distinction/add-edit-distinction.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-distinction',
@@ -25,7 +28,8 @@ export class DistinctionComponent implements OnInit, OnDestroy {
   constructor(
     private distinctionService: DistinctionService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +93,18 @@ export class DistinctionComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(distinction?: IDistinction): void {
+    const modalRef = this.modalService.open(AddEditDistinctionComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != distinction?.idDistinction) {
+      modalRef.componentInstance.distinction = cloneDeep(distinction);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }

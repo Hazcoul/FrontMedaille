@@ -3,7 +3,7 @@ import { IGrade } from "./grade.model";
 import { Moment } from 'moment';
 
 export interface IMedaille {
-    idMedaille: number | null;
+    idMedaille?: number | null;
     nomComplet?: string | null;
     stock?: number | null;
     lienImage?: string | null;
@@ -19,7 +19,7 @@ export interface IMedaille {
 
 export class Medaille implements IMedaille {
     constructor(
-        public idMedaille: number | null,
+        public idMedaille?: number | null,
         public nomComplet?: string | null,
         public stock?: number | null,
         public lienImage?: string | null,

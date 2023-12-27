@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 
 export interface IDetenteur {
-    idDetenteur: number | null;
+    idDetenteur?: number | null;
     matricule?: string | null;
     civilite?: string | null;
     nom?: string | null;
@@ -17,7 +17,7 @@ export interface IDetenteur {
 
 export class Detenteur implements IDetenteur {
     constructor(
-        public idDetenteur: number | null,
+        public idDetenteur?: number | null,
         public matricule?: string | null,
         public civilite?: string | null,
         public nom?: string | null,

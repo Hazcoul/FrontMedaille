@@ -1,5 +1,15 @@
 <c-card class="mb-4">
-    <c-card-header>Distinctions</c-card-header>
+    <c-card-header>
+      <c-row>
+        <c-col md="10">
+          Distinction
+        </c-col>
+        <c-col md="2">
+          <button cButton color="primary" variant="outline" class="float-end" size="sm"
+            (click)="openAddEditModal()">Ajouter</button>
+        </c-col>
+      </c-row>
+    </c-card-header>
     <c-card-body>
       <table [striped]="true" cTable>
         <thead>
@@ -23,6 +33,17 @@
             <td><span>{{distinction.categoryDistinction}}</span></td>
             <td><span>{{distinction.referenceDecret}} du {{distinction.dateDecretCreation}}</span></td>
             <td><span>{{distinction.description}}</span></td>
+            <td>
+              <button cButton color="primary" variant="outline" size="sm">
+                <svg cIcon name="cilPen" size="sm"></svg>
+              </button>
+              <button cButton color="info" variant="outline" size="sm">
+                <svg cIcon name="cilEye" size="sm"></svg>
+              </button>
+              <button cButton color="danger" variant="outline" size="sm">
+                <svg cIcon name="cilX" size="sm"></svg>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

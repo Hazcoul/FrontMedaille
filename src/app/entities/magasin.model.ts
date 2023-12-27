@@ -2,7 +2,7 @@ import { IDepot } from "./depot.model";
 import { Moment } from 'moment';
 
 export interface IMagasin {
-    idMagasin: number | null;
+    idMagasin?: number | null;
     nomMagasin?: string | null;
     capacite?: number | null;
     description?: string | null;
@@ -15,7 +15,7 @@ export interface IMagasin {
 
 export class Magasin implements IMagasin {
     constructor(
-        public idMagasin: number | null,
+        public idMagasin?: number | null,
         public nomMagasin?: string | null,
         public capacite?: number | null,
         public description?: string | null,
