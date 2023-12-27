@@ -26,6 +26,9 @@ import { GradeComponent } from './grade/grade.component';
 import { MagasinComponent } from './magasin/magasin.component';
 import { MedailleComponent } from './medaille/medaille.component';
 import { AddEditDistinctionComponent } from './distinction/add-edit-distinction/add-edit-distinction.component';
+import { DetailMedailleComponent } from './medaille/detail-medaille/detail-medaille.component';
+import { CreateUpdateMedailleComponent } from './medaille/create-update-medaille/create-update-medaille.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 
@@ -44,7 +47,9 @@ import { AddEditDistinctionComponent } from './distinction/add-edit-distinction/
     MedailleComponent,
     FournisseurComponent,
     AddEditDetenteurComponent,
-    AddEditDistinctionComponent
+    AddEditDistinctionComponent,
+    DetailMedailleComponent,
+    CreateUpdateMedailleComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +61,8 @@ import { AddEditDistinctionComponent } from './distinction/add-edit-distinction/
     TableModule,
     IconModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
   ]
 })
 export class ParametresModule { }

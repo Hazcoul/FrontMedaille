@@ -3,8 +3,17 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { MedailleService } from '../../../services/medaille.service';
-import { IMedaille} from '../../../entities/medaille.model';
+import {IMedaille, Medaille} from '../../../entities/medaille.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import {IProfil, Profil} from "../../../entities/profil.model";
+import Swal from "sweetalert2";
+import {DetailProfilComponent} from "../../pages/securite/profile/detail-profil/detail-profil.component";
+import {cloneDeep} from "lodash-es";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {IBeneficiaire} from "../../../entities/beneficiaire.model";
+import {AddEditComponent} from "../beneficiaire/add-edit/add-edit.component";
+import {CreateUpdateMedailleComponent} from "./create-update-medaille/create-update-medaille.component";
+import {DetailMedailleComponent} from "./detail-medaille/detail-medaille.component";
 
 @Component({
   selector: 'app-medaille',
@@ -24,7 +33,7 @@ export class MedailleComponent implements OnInit, OnDestroy {
 
   constructor(
     private medailleService: MedailleService,
-    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
     private router: Router
   ) {}
 
@@ -84,6 +93,7 @@ export class MedailleComponent implements OnInit, OnDestroy {
       });
     }
     this.medailles = data || [];
+    console.warn("Medailles",this.medailles);
     this.ngbPaginationPage = this.page;
   }
 
@@ -91,7 +101,62 @@ export class MedailleComponent implements OnInit, OnDestroy {
     this.ngbPaginationPage = this.page ?? 1;
   }
 
-  openAddEditModal() {
-
+  openAddEditModal(medaille?: Medaille): void {
+    const modalRef = this.modalService.open(CreateUpdateMedailleComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != medaille?.idMedaille) {
+      modalRef.componentInstance.medaille = cloneDeep(medaille);
+    }
+    modalRef.result.then(() => {
+        this.loadPage();
+      },
+      error => {
+        console.log(error)
+      })
   }
+
+  openModalDetail(medaille: Medaille) {
+    const modalRef = this.modalService.open(DetailMedailleComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != medaille?.idMedaille) {
+      modalRef.componentInstance.medaille = cloneDeep(medaille);
+    }
+    modalRef.result.then(() => {
+        this.loadPage();
+      },
+      error => {
+        console.log(error)
+      })
+  }
+
+  removeMedaille(medaille: Medaille) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(medaille);
+      }
+    });
+  }
+
+  delete(medaille: Medaille) {
+    this.medailleService.delete(medaille.idMedaille!).subscribe(() => {
+      this.loadPage();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Suppression effectuée avec succès',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+    }, (error) => {
+      console.error("medaille " + JSON.stringify(error));
+    });
+  }
+
 }
