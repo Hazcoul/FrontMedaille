@@ -20,8 +20,10 @@
                 </c-col>
                 <c-col md="3">
                     <label cLabel for="field_depot">Dépot:</label>
-                    <input cFormControl sizing="sm" id="field_depot" type="text" 
-                        [(ngModel)]="magasin.depot" name="depot"/>
+                    <select aria-label="Small select example" cSelect sizing="sm" 
+                    [(ngModel)]="magasin.depot" name="depot" id="field_depot">
+                    <option *ngFor="let depot of depots" [ngValue]="depot">{{ depot.nomDepot }}</option>
+                </select>
                 </c-col>
             </c-row>
         </div>
