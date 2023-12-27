@@ -75,7 +75,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
     //     this.loadPage(pageNumber, true);
     //   }
     // }).subscribe();
-    
+
   }
 
   trackId(index: number, item: IBeneficiaire): number {

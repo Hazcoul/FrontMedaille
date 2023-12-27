@@ -3,7 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Magasin,IMagasin } from 'src/app/entities/magasin.model';
+import { Depot,IDepot } from 'src/app/entities/depot.model';
 import { MagasinService } from 'src/app/services/magasin.service';
+import { DepotService } from 'src/app/services/depot.service';
 
 @Component({
   selector: 'app-add-edit-magasin',
@@ -14,14 +16,25 @@ export class AddEditMagasinComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   magasin: IMagasin = new Magasin();
+  depots?: IDepot[];
 
   constructor(
     private magasinService: MagasinService,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
+    private depotService: DepotService,
   ) {}
 
   ngOnInit(): void {
-      
+      /**
+     * Get all depots
+     */
+    this.depotService.query().subscribe({
+      next: (res: HttpResponse<IDepot[]>) => {
+        this.depots = res.body || [];
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+
   }
 
   ngOnDestroy(): void {

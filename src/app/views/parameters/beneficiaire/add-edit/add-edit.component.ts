@@ -21,11 +21,11 @@ export class AddEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-      
+
   }
 
   ngOnDestroy(): void {
-      
+
   }
 
   goBack(): void {

@@ -4,9 +4,9 @@ import {Distinction} from "../../../../entities/distinction.model";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {MedailleService} from "../../../../services/medaille.service";
 import Swal from "sweetalert2";
-import {GradeService} from "../../../../services/grade.service";
 import {DistinctionService} from "../../../../services/distinction.service";
 import {Grade} from "../../../../entities/grade.model";
+import {GradeService} from "../../../../services/grade.service";
 
 @Component({
   selector: 'app-create-update-medaille',

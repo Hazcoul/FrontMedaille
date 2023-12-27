@@ -30,17 +30,13 @@
             <td><span>{{distinction.abreviation}}</span></td>
             <td><span>{{distinction.libelle}}</span></td>
             <td><span>{{distinction.categoryDistinction}}</span></td>
-            <td><span>{{distinction.referenceDecret}} du {{distinction.dateDecretCreation}}</span></td>
+            <td><span>{{distinction.referenceDecret}} du {{distinction.dateDecretCreation | date: "dd/MM/yyyy"}}</span></td>
             <td>
-              <button cButton color="primary" variant="outline" size="sm">
-                <svg cIcon name="cilPen" size="sm"></svg>
-              </button>
-              <button cButton color="info" variant="outline" size="sm">
-                <svg cIcon name="cilEye" size="sm"></svg>
-              </button>
-              <button cButton color="danger" variant="outline" size="sm">
-                <svg cIcon name="cilX" size="sm"></svg>
-              </button>
+              <div class="">
+                <button title="Modifier distinction" (click)="openAddEditModal(distinction)" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
+                <button title="Detail distinction" (click)="openModalDetail(distinction)" class=""><i class="fa fa-eye" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
+                <button title="Supprimer distinction" (click)="removeDistinction(distinction)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
+              </div>
             </td>
           </tr>
         </tbody>

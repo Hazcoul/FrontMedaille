@@ -14,7 +14,7 @@
       <table [striped]="true" cTable>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">N°</th>
             <th scope="col">Nom</th>
             <th scope="col">Capacité</th>
             <th scope="col">Dépot</th>
@@ -23,10 +23,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let magasin of magasins; index as i">
-            <td><span>{{i}}</span></td>
+            <td><span>{{i+1}}</span></td>
             <td><span>{{magasin.nomMagasin}}</span></td>
             <td><span>{{magasin.capacite}}</span></td>
-            <td><span>{{magasin.depot}}</span></td>
+            <td><span>{{magasin.depot?.nomDepot}}</span></td>
             <td>
               <button cButton color="primary" variant="outline" size="sm">
                 <svg cIcon name="cilPen" size="sm"></svg>
