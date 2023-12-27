@@ -20,14 +20,14 @@
                 <c-col md="6">
                     <label cLabel for="field_raisonSociale">Quantité :</label>
                     <input cFormControl sizing="sm" id="field_raisonSociale" type="text" 
-                        [(ngModel)]="ligneEntree.quantiteLigne" name="raisonSociale"/>
+                        [(ngModel)]="ligneEntree.quantiteLigne" name="raisonSociale" (ngModelChange)="calculerMontant($event)"/>
                 </c-col>
             </c-row>
             <c-row>
                 <c-col md="6">
                     <label cLabel for="field_telephoneFix">Prix unitaire :</label>
                     <input cFormControl sizing="sm" id="field_telephoneFix" type="text" 
-                        [(ngModel)]="ligneEntree.prixUnitaire" name="telephoneFix"/>
+                        [(ngModel)]="ligneEntree.prixUnitaire" name="telephoneFix" (ngModelChange)="calculerMontant($event)"/>
                 </c-col>
                 <c-col md="6">
                     <label cLabel for="field_field_telephoneMobile">Montant :</label>
@@ -37,9 +37,11 @@
             </c-row>
             <c-row>
                 <c-col md="12">
-                    <label cLabel for="field_email">Clôturer l'entrée? :</label>
-                    <input cFormControl sizing="sm" id="field_email" type="text" 
-                        [(ngModel)]="ligneEntree.isCloseEntree" name="email"/>
+                    <c-form-check class="mt-2">
+                        <input cFormCheckInput id="field_isCloseEntree" name="isCloseEntree" type="checkbox" 
+                            [(ngModel)]="ligneEntree.isCloseEntree"/>
+                        <label cFormCheckLabel for="gridCheck1">Clôturer l'entrée</label>
+                    </c-form-check>
                 </c-col>
             </c-row>
         </div>
