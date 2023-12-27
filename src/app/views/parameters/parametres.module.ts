@@ -59,6 +59,7 @@ import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-mag
     AddEditDistinctionComponent,
     DetailMedailleComponent,
     CreateUpdateMedailleComponent
+
   ],
   imports: [
     CommonModule,
