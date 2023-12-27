@@ -31,7 +31,17 @@
       </table>
     </c-card-body>
   </c-card>-->
-
+<c-card class="mb-4">
+  <c-card-header><c-row>
+    <c-col md="10">
+      Médailles
+    </c-col>
+    <c-col md="2">
+      <button cButton color="primary" variant="outline" class="float-end" size="sm"
+              (click)="openAddEditModal()">Ajouter</button>
+    </c-col>
+  </c-row></c-card-header>
+  <c-card-body>
 <ul class="card-wrapper">
   <li class="card">
     <img src='assets/images/folder.png' alt=''>
@@ -138,3 +148,5 @@
     </button>
   </li>
 </ul>
+  </c-card-body>
+</c-card>
