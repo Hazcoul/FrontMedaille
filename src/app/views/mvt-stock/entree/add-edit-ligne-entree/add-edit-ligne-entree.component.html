@@ -9,12 +9,9 @@
         <div class="modal-body">
             <c-row>
                 <c-col md="6">
-                    <label cLabel for="field_sigle">Medaille :</label>
+                    <label cLabel for="field_medaille">Selectionner la médaille :</label>
                     <select aria-label="Small select example" cSelect sizing="sm" [(ngModel)]="ligneEntree.medaille" name="medaille">
-                        <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option *ngFor="let medaille of medailles" [ngValue]="medaille">{{medaille.nomComplet}}</option>
                     </select>
                 </c-col>
                 <c-col md="6">
@@ -47,7 +44,7 @@
         </div>
         <div class="modal-footer">
             <button cButton color="success" variant="outline" class="float-end" size="sm"
-                (click)="save()">Enregistrer</button>
+                (click)="save()">Valider</button>
         </div>
     </form>
 </div>

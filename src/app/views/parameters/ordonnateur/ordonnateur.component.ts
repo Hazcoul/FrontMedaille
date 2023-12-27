@@ -5,6 +5,9 @@ import { Subscription, combineLatest } from 'rxjs';
 import { OrdonnateurService } from '../../../services/ordonnateur.service';
 import { IOrdonnateur} from '../../../entities/ordonnateur.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditOrdonnateurComponent } from './add-edit-ordonnateur/add-edit-ordonnateur.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-ordonnateur',
@@ -25,7 +28,8 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
   constructor(
     private ordonnateurService: OrdonnateurService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +93,18 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(ordonnateur?: IOrdonnateur): void {
+    const modalRef = this.modalService.open(AddEditOrdonnateurComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != ordonnateur?.idOrdonnateur) {
+      modalRef.componentInstance.ordonnateur = cloneDeep(ordonnateur);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }

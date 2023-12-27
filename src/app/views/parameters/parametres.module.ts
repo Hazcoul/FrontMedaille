@@ -29,6 +29,10 @@ import { AddEditDistinctionComponent } from './distinction/add-edit-distinction/
 import { DetailMedailleComponent } from './medaille/detail-medaille/detail-medaille.component';
 import { CreateUpdateMedailleComponent } from './medaille/create-update-medaille/create-update-medaille.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { AddEditOrdonnateurComponent } from './ordonnateur/add-edit-ordonnateur/add-edit-ordonnateur.component';
+import { AddEditGradeComponent } from './grade/add-edit-grade/add-edit-grade.component';
+import { AddEditFournisseurComponent } from './fournisseur/add-edit-fournisseur/add-edit-fournisseur.component';
+import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-magasin.component';
 
 
 
@@ -47,6 +51,11 @@ import {NgSelectModule} from "@ng-select/ng-select";
     MedailleComponent,
     FournisseurComponent,
     AddEditDetenteurComponent,
+    AddEditDistinctionComponent,
+    AddEditOrdonnateurComponent,
+    AddEditGradeComponent,
+    AddEditFournisseurComponent,
+    AddEditMagasinComponent,
     AddEditDistinctionComponent,
     DetailMedailleComponent,
     CreateUpdateMedailleComponent

@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ILigneEntree, LigneEntree } from 'src/app/entities/ligne-entree.model';
 import { MedailleService } from '../../../../services/medaille.service';
 import { IMedaille } from 'src/app/entities/medaille.model';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-edit-ligne-entree',
@@ -20,7 +21,12 @@ export class AddEditLigneEntreeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      
+      this.medailleService.query().subscribe({
+        next: (res: HttpResponse<IMedaille[]>) => {
+          this.medailles = res.body || [];
+        },
+        error: (e) => console.log('ERROR : ', e)
+      });
   }
 
   save(): void {

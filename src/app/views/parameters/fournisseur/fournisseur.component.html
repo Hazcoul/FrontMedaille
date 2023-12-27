@@ -1,17 +1,27 @@
 <c-card class="mb-4">
-    <c-card-header>Dépots</c-card-header>
+    <c-card-header>
+      <c-row>
+        <c-col md="10">
+          Fournisseurs
+        </c-col>
+        <c-col md="2">
+          <button cButton color="primary" variant="outline" class="float-end" size="sm"
+            (click)="openAddEditModal()">Ajouter</button>
+        </c-col>
+      </c-row>
+    </c-card-header>
     <c-card-body>
       <table [striped]="true" cTable>
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Sigle</th>
-            <th scope="col">Libelle</th>
-            <th scope="col">telephoneFix</th>
-            <th scope="col">telephoneMobile</th>
-            <th scope="col">email</th>
-            <th scope="col">adresse</th>
-            <th scope="col">numeroIfu</th>
+            <th scope="col">Désigation</th>
+            <th scope="col">Télephone Fix</th>
+            <th scope="col">Téléphone Mobile</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Numero IFU</th>
             <th scope="col">Personne Ressource</th>
             <th scope="col">Action</th>
           </tr>
@@ -27,6 +37,17 @@
             <td><span>{{fournisseur.adresse}}</span></td>
             <td><span>{{fournisseur.numeroIfu}}</span></td>
             <td><span>{{fournisseur.nomCompletPersonneRessource}} : {{fournisseur.telephonePersonneRessource}}</span></td>
+            <td>
+              <button cButton color="primary" variant="outline" size="sm">
+                <svg cIcon name="cilPen" size="sm"></svg>
+              </button>
+              <button cButton color="info" variant="outline" size="sm">
+                <svg cIcon name="cilEye" size="sm"></svg>
+              </button>
+              <button cButton color="danger" variant="outline" size="sm">
+                <svg cIcon name="cilX" size="sm"></svg>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

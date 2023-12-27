@@ -16,7 +16,6 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nom</th>
-            <th scope="col">Description</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -24,7 +23,6 @@
           <tr *ngFor="let depot of depots; index as i">
             <td><span>{{i}}</span></td>
             <td><span>{{depot.nomDepot}}</span></td>
-            <td><span>{{depot.description}}</span></td>
             <td>
               <button cButton color="primary" variant="outline" size="sm">
                 <svg cIcon name="cilPen" size="sm"></svg>

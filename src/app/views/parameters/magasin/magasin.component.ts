@@ -5,6 +5,9 @@ import { Subscription, combineLatest } from 'rxjs';
 import { MagasinService } from '../../../services/magasin.service';
 import { IMagasin} from '../../../entities/magasin.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditMagasinComponent } from './add-edit-magasin/add-edit-magasin.component';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'app-magasin',
@@ -25,7 +28,8 @@ export class MagasinComponent implements OnInit, OnDestroy {
   constructor(
     private magasinService: MagasinService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +93,18 @@ export class MagasinComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  openAddEditModal(magasin?: IMagasin): void {
+    const modalRef = this.modalService.open(AddEditMagasinComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != magasin?.idMagasin) {
+      modalRef.componentInstance.magasin = cloneDeep(magasin);
+    }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
   }
 }
