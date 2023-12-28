@@ -2,7 +2,7 @@
     <c-card-header>
       <c-row>
         <c-col md="10">
-          Entrées
+            Entrées
         </c-col>
         <c-col md="2">
           <button cButton color="primary" variant="outline" class="float-end" size="sm"
@@ -26,32 +26,35 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let entree of entrees; index as i">
-                        <td><span>{{i}}</span></td>
+                        <td><span>{{i + 1}}</span></td>
                         <td>
-                        <span>{{entree.dateEntree}}</span>
+                            <span>{{entree.dateEntree}}</span>
                         </td>
                         <td>
-                        <span>{{entree.numeroCmd}}</span>
+                            <span>{{entree.numeroCmd}}</span>
                         </td>
                         <td>
-                        <span>{{entree.exerciceBudgetaire}}</span>
+                            <span>{{entree.exerciceBudgetaire}}</span>
                         </td>
                         <td>
-                        <span>{{entree.magasin}}</span>
+                            <span>{{entree.magasin?.nomMagasin}}</span>
                         </td>
                         <td>
-                        <span>{{entree.fournisseur}}</span>
+                            <span>{{entree.fournisseur?.libelle}}</span>
                         </td>
                         <td>
-                        <button cButton color="primary" variant="outline" size="sm">
-                            <svg cIcon name="cilPen" size="sm"></svg>
-                        </button>
-                        <button cButton color="info" variant="outline" size="sm">
-                            <svg cIcon name="cilEye" size="sm"></svg>
-                        </button>
-                        <button cButton color="danger" variant="outline" size="sm">
-                            <svg cIcon name="cilX" size="sm"></svg>
-                        </button>
+                            <button class="btn btn-outline-primary btn-sm" type="button" 
+                                (click)="editItem(entree)">
+                                <svg cIcon name="cilPen" size="sm"></svg>
+                              </button>
+                              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                                (click)="showItem(entree)">
+                                <i class="fa fa-eye"></i>
+                              </button>
+                              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                                (click)="confirmDeleteItem(entree)">
+                                <i class="fa fa-remove"></i>
+                              </button>
                         </td>
                     </tr>
                 </tbody>
