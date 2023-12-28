@@ -159,4 +159,14 @@ export class MedailleComponent implements OnInit, OnDestroy {
     });
   }
 
+  getByteImage(lien: string): any{
+    this.medailleService.getByte(lien).subscribe(response => {
+      console.warn("RESP",response.body);
+      return response.body!;
+
+    }, error => {
+      console.error(JSON.stringify(error));
+    });
+  }
+
 }
