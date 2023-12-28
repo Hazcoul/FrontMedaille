@@ -20,6 +20,7 @@ export class BeneficiaireService {
 
   create(beneficiare: IBeneficiaire): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(beneficiare);
+    //console.log('************* DATA CREATION : ',copy)
     return this.http
       .post<IBeneficiaire>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
