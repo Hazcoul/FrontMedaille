@@ -1,20 +1,21 @@
 <c-card class="mb-4">
-    <c-card-header>
-      <c-row>
-        <c-col md="10">
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
           Sorties
-        </c-col>
-        <c-col md="2">
-          <button cButton color="primary" variant="outline" class="float-end" size="sm"
-            [routerLink]="['/mouvement/sortie/nouvelle']">Ajouter</button>
-        </c-col>
-      </c-row>
-    </c-card-header>
-    <c-card-body>
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end" size="sm"
+          [routerLink]="['/mouvement/sortie/nouvelle']">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <div *ngIf="sorties && sorties.length > 0">
       <table [striped]="true" cTable>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">N°</th>
             <th scope="col">Date</th>
             <th scope="col">N° sortie</th>
             <th scope="col">Ordonnateur</th>
@@ -26,7 +27,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let sortie of sorties; index as i">
-            <td><span>{{i}}</span></td>
+            <td><span>{{i + 1}}</span></td>
             <td>
               <span>{{sortie.dateSortie}}</span>
             </td>
@@ -46,19 +47,27 @@
               <span>{{sortie.magasin?.nomMagasin}}</span>
             </td>
             <td>
-              <button cButton color="primary" variant="outline" size="sm">
+              <button class="btn btn-outline-primary btn-sm" type="button" 
+                (click)="editItem(sortie)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button cButton color="info" variant="outline" size="sm">
-                <svg cIcon name="cilEye" size="sm"></svg>
+              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                (click)="showItem(sortie)">
+                <i class="fa fa-eye"></i>
               </button>
-              <button cButton color="danger" variant="outline" size="sm">
-                <svg cIcon name="cilX" size="sm"></svg>
+              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                (click)="confirmDeleteItem(sortie)">
+                <i class="fa fa-remove"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-    </c-card-body>
-  </c-card>
+    </div>
+    <div *ngIf="sorties && sorties.length == 0">
+        <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>
+    </div>
+  </c-card-body>
+</c-card>
+  
   
