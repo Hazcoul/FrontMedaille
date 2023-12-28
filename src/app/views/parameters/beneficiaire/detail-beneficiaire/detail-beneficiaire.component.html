@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Détails d'un bénéficiaire</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-sm no-border">
+                <tbody>
+                    <tr>
+                        <th>Sigle</th>
+                        <td>{{': ' + beneficiaire.sigle}}</td>
+                    </tr>
+                    <tr>
+                        <th>Raison sociale</th>
+                        <td>{{': ' + beneficiaire.raisonSociale}}</td>
+                    </tr>
+                    <tr>
+                        <th>N° de téléphone fixe</th>
+                        <td>{{': ' + beneficiaire.telephoneFix}}</td>
+                    </tr>
+                    <tr>
+                        <th>N° de téléphone mobile</th>
+                        <td>{{': ' + beneficiaire.telephoneMobile}}</td> 
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{': ' + beneficiaire.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{': ' + beneficiaire.adresse}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button cButton color="danger" variant="outline" class="float-end" size="sm"
+            (click)="close()">Fermer</button>
+    </div>
+</div>

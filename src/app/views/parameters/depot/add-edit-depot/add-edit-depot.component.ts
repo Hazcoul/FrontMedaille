@@ -54,7 +54,7 @@ export class AddEditDepotComponent implements OnInit, OnDestroy {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.activeModal.close();
-    this.goBack();
+//    this.goBack();
   }
 
   protected onSaveError(): void {

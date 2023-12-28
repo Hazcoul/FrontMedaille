@@ -3,7 +3,7 @@ import { SERVER_API_URL } from '../app.constants';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import * as moment from 'moment';
-import { IMedaille} from '../entities/medaille.model';
+import {IMedaille, Medaille} from '../entities/medaille.model';
 import { createRequestOption } from '../shared/util/request.util';
 
 type EntityResponseType = HttpResponse<IMedaille>;
@@ -30,6 +30,18 @@ export class MedailleService {
     return this.http
       .put<IMedaille>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  createMedailleWithImage(file:any,medaille: Medaille): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('photo', file);
+    formData.append('data', new Blob([JSON
+        .stringify(medaille)], {
+      type: 'application/json'
+    }));
+    return this.http.post(this.resourceUrl, formData).pipe(map((data: any) => {
+      return data;
+    }));
   }
 
   find(id: number): Observable<EntityResponseType> {

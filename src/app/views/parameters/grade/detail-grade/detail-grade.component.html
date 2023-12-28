@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="modal-header bg-success text-white">
+    <h4 class="text-center">Détail Grade</h4>
+    <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
+            (click)="close();">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-sm no-border">
+              <tbody>
+              <tr>
+                <th>Libelle</th>
+                <td>: {{grade.libelle}}</td>
+                <th>Description</th>
+                <td>: {{ grade.description}}</td>
+                <th>type Grade</th>
+                <td>: {{ grade.typeGrade}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button cButton color="success" variant="outline" class="float-end" size="sm"
+              (click)="close()">Fermer
+      </button>
+    </div>
+  </form>
+</div>

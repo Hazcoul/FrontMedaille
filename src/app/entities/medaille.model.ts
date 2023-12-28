@@ -1,5 +1,5 @@
 import { IDistinction } from "./distinction.model";
-import { IGrade } from "./grade.model";
+import {Grade, IGrade} from "./grade.model";
 import { Moment } from 'moment';
 
 export interface IMedaille {
@@ -10,7 +10,7 @@ export interface IMedaille {
     description?: string | null;
     horsUsage?: boolean | null;
     distinction?: IDistinction;
-    grade?: IGrade;
+    grade?: Grade;
     createdBy?: string;
     createdDate?: Moment;
     lastModifiedBy?: string;
@@ -26,7 +26,7 @@ export class Medaille implements IMedaille {
         public description?: string | null,
         public horsUsage?: boolean | null,
         public distinction?: IDistinction,
-        public grade?: IGrade,
+        public grade?: Grade,
         public createdBy?: string,
         public createdDate?: Moment,
         public lastModifiedBy?: string,

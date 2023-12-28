@@ -5,7 +5,8 @@ import { Subscription, combineLatest } from 'rxjs';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EntreeService } from '../../../services/entree.service';
-import { IEntree } from '../../../entities/entree.model';
+import { IEntree } from 'src/app/entities/entree.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-entree',
@@ -83,10 +84,35 @@ export class EntreeComponent implements OnInit, OnDestroy {
   //   this.eventSubscriber = this.eventManager.subscribe('beneficiairesListModification', () => this.loadPage());
   // }
 
-  // delete(beneficiaires: IEntree): void {
-  //   const modalRef = this.modalService.open(beneficiaireDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-  //   modalRef.componentInstance.beneficiaires = beneficiaires;
-  // }
+  confirmDeleteItem(entree: IEntree): void {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(entree);
+        Swal.fire({
+          title: "Supprimé!",
+          text: "Element supprimé.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+  delete(entree: IEntree): void {
+   this.entreeService.delete(entree.idEntree!).subscribe({
+    next: (res) => {
+      this.loadPage();
+    },
+    error: (e) =>console.log('ERROR : ', e)
+   })
+  }
 
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
@@ -116,4 +142,11 @@ export class EntreeComponent implements OnInit, OnDestroy {
     this.ngbPaginationPage = this.page ?? 1;
   }
 
+  editItem(entree: IEntree): void {
+    this.router.navigate(['mouvement', 'entree', entree.idEntree, 'edit'])
+  }
+
+  showItem(entree: IEntree): void {
+    this.router.navigate(['mouvement', 'entree', entree.idEntree, 'details'])
+  }
 }

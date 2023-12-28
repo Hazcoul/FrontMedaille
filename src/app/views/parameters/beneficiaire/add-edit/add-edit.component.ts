@@ -21,11 +21,11 @@ export class AddEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-      
+
   }
 
   ngOnDestroy(): void {
-      
+
   }
 
   goBack(): void {
@@ -54,7 +54,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.activeModal.close();
-    this.goBack();
+    // this.goBack();
   }
 
   protected onSaveError(): void {

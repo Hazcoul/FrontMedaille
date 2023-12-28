@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="modal-header bg-warning text-white">
+        <h4 class="text-center">Détail de la medaille</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
+                (click)="close();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="text-info mb-2">Information du profil</span>
+                    <div class="table-responsive">
+                        <table class="table table-sm no-border">
+                            <tbody>
+                            <tr>
+                                <th>Libelle</th>
+                                <td>: {{medaille.nomComplet}}</td>
+                                <th>Distinction</th>
+                                <td>: {{ medaille.distinction?.libelle}}</td>
+                                <th>Grade</th>
+                                <td>: {{ medaille.grade?.libelle}}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>: {{medaille.description}}</td>
+                                <th>Quantite</th>
+                                <td>: {{ medaille.stock}}</td>
+                                <th>Hors usage</th>
+                                <td>: {{ medaille.horsUsage? "OUI" : "NON"}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="text-info mt-4">PHOTO CATALOGUE</span>
+                    <div class="table-responsive">
+                        <table class="table table-sm no-border">
+                            <tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                    (click)="close()">Fermer
+            </button>
+        </div>
+    </form>
+</div>

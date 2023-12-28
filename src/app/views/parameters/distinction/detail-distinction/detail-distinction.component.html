@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="modal-header bg-success text-white">
+    <h4 class="text-center">Détail distinction</h4>
+    <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close"
+            (click)="close();">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-sm no-border">
+              <tbody>
+              <tr>
+                <th>Code</th>
+                <td>: {{distinction.code}}</td>
+                <th>Description</th>
+                <td>: {{ distinction.description}}</td>
+                <th>Categorie distinction</th>
+                <td>: {{ distinction.categoryDistinction}}</td>
+              </tr>
+              <tr>
+                <th>Libelle</th>
+                <td>: {{distinction.libelle}}</td>
+                <th>Reference decret</th>
+                <td>: {{ distinction.referenceDecret}}</td>
+                <th>Date decret</th>
+                <td>: {{ distinction.dateDecretCreation  | date: "dd/MM/yyyy"}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button cButton color="success" variant="outline" class="float-end" size="sm"
+              (click)="close()">Fermer
+      </button>
+    </div>
+  </form>
+</div>

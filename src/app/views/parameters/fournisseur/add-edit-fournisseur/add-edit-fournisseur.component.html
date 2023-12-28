@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="modal-header bg-success text-white">
+    <div class="modal-header text-white">
         <h4 class="modal-tile">Ajouter/Modifier un fournisseur</h4>
         <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
             <span aria-hidden="true">X</span>
@@ -14,7 +14,7 @@
                         [(ngModel)]="fournisseur.sigle" name="sigle"/>
                 </c-col>
                 <c-col md="6">
-                    <label cLabel for="field_libelle">Libelle :</label>
+                    <label cLabel for="field_libelle">Désignation :</label>
                     <input cFormControl sizing="sm" id="field_libelle" type="text" 
                         [(ngModel)]="fournisseur.libelle" name="libelle"/>
                 </c-col>

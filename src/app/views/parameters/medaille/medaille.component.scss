@@ -2,7 +2,7 @@
 
 .card {
   --card-gradient: rgba(0, 0, 0, 0.8);
-  --card-gradient: #5e9ad9, #de6a4b;
+  --card-gradient: #584320, #ee8f29;
   // --card-gradient: tomato, orange;
   --card-blend-mode: overlay;
   // --card-blend-mode: multiply;
@@ -39,7 +39,7 @@
 
   &:hover,
   &:focus-within {
-    --card-gradient: #ee9d85 max(8.5rem, 30vh);
+    --card-gradient: #c69d74 max(8.5rem, 30vh);
   }
 }
 

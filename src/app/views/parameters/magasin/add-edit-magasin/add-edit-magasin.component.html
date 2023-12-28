@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="modal-header bg-success text-white">
+    <div class="modal-header text-white">
         <h4 class="modal-tile">Ajouter/Modifier un magasin</h4>
         <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
             <span aria-hidden="true">X</span>
@@ -20,8 +20,10 @@
                 </c-col>
                 <c-col md="3">
                     <label cLabel for="field_depot">Dépot:</label>
-                    <input cFormControl sizing="sm" id="field_depot" type="text" 
-                        [(ngModel)]="magasin.depot" name="depot"/>
+                    <select aria-label="Small select example" cSelect sizing="sm" 
+                    [(ngModel)]="magasin.depot" name="depot" id="field_depot">
+                    <option *ngFor="let depot of depots" [ngValue]="depot">{{ depot.nomDepot }}</option>
+                </select>
                 </c-col>
             </c-row>
         </div>
