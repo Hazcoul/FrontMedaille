@@ -114,7 +114,7 @@ export class AddEditEntreeComponent implements OnInit {
   }
 
   goBack(): void {
-    window.history.back();
+    this.router.navigate(['/mouvement/entree']);
   }
 
   save(): void {
