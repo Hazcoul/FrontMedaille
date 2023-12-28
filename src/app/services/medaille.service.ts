@@ -86,4 +86,8 @@ export class MedailleService {
     }
     return res;
   }
+
+  getByte(lien: string): Observable<HttpResponse<any>> {
+    return this.http.get<any>(`${this.resourceUrl}/${lien}`, { observe: 'response' });
+  }
 }
