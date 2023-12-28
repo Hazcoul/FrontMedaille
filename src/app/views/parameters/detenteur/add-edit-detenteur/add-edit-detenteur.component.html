@@ -15,8 +15,12 @@
                 </c-col>
                 <c-col md="6">
                     <label cLabel for="field_civilite">Civilite :</label>
-                    <input cFormControl sizing="sm" id="field_civilite" type="text" 
-                        [(ngModel)]="detenteur.civilite" name="civilite"/>
+                    <ng-select [items]="civilites"
+                    name="civilites"
+                    id="field_civilite"
+                    [multiple]=false
+                    [(ngModel)]="detenteur.civilite">
+                    </ng-select>
                 </c-col>
             </c-row>
             <c-row>
