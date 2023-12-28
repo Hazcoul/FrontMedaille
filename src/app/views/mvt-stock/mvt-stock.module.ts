@@ -19,6 +19,8 @@ import { AddEditSortieComponent } from './sortie/add-edit-sortie/add-edit-sortie
 import { AddEditEntreeComponent } from './entree/add-edit-entree/add-edit-entree.component';
 import { AddEditLigneEntreeComponent } from './entree/add-edit-ligne-entree/add-edit-ligne-entree.component';
 import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-edit-ligne-sortie.component';
+import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
+import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-
     AddEditSortieComponent,
     AddEditEntreeComponent,
     AddEditLigneEntreeComponent,
-    AddEditLigneSortieComponent
+    AddEditLigneSortieComponent,
+    EntreeDetailComponent,
+    SortieDetailComponent
   ],
   imports: [
     CommonModule,

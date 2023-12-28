@@ -1,11 +1,11 @@
 <c-card class="mb-4">
-    <c-card-header class="bg-success text-white">
+    <c-card-header class="text-white">
       <c-row>
         <c-col md="10">
           Enregistrement d'une entrée
         </c-col>
         <c-col md="2">
-          <button cButton color="info" variant="outline" class="float-end text-white" ize="sm"
+          <button cButton color="info" variant="outline" class="float-end" ize="sm"
             [routerLink]="['/mouvement/entree']">Retour</button>
         </c-col>
       </c-row>
@@ -63,12 +63,12 @@
                             <table [striped]="true" cTable>
                                 <thead>
                                   <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">N°</th>
                                     <th scope="col">Médaille</th>
                                     <th scope="col">Quantité</th>
                                     <th scope="col">Prix unitaire</th>
                                     <th scope="col">Montant</th>
-                                    <th scope="col">Cloture</th>
+                                    <!-- <th scope="col">Cloture</th> -->
                                     <th scope="col">
                                         <button cButton color="primary" variant="outline" size="sm"
                                             (click)="openAddEditModal()">Nouvelle ligne</button>
@@ -77,7 +77,7 @@
                                 </thead>
                                 <tbody>
                                   <tr *ngFor="let ligne of entree.ligneEntrees; index as i">
-                                    <td><span>{{i}}</span></td>
+                                    <td><span>{{i + 1}}</span></td>
                                     <td>
                                       <span>{{ligne.medaille?.nomComplet}}</span>
                                     </td>
@@ -90,9 +90,9 @@
                                     <td>
                                       <span>{{ligne.montantLigne}}</span>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                       <span>{{ligne.isCloseEntree ? 'Oui' : 'Non'}}</span>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <button type="button" class="btn btn-outline-primary btn-sm" (click)="openAddEditModal(ligne)">
                                             <svg cIcon name="cilPen" size="sm"></svg>

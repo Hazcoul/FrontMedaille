@@ -38,6 +38,19 @@ export class AddEditEntreeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    const idEntree = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    if(idEntree) {
+      this.entreeService.find(idEntree).subscribe({
+        next: (res: HttpResponse<IEntree>) => {
+          if(res.body) {
+            this.entree = res.body
+          }
+        },
+        error: (e) => console.log('ERROR : ', e)
+      })
+    }
+
     /**
      * Get all referentials
      */
@@ -101,7 +114,7 @@ export class AddEditEntreeComponent implements OnInit {
   }
 
   goBack(): void {
-    window.history.back();
+    this.router.navigate(['/mouvement/entree']);
   }
 
   save(): void {

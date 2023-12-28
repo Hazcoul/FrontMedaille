@@ -53,8 +53,8 @@ export class AddEditComponent implements OnInit, OnDestroy {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
-    this.activeModal.close(true);
-    //this.goBack();
+    this.activeModal.close();
+    // this.goBack();
   }
 
   protected onSaveError(): void {

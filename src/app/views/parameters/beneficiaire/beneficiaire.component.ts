@@ -8,6 +8,8 @@ import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { cloneDeep } from 'lodash-es';
+import Swal from 'sweetalert2';
+import { DetailBeneficiaireComponent } from './detail-beneficiaire/detail-beneficiaire.component';
 
 @Component({
   selector: 'app-beneficiaire',
@@ -21,7 +23,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate= "idBeneficiaire"
+  predicate = 'idBeneficiaire';
   ascending!: boolean;
   ngbPaginationPage = 1;
 
@@ -85,10 +87,35 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   //   this.eventSubscriber = this.eventManager.subscribe('beneficiairesListModification', () => this.loadPage());
   // }
 
-  // delete(beneficiaires: IBeneficiaire): void {
-  //   const modalRef = this.modalService.open(beneficiaireDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-  //   modalRef.componentInstance.beneficiaires = beneficiaires;
-  // }
+  confirmDeleteItem(beneficiaire: IBeneficiaire) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(beneficiaire);
+        Swal.fire({
+          title: "Supprimé!",
+          text: "Element supprimé.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+  delete(beneficiaire: IBeneficiaire): void {
+    this.beneficiaireService.delete(beneficiaire.idBeneficiaire!).subscribe({
+      next: (res) => {
+        this.loadPage();
+      },
+      error: (e) => console.log('ERROR: ', e)
+    })
+  }
 
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
@@ -123,6 +150,17 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
     if(undefined != beneficiaire?.idBeneficiaire) {
       modalRef.componentInstance.beneficiaire = cloneDeep(beneficiaire);
     }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
+  }
+
+  openDetailModal(beneficiaire: IBeneficiaire): void {
+    const modalRef = this.modalService.open(DetailBeneficiaireComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.beneficiaire = beneficiaire;
     modalRef.result.then(() => {
       this.loadPage();
     },

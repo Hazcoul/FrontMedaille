@@ -1,7 +1,7 @@
 <div class="card">
-    <div class="modal-header bg-success text-white">
-        <h4 class="modal-tile"></h4>
-        <button style="color: red;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Ajouter/Modifier une ligne d'entrée</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -32,7 +32,7 @@
                         [(ngModel)]="ligneEntree.montantLigne" name="telephoneMobile" [readOnly]="true"/>
                 </c-col>
             </c-row>
-            <c-row>
+            <!-- <c-row>
                 <c-col md="12">
                     <c-form-check class="mt-2">
                         <input cFormCheckInput id="field_isCloseEntree" name="isCloseEntree" type="checkbox" 
@@ -40,7 +40,7 @@
                         <label cFormCheckLabel for="gridCheck1">Clôturer l'entrée</label>
                     </c-form-check>
                 </c-col>
-            </c-row>
+            </c-row> -->
         </div>
         <div class="modal-footer">
             <button cButton color="success" variant="outline" class="float-end" size="sm"
