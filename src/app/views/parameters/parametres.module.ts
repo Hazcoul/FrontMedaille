@@ -36,6 +36,8 @@ import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-mag
 import { DetailBeneficiaireComponent } from './beneficiaire/detail-beneficiaire/detail-beneficiaire.component';
 import { DetailDistinctionComponent } from './distinction/detail-distinction/detail-distinction.component';
 import { DetailGradeComponent } from './grade/detail-grade/detail-grade.component';
+import { DetailDepotComponent } from './depot/detail-depot/detail-depot.component';
+import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.component';
 
 
 
@@ -64,7 +66,9 @@ import { DetailGradeComponent } from './grade/detail-grade/detail-grade.componen
     CreateUpdateMedailleComponent,
     DetailBeneficiaireComponent,
     DetailDistinctionComponent,
-    DetailGradeComponent
+    DetailGradeComponent,
+    DetailDepotComponent,
+    DetailMagasinComponent
 
   ],
   imports: [
