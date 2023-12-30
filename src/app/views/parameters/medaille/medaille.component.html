@@ -44,7 +44,7 @@
   <c-card-body>
 <ul class="card-wrapper">
   <li class="card" *ngFor="let item of medailles">
-    <img src='assets/images/folder.png' alt=''>
+    <img src="{{ 'data:image/jpeg;base64,' +item.image }}" alt=''>
     <div class="">
       <button class="btn btn-sm btn-warning" (click)="openAddEditModal(item)"><i class="fa fa-pencil" style="margin-right: 16px"></i>Modifier</button>
       <button class="btn btn-sm btn-danger" (click)="removeMedaille(item)"><i class="fa fa-remove ml-4" ></i>Supprimer</button>
