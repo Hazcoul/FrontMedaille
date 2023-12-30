@@ -14,6 +14,7 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   ordonnateur: IOrdonnateur = new Ordonnateur();
+  civilites = ['Monsieur','Madame','Moidemoiselle'];
 
   constructor(
     private ordonnateurService: OrdonnateurService,
