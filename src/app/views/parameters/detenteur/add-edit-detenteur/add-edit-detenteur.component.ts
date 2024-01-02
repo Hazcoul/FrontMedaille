@@ -14,6 +14,7 @@ export class AddEditDetenteurComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   detenteur: IDetenteur = new Detenteur();
+  civilites = ['Monsieur','Madame','Moidemoiselle'];
 
   constructor(
     private detenteurService: DetenteurService,

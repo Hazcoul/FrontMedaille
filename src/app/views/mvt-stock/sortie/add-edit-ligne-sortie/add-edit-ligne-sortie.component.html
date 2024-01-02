@@ -1,1 +1,29 @@
-<p>add-edit-ligne-sortie works!</p>
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Ajouter/Modifier une ligne de sortie</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_medaille">Selectionner la médaille :</label>
+                    <select aria-label="Small select example" cSelect sizing="sm" [(ngModel)]="ligneSortie.medaille" name="medaille">
+                        <option *ngFor="let medaille of medailles" [ngValue]="medaille">{{medaille.nomComplet}}</option>
+                    </select>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_raisonSociale">Quantité :</label>
+                    <input cFormControl sizing="sm" id="field_raisonSociale" type="text" 
+                        [(ngModel)]="ligneSortie.quantiteLigne" name="raisonSociale" />
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Valider</button>
+        </div>
+    </form>
+</div>
