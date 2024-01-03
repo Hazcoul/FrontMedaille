@@ -20,7 +20,7 @@ export class EntreeComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate!: string;
+  predicate= 'idEntree';
   ascending!: boolean;
   ngbPaginationPage = 1;
 
@@ -130,7 +130,7 @@ export class EntreeComponent implements OnInit, OnDestroy {
         queryParams: {
           page: this.page,
           size: this.itemsPerPage,
-          sort: this.predicate ? this.predicate : 'idEntree' + ',' + (this.ascending ? 'asc' : 'desc'),
+          sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
         },
       });
     }
