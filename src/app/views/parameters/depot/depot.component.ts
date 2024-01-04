@@ -8,7 +8,8 @@ import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditDepotComponent } from './add-edit-depot/add-edit-depot.component';
 import { cloneDeep } from 'lodash-es';
-
+import Swal from 'sweetalert2';
+import { DetailDepotComponent } from './detail-depot/detail-depot.component';
 
 @Component({
   selector: 'app-depot',
@@ -68,6 +69,36 @@ export class DepotComponent implements OnInit, OnDestroy {
     return item.idDepot!;
   }
 
+  confirmDeleteItem(depot: IDepot) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(depot);
+        Swal.fire({
+          title: "Supprimé!",
+          text: "Element supprimé.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+  delete(depot: IDepot): void {
+    this.depotService.delete(depot.idDepot!).subscribe({
+      next: (res) => {
+        this.loadPage();
+      },
+      error: (e) => console.log('ERROR: ', e)
+    })
+  }
+
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
@@ -101,6 +132,17 @@ export class DepotComponent implements OnInit, OnDestroy {
     if(undefined != depot?.idDepot) {
       modalRef.componentInstance.depot = cloneDeep(depot);
     }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
+  }
+
+  openDetailModal(depot: IDepot): void {
+    const modalRef = this.modalService.open(DetailDepotComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.depot = depot;
     modalRef.result.then(() => {
       this.loadPage();
     },

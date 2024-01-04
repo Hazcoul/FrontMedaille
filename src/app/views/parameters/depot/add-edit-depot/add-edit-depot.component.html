@@ -14,7 +14,7 @@
             </c-row>
             <c-row>
                 <label cLabel for="field_description">Description :</label>
-                <textarea cFormControl sizing="sm" id="field_description" type="text" name="description">{{depot.description}}</textarea>
+                <input cFormControl sizing="sm" id="field_description" type="text" [(ngModel)]="depot.description" name="description"/>
             </c-row>
         </div>
         <div class="modal-footer">
