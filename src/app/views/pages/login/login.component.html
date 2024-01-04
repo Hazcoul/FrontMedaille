@@ -13,13 +13,13 @@
           <c-card class="p-4">
             <c-card-body>
               <form cForm>
-                <h1>Login</h1>
-                <p class="text-medium-emphasis">Veuillez vous connecter</p>
+                <h1>CONNEXION</h1>
+                <p class="alert alert-danger" *ngIf="error">Les identifiants sont incorrects</p>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" />
+                  <input autoComplete="login" [(ngModel)]="user.login" name="login" cFormControl placeholder="Nom d'utilisateur" />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -28,21 +28,21 @@
                   <input
                     autoComplete="current-password"
                     cFormControl
-                    placeholder="Password"
+                    placeholder="Mot de passe" [(ngModel)]="user.password" name="password"
                     type="password"
                   />
                 </c-input-group>
                 <c-row>
-                  <c-col xs="6">
+                  <c-col md="6">
                     <button cButton class="px-4" (click)="login()" color="primary">
-                      Se connecter
+                      <i class="fa fa-sign-in"></i> Se connecter
                     </button>
                   </c-col>
-                  <c-col class="text-right" xs="6">
+                  <!--<c-col class="text-right" xs="6">
                     <button cButton class="px-0" color="link">
                      Mot de passe oublié?
                     </button>
-                  </c-col>
+                  </c-col>-->
                 </c-row>
               </form>
             </c-card-body>

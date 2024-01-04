@@ -1,8 +1,8 @@
 <div class="card">
-  <div class="modal-header bg-success text-white">
-    <h4 class="modal-tile"></h4>
+  <div class="modal-header text-white">
+    <h4 class="modal-tile">Ajouter/Modifier une médaille</h4>
     <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();">
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">X</span>
     </button>
   </div>
   <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
@@ -21,19 +21,21 @@
       </c-row>
       <c-row>
         <c-col md="6">
-          <label cLabel for="field_raisonSociale">Grade :</label>
+          <label cLabel for="grade">Grade :</label>
           <ng-select [items]="grades"
-                     name="privilege"
+                     name="grade"
+                     id="grade"
                      bindLabel="libelle"
                      [multiple]=false
                      [(ngModel)]="medaille.grade">
           </ng-select>
         </c-col>
         <c-col md="6">
-          <label cLabel for="field_raisonSociale">Distinction :</label>
+          <label cLabel for="distinc">Distinction :</label>
           <ng-select [items]="distinctions"
-                     name="privilege"
+                     name="distinc"
                      bindLabel="libelle"
+                     id="distinc"
                      [multiple]=false
                      [(ngModel)]="medaille.distinction">
           </ng-select>

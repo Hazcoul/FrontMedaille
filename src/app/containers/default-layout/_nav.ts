@@ -67,12 +67,16 @@ export const navItems: INavData[] = [
     url:'#',
     children: [
       {
-        name: 'Statistiques',
-        url: '/stats/statistiques'
+        name: 'Commandes',
+        url: '/statistiques/commande'
       },
       {
-        name: 'États',
-        url: '/stats/etats'
+        name: 'Sorties',
+        url: '/statistiques/sorties'
+      },
+      {
+        name: 'Décharges',
+        url: '/statistiques/decharges'
       },
     ]
   },

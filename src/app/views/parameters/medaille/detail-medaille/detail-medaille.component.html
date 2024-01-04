@@ -10,7 +10,8 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="text-info mb-2">Information du profil</span>
+                  <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                    <legend cLabel="col" class="pt-0">Information du profil</legend>
                     <div class="table-responsive">
                         <table class="table table-sm no-border">
                             <tbody>
@@ -32,17 +33,22 @@
                             </tr>
                         </table>
                     </div>
+                  </fieldset>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <span class="text-info mt-4">PHOTO CATALOGUE</span>
+                  <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                    <legend cLabel="col" class="pt-0">PHOTO catalogue</legend>
                     <div class="table-responsive">
                         <table class="table table-sm no-border">
-                            <tbody>
+                          <tbody>
+                          <img src="{{ 'data:image/jpeg;base64,' +medaille.image }}" alt=''>
+                          </tbody>
 
                         </table>
                     </div>
+                  </fieldset>
                 </div>
             </div>
         </div>
