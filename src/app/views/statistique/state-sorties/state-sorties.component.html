@@ -1,1 +1,117 @@
-<p>state-sorties works!</p>
+
+<c-card class="mb-4">
+  <c-card-header class="text-white">
+    <c-row>
+      <c-col md="10" class="text-info text-center">
+        Statistique sur les sorties
+      </c-col>
+      <c-col md="2">
+        <!--
+                <button class="btn btn-success btn-sm float-end text-white"><i class="fa fa-print"></i> Imprimer</button>
+        -->
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+      <div class="modal-body">
+        <c-row>
+          <c-col md="3">
+            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+              <legend cLabel="col" class="pt-0">Informations sur la sortie</legend>
+              <c-row>
+                <c-col md="12">
+                  <label cLabel for="field_ordonnateur">Selectionner l'ordonnateur :</label>
+                  <select aria-label="Small select example" cSelect sizing="sm"
+                          [(ngModel)]="filterSortie.ordonnateur" name="ordonnateur" id="field_ordonnateur">
+                    <option *ngFor="let ordonnateur of ordonnateurs" [ngValue]="ordonnateur.idOrdonnateur">{{ ordonnateur.matricule + ' / ' + ordonnateur.nom + '/' + ordonnateur.prenom}}</option>
+                  </select>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="field_beneficiaire">Selectionner la structure bénéficiaire :</label>
+                  <select aria-label="Small select example" cSelect sizing="sm"
+                          [(ngModel)]="filterSortie.beneficiaire" name="beneficiaire" id="field_beneficiaire">
+                    <option *ngFor="let beneficiaire of beneficiaires" [ngValue]="beneficiaire.idBeneficiaire">{{beneficiaire.raisonSociale}}</option>
+                  </select>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="field_detenteur">Selectionner le détenteur :</label>
+                  <select aria-label="Small select example" cSelect sizing="sm"
+                          [(ngModel)]="filterSortie.detenteur" name="detenteur" id="field_detenteur">
+                    <option *ngFor="let detenteur of detenteurs" [ngValue]="detenteur.idDetenteur">{{ detenteur.matricule + ' / ' + detenteur.nom + '/' + detenteur.prenom}}</option>
+                  </select>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="field_motifSortie">Selectionner le motif de sortie :</label>
+                  <select aria-label="Small select example" cSelect sizing="sm"
+                          [(ngModel)]="filterSortie.motifSortie" name="acquisition" id="field_motifSortie">
+                    <option *ngFor="let motifSortie of referentials?.motifsSortie" [ngValue]="motifSortie?.libelle">{{motifSortie?.libelle}}</option>
+                  </select>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="field_exerciceBudgetaire">Année :</label>
+                  <input cFormControl sizing="sm" id="field_exerciceBudgetaire" type="text" [(ngModel)]="filterSortie.annee"
+                         name="exerciceBudgetaire"/>
+                </c-col>
+                <c-col md="12">
+                  <button class="mt-4 btn btn-success btn-sm btn-block text-white" (click)="getAllSorties()"><i class="fa fa-search"></i> Rechercher</button>
+                </c-col>
+              </c-row>
+            </fieldset>
+          </c-col>
+          <c-col md="9">
+            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+              <legend cLabel="col" class="pt-0">Liste des sorties</legend>
+              <table [striped]="true" cTable>
+                <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Date sortie</th>
+                  <th scope="col">Structure bénéficiaire</th>
+                  <th scope="col">Détenteur</th>
+                  <th scope="col">Motif</th>
+                  <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ligne of sorties; index as i">
+                  <td><span>{{ligne.numeroSortie}}</span></td>
+                  <td>
+                    <span>{{ligne.dateSortie | date:"dd-MM-yyyy"}}</span>
+                  </td>
+                  <td>
+                    <span>{{ligne.beneficiaire?.raisonSociale}}</span>
+                  </td>
+                  <td>
+                    <span>{{ligne.detenteur?.nom +" "+ligne.detenteur?.prenom}}</span>
+                  </td>
+                  <td>
+                    <span>{{ligne.motifSortie}}</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-success btn-sm float-end text-white" (click)="exportToPdf(ligne)"><i class="fa fa-print"></i> Imprimer</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <ngb-pagination [collectionSize]="totalItems"
+                              [(page)]="page"
+                              [pageSize]="itemsPerPage"
+                              [maxSize]="maxSize"
+                              [rotate]="true"
+                              [boundaryLinks]="false"
+                              class="pagination"
+                              (pageChange)="loadPage($event)">
+
+                <ng-template ngbPaginationPrevious>Préc.</ng-template>
+                <ng-template ngbPaginationNext>Suiv.</ng-template>
+              </ngb-pagination>
+            </fieldset>
+          </c-col>
+        </c-row>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

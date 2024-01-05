@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import * as moment from 'moment';
 
 import { ISortie } from '../entities/sortie.model';
 import { SERVER_API_URL } from '../app.constants';
 import { createRequestOption } from '../shared/util/request.util';
+import {FilterEntree} from "../entities/filterEntree.model";
+import {Entree} from "../entities/entree.model";
 
 
 type EntityResponseType = HttpResponse<ISortie>;
@@ -75,5 +77,19 @@ export class SortieService {
       });
     }
     return res;
+  }
+
+  public getSorties(req: any, recherche: FilterEntree): Observable<HttpResponse<ISortie[]>> {
+    let options: HttpParams = new HttpParams();
+    Object.keys(req).forEach(
+      key => {
+        options = options.set(key, req[key]);
+      }
+    );
+    return this.http.post<ISortie[]>(this.resourceUrl+'/statistique/sorties', recherche, { params: options, observe: 'response' });
+  }
+
+  generateStatistique(idSortie:number) {
+    return this.http.get(`${this.resourceUrl}/statistique/sorties/impression/${idSortie}`, { observe: 'body', responseType: 'arraybuffer' });
   }
 }

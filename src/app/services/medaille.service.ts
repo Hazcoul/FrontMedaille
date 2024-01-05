@@ -44,6 +44,18 @@ export class MedailleService {
     }));
   }
 
+  updateGlobal(file:any,medaille: Medaille): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('photo', file);
+    formData.append('data', new Blob([JSON
+      .stringify(medaille)], {
+      type: 'application/json'
+    }));
+    return this.http.post(this.resourceUrl+"/update/global", formData).pipe(map((data: any) => {
+      return data;
+    }));
+  }
+
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<IMedaille>(`${this.resourceUrl}/${id}`, { observe: 'response' })
