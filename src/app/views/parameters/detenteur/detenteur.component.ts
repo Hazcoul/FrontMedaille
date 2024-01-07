@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, CUSTOM_ELEMENTS_SCHEMA, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
@@ -148,10 +148,7 @@ export class DetenteurComponent implements OnInit, OnDestroy {
     }
     
   }
-  pageClicked(page : number){
-    this.onClick.emit(page);
-  }
-
+  
   changePage(page : number){
     //alert("page = "+page);
     this.currentPage=page;

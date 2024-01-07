@@ -39,6 +39,7 @@ import { DetailGradeComponent } from './grade/detail-grade/detail-grade.componen
 import { DetailDepotComponent } from './depot/detail-depot/detail-depot.component';
 import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.component';
 import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-detenteur.component';
+import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/detail-ordonnateur.component';
 
 
 
@@ -70,7 +71,8 @@ import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-de
     DetailGradeComponent,
     DetailDepotComponent,
     DetailMagasinComponent,
-    DetailDetenteurComponent
+    DetailDetenteurComponent,
+    DetailOrdonnateurComponent
 
   ],
   imports: [
