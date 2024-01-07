@@ -38,6 +38,7 @@ import { DetailDistinctionComponent } from './distinction/detail-distinction/det
 import { DetailGradeComponent } from './grade/detail-grade/detail-grade.component';
 import { DetailDepotComponent } from './depot/detail-depot/detail-depot.component';
 import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.component';
+import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-detenteur.component';
 
 
 
@@ -68,7 +69,8 @@ import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.
     DetailDistinctionComponent,
     DetailGradeComponent,
     DetailDepotComponent,
-    DetailMagasinComponent
+    DetailMagasinComponent,
+    DetailDetenteurComponent
 
   ],
   imports: [
