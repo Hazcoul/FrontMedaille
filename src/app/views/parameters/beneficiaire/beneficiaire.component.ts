@@ -21,11 +21,11 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   beneficiaires?: IBeneficiaire[];
   eventSubscriber?: Subscription;
   totalItems = 0;
+  isLoading = false;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
   predicate = 'idBeneficiaire';
   ascending!: boolean;
-  ngbPaginationPage = 1;
 
   constructor(
     private beneficiaireService: BeneficiaireService,
@@ -63,18 +63,16 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
 
   protected handleNavigation(): void {
     this.loadPage();
-    // combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
-    //   const page = params.get('page');
-    //   const pageNumber = page !== null ? +page : 1;
-    //   const sort = (params.get('sort') ?? data['defaultSort']).split(',');
-    //   const predicate = sort[0];
-    //   const ascending = sort[1] === 'asc';
-    //   if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
-    //     this.predicate = predicate;
-    //     this.ascending = ascending;
-    //     this.loadPage(pageNumber, true);
-    //   }
-    // }).subscribe();
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(
+      ([data, params]) => {
+        const page = params.get('page');
+        this.page = +(page ?? 1);
+        const sort = (params.get('SORT') ?? data['defaultSort']).split(',');
+        this.predicate = sort[0];
+        this.ascending = sort[1] === 'ASC';
+        this.loadPage();
+      }
+    );
 
   }
 
@@ -138,11 +136,10 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
       });
     }
     this.beneficiaires = data || [];
-    this.ngbPaginationPage = this.page;
   }
 
   protected onError(): void {
-    this.ngbPaginationPage = this.page ?? 1;
+    this.isLoading = false;
   }
 
   openAddEditModal(beneficiaire?: IBeneficiaire): void {

@@ -36,8 +36,7 @@ import { AddEditMagasinComponent } from './magasin/add-edit-magasin/add-edit-mag
 import { DetailBeneficiaireComponent } from './beneficiaire/detail-beneficiaire/detail-beneficiaire.component';
 import { DetailDistinctionComponent } from './distinction/detail-distinction/detail-distinction.component';
 import { DetailGradeComponent } from './grade/detail-grade/detail-grade.component';
-
-
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -78,7 +77,8 @@ import { DetailGradeComponent } from './grade/detail-grade/detail-grade.componen
     IconModule,
     NgbModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    SharedModule
   ]
 })
 export class ParametresModule { }
