@@ -1,19 +1,13 @@
 // Full tutorial coming soon!
 
 .card {
-  --card-gradient: rgba(242, 236, 236, 0.8);
-  --card-gradient: rgba(238, 229, 204, 0.14), #f5f3f0;
-  // --card-gradient: tomato, orange;
-  --card-blend-mode: overlay;
-  // --card-blend-mode: multiply;
+
 
   background-color: #f8f7f4;
   border-radius: 0.5rem;
   box-shadow: 0.10rem 0.4rem 0.3rem -0.03rem rgba(0, 0, 0, 0.80);
   padding-bottom: 1rem;
-  background-image: linear-gradient(
-      var(--card-gradient)
-  );
+
   overflow: hidden;
 
   img {

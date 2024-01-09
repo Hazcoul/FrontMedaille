@@ -28,14 +28,16 @@
             <td><span>{{magasin.capacite}}</span></td>
             <td><span>{{magasin.depot?.nomDepot}}</span></td>
             <td>
-              <button cButton color="primary" variant="outline" size="sm">
+              <button cButton color="primary" variant="outline" size="sm" (click)="openAddEditModal(magasin)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button cButton color="info" variant="outline" size="sm">
-                <svg cIcon name="cilEye" size="sm"></svg>
+              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                (click)="openDetailModal(magasin)">
+                <i class="fa fa-eye"></i>
               </button>
-              <button cButton color="danger" variant="outline" size="sm">
-                <svg cIcon name="cilX" size="sm"></svg>
+              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                (click)="confirmDeleteItem(magasin)">
+                <i class="fa fa-remove"></i>
               </button>
             </td>
           </tr>

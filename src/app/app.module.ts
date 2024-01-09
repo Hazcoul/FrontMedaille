@@ -40,6 +40,7 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgSelectModule} from "@ng-select/ng-select";
+import {HttpInterceptorProviders} from "./_helpers/httpInterceptor.config";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -85,6 +86,7 @@ const APP_CONTAINERS = [
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
+    HttpInterceptorProviders,
     IconSetService,
     Title
   ],

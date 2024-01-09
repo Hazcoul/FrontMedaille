@@ -7,10 +7,15 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 
 const routes: Routes = [
-  {
+ /* {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
+  },*/
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -77,6 +82,11 @@ const routes: Routes = [
         path: 'pages',
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
+      },
+      {
+        path: 'statistiques',
+        loadChildren: () =>
+          import('./views/statistique/statistique.module').then((m) => m.StatistiqueModule)
       },
     ]
   },

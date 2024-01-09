@@ -1,59 +1,35 @@
-<!--
+
 <c-card class="mb-4">
-    <c-card-header>Medailles</c-card-header>
-    <c-card-body>
-      <table [striped]="true" cTable>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Quantité en stock</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Description</th>
-            <th scope="col">Hors d'usage?</th>
-            <th scope="col">Distinction</th>
-            <th scope="col">Grade</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let medaille of medailles; index as i">
-            <td><span>{{i}}</span></td>
-            <td><span>{{medaille.nomComplet}}</span></td>
-            <td><span>{{medaille.stock}}</span></td>
-            <td><span> <img src="{{medaille.lienImage}}" alt="{{medaille.nomComplet}}"/></span></td>
-            <td><span>{{medaille.description}}</span></td>
-            <td><span>{{medaille.horsUsage}}</span></td>
-            <td><span>{{medaille.distinction}}</span></td>
-            <td><span>{{medaille.grade}}</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </c-card-body>
-  </c-card>-->
-<c-card class="mb-4">
-  <c-card-header><c-row>
-    <c-col md="10">
-      Médailles
-    </c-col>
-    <c-col md="2">
-      <button cButton color="primary" variant="outline" class="float-end" size="sm"
-              (click)="openAddEditModal()">Ajouter</button>
-    </c-col>
-  </c-row></c-card-header>
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Médailles
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end" size="sm"
+                (click)="openAddEditModal()">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
   <c-card-body>
-<ul class="card-wrapper">
-  <li class="card" *ngFor="let item of medailles">
-    <img src='assets/images/folder.png' alt=''>
-    <div class="">
-      <button class="btn btn-sm btn-warning" (click)="openAddEditModal(item)"><i class="fa fa-pencil" style="margin-right: 16px"></i>Modifier</button>
-      <button class="btn btn-sm btn-danger" (click)="removeMedaille(item)"><i class="fa fa-remove ml-4" ></i>Supprimer</button>
-      <button class="btn btn-sm btn-info" (click)="openModalDetail(item)"><i class="fa fa-eye ml-4" ></i>Visualiser</button>
-    </div>
-    <button type="button" class="btn btn-outline-info mt-4">
-      {{item.nomComplet}} :  <span class="badge badge-light" style="color: orangered; font-weight: bold;font-size: 16px">{{item.stock}}</span>
-    </button>
-  </li>
-</ul>
+    <c-row>
+      <c-col md="3" *ngFor="let item of medailles">
+        <ul >
+          <li class="card" style="height: 250px">
+            <img src="{{ 'data:image/jpeg;base64,' +item.image }}" alt=''>
+            <div class="mt-4">
+              <button title="Modifier medaille" (click)="openAddEditModal(item)" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
+              <button title="Detail medaille" (click)="openModalDetail(item)" class=""><i class="fa fa fa-eye" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
+              <button title="Supprimer medaille" (click)="removeMedaille(item)" class=""><i class="fa fa fa-remove" style="color: orangered;margin-right: 12px" aria-hidden="true"></i></button>
+            </div>
+            <button type="button" class="btn btn-outline-dark mt-4">
+              {{item.nomComplet}} :  <span class="badge badge-light" style="color: orangered; font-weight: bold;font-size: 16px">{{item.stock}}</span>
+            </button>
+          </li>
+        </ul>
+      </c-col>
+    </c-row>
+
+
   </c-card-body>
 </c-card>

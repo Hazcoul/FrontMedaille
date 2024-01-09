@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import * as moment from 'moment';
 
-import { IEntree } from '../entities/entree.model';
+import {Entree, IEntree} from '../entities/entree.model';
 import { SERVER_API_URL } from '../app.constants';
 import { createRequestOption } from '../shared/util/request.util';
+import {Medaille} from "../entities/medaille.model";
+import {FilterEntree} from "../entities/filterEntree.model";
 
 
 type EntityResponseType = HttpResponse<IEntree>;
@@ -75,5 +77,19 @@ export class EntreeService {
       });
     }
     return res;
+  }
+
+  public getCommandes(req: any, recherche: FilterEntree): Observable<HttpResponse<Entree[]>> {
+    let options: HttpParams = new HttpParams();
+    Object.keys(req).forEach(
+      key => {
+        options = options.set(key, req[key]);
+      }
+    );
+    return this.http.post<Entree[]>(this.resourceUrl+'/statistique/commandes', recherche, { params: options, observe: 'response' });
+  }
+
+  generateStatistique(idCommande:number) {
+    return this.http.get(`${this.resourceUrl}/statistique/commandes/impression/${idCommande}`, { observe: 'body', responseType: 'arraybuffer' });
   }
 }

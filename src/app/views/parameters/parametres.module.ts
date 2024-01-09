@@ -37,6 +37,12 @@ import { DetailBeneficiaireComponent } from './beneficiaire/detail-beneficiaire/
 import { DetailDistinctionComponent } from './distinction/detail-distinction/detail-distinction.component';
 import { DetailGradeComponent } from './grade/detail-grade/detail-grade.component';
 import { SharedModule } from '../../shared/shared.module';
+import { DetailDepotComponent } from './depot/detail-depot/detail-depot.component';
+import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.component';
+import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-detenteur.component';
+import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/detail-ordonnateur.component';
+
+
 
 @NgModule({
   declarations: [
@@ -63,7 +69,11 @@ import { SharedModule } from '../../shared/shared.module';
     CreateUpdateMedailleComponent,
     DetailBeneficiaireComponent,
     DetailDistinctionComponent,
-    DetailGradeComponent
+    DetailGradeComponent,
+    DetailDepotComponent,
+    DetailMagasinComponent,
+    DetailDetenteurComponent,
+    DetailOrdonnateurComponent
 
   ],
   imports: [

@@ -1,13 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { DetenteurService } from '../../../services/detenteur.service';
 import { IDetenteur} from '../../../entities/detenteur';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { ITEMS_PER_PAGE,NEXT_PAGE,PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditDetenteurComponent } from './add-edit-detenteur/add-edit-detenteur.component';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep, entries } from 'lodash-es';
+import Swal from 'sweetalert2';
+import { DetailDetenteurComponent } from './detail-detenteur/detail-detenteur.component';
 
 @Component({
   selector: 'app-detenteur',
@@ -16,14 +18,26 @@ import { cloneDeep } from 'lodash-es';
 })
 export class DetenteurComponent implements OnInit, OnDestroy {
 
+  @Input() currentPage : any;
+  @Input() totalItems = 0;
+  @Input() itemsPerPage = ITEMS_PER_PAGE;
+  @Output() onClick: EventEmitter<number> = new EventEmitter();
+
   detenteurs?: IDetenteur[];
   eventSubscriber?: Subscription;
-  totalItems = 0;
-  itemsPerPage = ITEMS_PER_PAGE;
+  
+  nextPage = NEXT_PAGE;
+  previousPage = PREV_PAGE;
   page!: number;
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  resultDeleted! : boolean;
+  pages: number[] =[];
+  totalPages = 1;
+  start : number = 0;
+  end? : number;
+  
 
   constructor(
     private detenteurService: DetenteurService,
@@ -33,7 +47,7 @@ export class DetenteurComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-      this.handleNavigation();
+    this.handleNavigation();
   }
 
   ngOnDestroy(): void {
@@ -60,11 +74,41 @@ export class DetenteurComponent implements OnInit, OnDestroy {
   }
 
   protected handleNavigation(): void {
-    this.loadPage();    
+    this.loadPage();
   }
 
   trackId(index: number, item: IDetenteur): number {
     return item.idDetenteur!;
+  }
+
+  confirmDeleteItem(detenteur: IDetenteur) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(detenteur);
+        Swal.fire({
+          title: "Supprimé!",
+          text: "Element supprimé.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+  delete(detenteur: IDetenteur): void {
+    this.detenteurService.delete(detenteur.idDetenteur!).subscribe({
+      next: (res) => {
+        this.loadPage();
+      },
+      error: (e) => console.log('ERROR: ', e)
+    })
   }
 
   sort(): string[] {
@@ -87,8 +131,28 @@ export class DetenteurComponent implements OnInit, OnDestroy {
         },
       });
     }
+    //alert("hors if et "+ JSON.stringify(data?.entries));
     this.detenteurs = data || [];
-    this.ngbPaginationPage = this.page;
+    if(this.detenteurs.length!=0 && this.detenteurs.length != undefined){
+      //alert("dans if");
+      this.ngbPaginationPage = this.page;
+      this.totalPages = Math.ceil(this.detenteurs.length/this.itemsPerPage);
+      if(this.currentPage==null) this.currentPage =page;
+      this.pages = Array.from({length:this.totalPages }, (_, i)=> i + 1);
+      this.start = (this.currentPage-1)*this.itemsPerPage;
+      this.end = this.start+this.itemsPerPage;
+      if(this.detenteurs.length > this.itemsPerPage){
+        this.detenteurs = data?.slice(this.start,this.end);
+      }
+      //alert("start = "+this.start +" et end="+this.end);  
+    }
+    
+  }
+  
+  changePage(page : number){
+    //alert("page = "+page);
+    this.currentPage=page;
+    this.loadPage();
   }
 
   protected onError(): void {
@@ -100,6 +164,17 @@ export class DetenteurComponent implements OnInit, OnDestroy {
     if(undefined != detenteur?.idDetenteur) {
       modalRef.componentInstance.detenteur = cloneDeep(detenteur);
     }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
+  }
+
+  openDetailModal(detenteur: IDetenteur): void {
+    const modalRef = this.modalService.open(DetailDetenteurComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.detenteur = detenteur;
     modalRef.result.then(() => {
       this.loadPage();
     },

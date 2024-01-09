@@ -1,18 +1,25 @@
-<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+<style>
+  .login-card {
+    background: linear-gradient(0deg, #f0b772, rgba(112, 152, 68, 0.50)), url(assets/images/gcob.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center ">
   <c-container>
-    <c-row class="justify-content-center">
+    <c-row class="justify-content-center ">
       <c-col md="8">
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
               <form cForm>
-                <h1>Login</h1>
-                <p class="text-medium-emphasis">Sign In to your account</p>
+                <h1>CONNEXION</h1>
+                <p class="alert alert-danger" *ngIf="error">Les identifiants sont incorrects</p>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" />
+                  <input autoComplete="login" [(ngModel)]="user.login" name="login" cFormControl placeholder="Nom d'utilisateur" />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -21,36 +28,31 @@
                   <input
                     autoComplete="current-password"
                     cFormControl
-                    placeholder="Password"
+                    placeholder="Mot de passe" [(ngModel)]="user.password" name="password"
                     type="password"
                   />
                 </c-input-group>
                 <c-row>
-                  <c-col xs="6">
-                    <button cButton class="px-4" color="primary">
-                      Login
+                  <c-col md="6">
+                    <button cButton class="px-4" (click)="login()" color="primary">
+                      <i class="fa fa-sign-in"></i> Se connecter
                     </button>
                   </c-col>
-                  <c-col class="text-right" xs="6">
+                  <!--<c-col class="text-right" xs="6">
                     <button cButton class="px-0" color="link">
-                      Forgot password?
+                     Mot de passe oublié?
                     </button>
-                  </c-col>
+                  </c-col>-->
                 </c-row>
               </form>
             </c-card-body>
           </c-card>
-          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
+          <c-card [ngStyle]="{'width.%': 44}" class="login-card py-5">
             <c-card-body class="text-center">
               <div>
-                <h2>Sign up</h2>
+                <h2></h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
-                  Register Now!
-                </button>
               </div>
             </c-card-body>
           </c-card>

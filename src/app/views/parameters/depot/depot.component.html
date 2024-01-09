@@ -27,11 +27,13 @@
               <button cButton color="primary" variant="outline" size="sm" (click)="openAddEditModal(depot)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button cButton color="info" variant="outline" size="sm">
-                <svg cIcon name="cilEye" size="sm"></svg>
+              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                (click)="openDetailModal(depot)">
+                <i class="fa fa-eye"></i>
               </button>
-              <button cButton color="danger" variant="outline" size="sm">
-                <svg cIcon name="cilX" size="sm"></svg>
+              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                (click)="confirmDeleteItem(depot)">
+                <i class="fa fa-remove"></i>
               </button>
             </td>
           </tr>

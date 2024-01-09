@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SERVER_API_URL } from '../app.constants';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import * as moment from 'moment';
 import {IMedaille, Medaille} from '../entities/medaille.model';

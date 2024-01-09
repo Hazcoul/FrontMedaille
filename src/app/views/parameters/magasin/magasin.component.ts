@@ -8,6 +8,8 @@ import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditMagasinComponent } from './add-edit-magasin/add-edit-magasin.component';
 import { cloneDeep } from 'lodash-es';
+import Swal from 'sweetalert2';
+import { DetailMagasinComponent } from './detail-magasin/detail-magasin.component';
 
 @Component({
   selector: 'app-magasin',
@@ -67,6 +69,37 @@ export class MagasinComponent implements OnInit, OnDestroy {
     return item.idMagasin!;
   }
 
+  confirmDeleteItem(magasin: IMagasin) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(magasin);
+        Swal.fire({
+          title: "Supprimé!",
+          text: "Element supprimé.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+  delete(magasin: IMagasin): void {
+    this.magasinService.delete(magasin.idMagasin!).subscribe({
+      next: (res) => {
+        this.loadPage();
+      },
+      error: (e) => console.log('ERROR: ', e)
+    })
+  }
+
+
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
@@ -100,6 +133,17 @@ export class MagasinComponent implements OnInit, OnDestroy {
     if(undefined != magasin?.idMagasin) {
       modalRef.componentInstance.magasin = cloneDeep(magasin);
     }
+    modalRef.result.then(() => {
+      this.loadPage();
+    },
+    error => {
+      console.log(error)
+    })
+  }
+
+  openDetailModal(magasin: IMagasin): void {
+    const modalRef = this.modalService.open(DetailMagasinComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.magasin = magasin;
     modalRef.result.then(() => {
       this.loadPage();
     },

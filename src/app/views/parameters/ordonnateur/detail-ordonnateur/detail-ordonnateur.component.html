@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Détails d'un ordonnateur</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-sm no-border">
+                <tbody>
+                    <tr>
+                        <th>Matricule</th>
+                        <td>{{': ' + ordonnateur.matricule}}</td>
+                    </tr>
+                    <tr>
+                        <th>Civilite</th>
+                        <td>{{': ' + ordonnateur.civilite}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{': ' + ordonnateur.nom}}</td>
+                    </tr>
+                    <tr>
+                        <th>Prenom</th>
+                        <td>{{': ' + ordonnateur.prenom}}</td> 
+                    </tr>
+                    <tr>
+                        <th>Fonction</th>
+                        <td>{{': ' + ordonnateur.fonction}}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephone</th>
+                        <td>{{': ' + ordonnateur.telephone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{': ' + ordonnateur.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button cButton color="danger" variant="outline" class="float-end" size="sm"
+            (click)="close()">Fermer</button>
+    </div>
+</div>
