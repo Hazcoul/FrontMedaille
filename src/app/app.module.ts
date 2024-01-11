@@ -41,6 +41,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgSelectModule} from "@ng-select/ng-select";
 import {HttpInterceptorProviders} from "./_helpers/httpInterceptor.config";
+import {LocalStorageService, SessionStorageService} from "ngx-webstorage";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -82,6 +83,8 @@ const APP_CONTAINERS = [
     NgSelectModule
   ],
   providers: [
+      SessionStorageService,
+      LocalStorageService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

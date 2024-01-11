@@ -23,25 +23,25 @@ import { DashboardComponent } from './dashboard.component';
 import { WidgetsModule } from '../widgets/widgets.module';
 
 @NgModule({
-  imports: [
-    DashboardRoutingModule,
-    CardModule,
-    NavModule,
-    IconModule,
-    TabsModule,
-    CommonModule,
-    GridModule,
-    ProgressModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    FormModule,
-    ButtonModule,
-    ButtonGroupModule,
-    ChartjsModule,
-    AvatarModule,
-    TableModule,
-    WidgetsModule
-  ],
+    imports: [
+        DashboardRoutingModule,
+        CardModule,
+        NavModule,
+        IconModule,
+        TabsModule,
+        CommonModule,
+        GridModule,
+        ProgressModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        FormModule,
+        ButtonModule,
+        ButtonGroupModule,
+        ChartjsModule,
+        AvatarModule,
+        TableModule,
+        WidgetsModule,
+    ],
   declarations: [DashboardComponent]
 })
 export class DashboardModule {

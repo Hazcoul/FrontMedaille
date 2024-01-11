@@ -8,6 +8,7 @@ import { SERVER_API_URL } from '../app.constants';
 import { createRequestOption } from '../shared/util/request.util';
 import {FilterEntree} from "../entities/filterEntree.model";
 import {Entree} from "../entities/entree.model";
+import {LigneSortieImpression} from "../entities/ligne-sortie-impression.model";
 
 
 type EntityResponseType = HttpResponse<ISortie>;
@@ -91,5 +92,19 @@ export class SortieService {
 
   generateStatistique(idSortie:number) {
     return this.http.get(`${this.resourceUrl}/statistique/sorties/impression/${idSortie}`, { observe: 'body', responseType: 'arraybuffer' });
+  }
+
+  public getSortiesByperiode(req: any, recherche: FilterEntree): Observable<HttpResponse<LigneSortieImpression[]>> {
+    let options: HttpParams = new HttpParams();
+    Object.keys(req).forEach(
+        key => {
+          options = options.set(key, req[key]);
+        }
+    );
+    return this.http.post<LigneSortieImpression[]>(this.resourceUrl+'/statistique/sorties/periode', recherche, { params: options, observe: 'response' });
+  }
+
+  generateStatistiquePeriode(recherche: FilterEntree) {
+    return this.http.post(`${this.resourceUrl}/statistique/sorties/periode/impression`,recherche, { observe: 'body', responseType: 'arraybuffer' });
   }
 }

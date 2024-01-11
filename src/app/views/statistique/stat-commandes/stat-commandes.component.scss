@@ -1,7 +1,7 @@
 
 // Pagination
 ngb-pagination ::ng-deep ul > li:not(.active) > a {
-  color: blue !important;
+  color: #265f2e !important;
   text-decoration: none !important;
   border: solid 1px white !important;
   font-weight: 500 !important;
@@ -10,7 +10,7 @@ ngb-pagination ::ng-deep ul > li:not(.active) > a {
 }
 
 ngb-pagination ::ng-deep ul > li.active > a {
-  background-color: blue !important;
+  background-color: #2b731b !important;
   text-decoration: none !important;
   border: solid 1px white !important;
   border-radius: 5px !important;

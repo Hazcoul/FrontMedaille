@@ -1,0 +1,95 @@
+
+<c-card class="mb-4">
+  <c-card-header class="text-white">
+    <c-row>
+      <c-col md="10" class="text-success text-center">
+        Statistique sur les sorties par période
+      </c-col>
+      <c-col md="2">
+        <!--
+                <button class="btn btn-success btn-sm float-end text-white"><i class="fa fa-print"></i> Imprimer</button>
+        -->
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+      <div class="modal-body">
+        <c-row>
+          <c-col md="3">
+            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+              <legend cLabel="col" class="pt-0">Informations sur la sortie</legend>
+              <c-row>
+                <c-col md="12">
+                  <label cLabel for="field_motifSortie">Selectionner le motif de sortie :</label>
+                  <select aria-label="Small select example" cSelect sizing="sm" required
+                          [(ngModel)]="filterSortie.motifSortie" name="acquisition" id="field_motifSortie">
+                    <option *ngFor="let motifSortie of referentials?.motifsSortie" [ngValue]="motifSortie?.libelle">{{motifSortie?.libelle}}</option>
+                  </select>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="datedebut">Date debut :</label>
+                  <input cFormControl sizing="sm" id="datedebut" required type="date" [(ngModel)]="filterSortie.dateDebut"
+                         name="datedebut"/>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="datefin">Date fin :</label>
+                  <input cFormControl sizing="sm" id="datefin" required type="date" [(ngModel)]="filterSortie.dateFin"
+                         name="datefin"/>
+                </c-col>
+                <c-col md="12">
+                  <button class="mt-4 btn btn-success btn-sm btn-block text-white" [disabled]="addEditForm.invalid" (click)="getAllSorties()"><i class="fa fa-search"></i> Rechercher</button>
+                </c-col>
+              </c-row>
+            </fieldset>
+          </c-col>
+          <c-col md="9">
+            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+              <legend cLabel="col" class="pt-0">Liste des sorties</legend>
+              <div class="text-end">
+                <button class="btn btn-success btn-sm float-end text-white" (click)="exportToPdf()"><i class="fa fa-print"></i> Imprimer</button>
+              </div>
+              <table [striped]="true" cTable>
+                <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Désignatition</th>
+                  <th scope="col">quantité</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ligne of sorties; index as i">
+                  <td>
+                    <span>{{i+1}}</span>
+                  </td>
+                  <td>
+                    <span>{{ligne.medaille}}</span>
+                  </td>
+                  <td>
+                    <span>{{ligne.quantite}}</span>
+                  </td>
+
+                </tr>
+                </tbody>
+              </table>
+              <ngb-pagination [collectionSize]="totalItems"
+                              [(page)]="page"
+                              [pageSize]="itemsPerPage"
+                              [maxSize]="maxSize"
+                              [rotate]="true"
+                              [boundaryLinks]="false"
+                              class="pagination"
+                              (pageChange)="loadPage($event)">
+
+                <ng-template ngbPaginationPrevious>Préc.</ng-template>
+                <ng-template ngbPaginationNext>Suiv.</ng-template>
+              </ngb-pagination>
+            </fieldset>
+          </c-col>
+        </c-row>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

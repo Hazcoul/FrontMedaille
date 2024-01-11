@@ -16,13 +16,15 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IconDirective} from "@coreui/icons-angular";
 import {NgbPagination, NgbPaginationNext, NgbPaginationPrevious} from "@ng-bootstrap/ng-bootstrap";
+import { StateSortiesPeriodeComponent } from './state-sorties-periode/state-sorties-periode.component';
 
 
 @NgModule({
   declarations: [
     StatCommandesComponent,
     StatDechargesComponent,
-    StateSortiesComponent
+    StateSortiesComponent,
+    StateSortiesPeriodeComponent
   ],
   imports: [
     CommonModule,

@@ -6,7 +6,7 @@
       title="Utilisateurs"
     >
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        20
+        {{donnees[0]}}
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -38,7 +38,7 @@
       color="info"
     >
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        <span>10</span>
+        <span>{{donnees[1]}}</span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -65,7 +65,7 @@
       color="warning"
     >
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        <span>2</span>
+        <span>{{donnees[2]}}</span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -92,7 +92,7 @@
       color="danger"
     >
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        <span>100</span>
+        <span>{{donnees[3]}}</span>
 
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">

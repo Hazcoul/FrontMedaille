@@ -5,6 +5,8 @@ export interface IFilterSortie {
   beneficiaire?: number;
   annee?: number;
   motifSortie?: string;
+  dateDebut?: Date;
+  dateFin?: Date;
 }
 
 export class FilterSortie implements IFilterSortie {
@@ -14,6 +16,8 @@ export class FilterSortie implements IFilterSortie {
       public beneficiaire?: number,
       public annee?: number,
       public motifSortie?: string,
+      public dateDebut?: Date,
+      public dateFin?: Date,
 
     ) {}
 }
