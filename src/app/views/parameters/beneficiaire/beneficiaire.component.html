@@ -57,5 +57,20 @@
         </tr>
       </tbody>
     </table>
+    @if (beneficiaires) {
+      <div>
+        <div class="d-flex justify-content-center">
+          <ngb-pagination
+            [collectionSize]="totalItems"
+            [(page)]="page"
+            [pageSize]="itemsPerPage"
+            [maxSize]="5"
+            [rotate]="true"
+            [boundaryLinks]="true"
+            (pageChange)="loadPage()"
+          ></ngb-pagination>
+        </div>
+      </div>
+    }
   </c-card-body>
 </c-card>

@@ -23,7 +23,7 @@ export class SortieComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate!: string;
+  predicate = 'idSortie';
   ascending!: boolean;
   ngbPaginationPage = 1;
   sortie: ISortie = new Sortie();
@@ -134,7 +134,7 @@ export class SortieComponent implements OnInit, OnDestroy {
         queryParams: {
           page: this.page,
           size: this.itemsPerPage,
-          sort: this.predicate ? this.predicate : 'idSortie' + ',' + (this.ascending ? 'asc' : 'desc'),
+          sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc'),
         },
       });
     }
