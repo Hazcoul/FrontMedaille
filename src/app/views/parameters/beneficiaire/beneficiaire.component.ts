@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { BeneficiaireService } from '../../../services/beneficiaire.service';
 import { IBeneficiaire } from '../../../entities/beneficiaire.model';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { cloneDeep } from 'lodash-es';
@@ -24,6 +24,8 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   isLoading = false;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
   predicate = 'idBeneficiaire';
   ascending!: boolean;
 
@@ -42,6 +44,16 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
     console.log('Dans ben com, ngOnDestroy');
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
+  }
+
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
 
@@ -54,6 +66,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
       .subscribe(
         {
           next: (res: HttpResponse<IBeneficiaire[]>) => {
+            console.log('TOTAL_ITEMS_COUNT_FROM_RES_HEADER : ', res.headers.keys());
             this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
           },
           error: () => this.onError(),
@@ -62,14 +75,13 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   }
 
   protected handleNavigation(): void {
-    this.loadPage();
     combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(
       ([data, params]) => {
-        const page = params.get('page');
-        this.page = +(page ?? 1);
-        const sort = (params.get('SORT') ?? data['defaultSort']).split(',');
-        this.predicate = sort[0];
-        this.ascending = sort[1] === 'ASC';
+        // const page = params.get('page');
+        // this.page = +(page ?? 1);
+        // const sort = (params.get('sort') ?? data['defaultSort']).split(',');
+        // this.predicate = sort[0];
+        // this.ascending = sort[1] === 'ASC';
         this.loadPage();
       }
     );
@@ -124,7 +136,8 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   }
 
   protected onSuccess(data: IBeneficiaire[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
-    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.totalItems = /*Number(headers.get('X-Total-Count'))*/ 7;
+    console.log('TOTAL_ITEMS =', this.totalItems);
     this.page = page;
     if (navigate) {
       this.router.navigate(['/parametre/beneficiaire'], {

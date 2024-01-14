@@ -6,7 +6,8 @@ import {
   CardModule,
   FormModule,
   GridModule,
-  TableModule
+  TableModule,
+  AlertModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 
@@ -41,6 +42,7 @@ import { DetailDepotComponent } from './depot/detail-depot/detail-depot.componen
 import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.component';
 import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-detenteur.component';
 import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/detail-ordonnateur.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -88,7 +90,9 @@ import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/det
     NgbModule,
     FormsModule,
     NgSelectModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule,
+    AlertModule
   ]
 })
 export class ParametresModule { }
