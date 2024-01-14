@@ -136,7 +136,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   }
 
   protected onSuccess(data: IBeneficiaire[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
-    this.totalItems = /*Number(headers.get('X-Total-Count'))*/ 7;
+    this.totalItems = Number(headers.get('x-total-count'));
     console.log('TOTAL_ITEMS =', this.totalItems);
     this.page = page;
     if (navigate) {
