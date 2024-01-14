@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {Jwt} from "../entities/jwt.model";
+import {SessionStorageService} from "ngx-webstorage";
 const TOKEN_KEY = 'auth-token';
 
 const authenticationUrl = SERVER_API_URL + 'api/auth/utilisateurs/signin';
@@ -14,8 +15,11 @@ const authenticationUrl = SERVER_API_URL + 'api/auth/utilisateurs/signin';
   providedIn: 'root'
 })
 export class AuthentificationService {
-
-  constructor(private http: HttpClient,private router: Router) { }
+  public jwtHelper: JwtHelperService = new JwtHelperService();
+  constructor(private http: HttpClient,
+              private sessionStorage: SessionStorageService,
+              private router: Router,
+  ) { }
 
   login(request: Authentification): Observable<Jwt> {
     return this.http.post(authenticationUrl, request);
@@ -34,19 +38,15 @@ export class AuthentificationService {
   }
 
   public saveToken(token: any): void {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
-    console.warn("JSON",JSON.parse(localStorage.getItem(TOKEN_KEY)!));
+   // localStorage.removeItem(TOKEN_KEY);
+   // localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+    sessionStorage.setItem('TOKEN_KEY', token.accessToken!);
+  //  console.warn("JSON",JSON.parse(localStorage.getItem(TOKEN_KEY)!));
 
   }
 
   public getToken(): string | null {
-    let token = JSON.parse(localStorage.getItem(TOKEN_KEY)!);
-    console.warn("TOKEN",token);
-    if(token != null){
-      return token.access_token;
-    }
-    return null;
+    return sessionStorage.getItem("TOKEN_KEY");
   }
 
   public  getPrivilege(): Array<any> | null {
@@ -75,6 +75,11 @@ export class AuthentificationService {
     window.localStorage.clear();
     localStorage.removeItem(TOKEN_KEY);
     this.router.navigate(['login']);
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
 

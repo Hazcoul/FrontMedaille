@@ -32,10 +32,8 @@ export class CreateUpdateMedailleComponent {
   }
 
   saveOrUpdate() {
-    console.warn("Medaille TO SAVE",this.medaille);
     if (this.medaille.idMedaille) {
-      console.warn("RENTRE ICI",this.medaille);
-      this.medailleService.update(this.medaille).subscribe(
+      this.medailleService.updateGlobal(this.file,this.medaille).subscribe(
         {
           next: () => {
             Swal.fire({

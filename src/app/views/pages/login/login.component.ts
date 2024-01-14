@@ -21,13 +21,14 @@ export class LoginComponent {
     this.authService.login(this.user).subscribe(
       (response) => {
        this.authService.saveToken(response);
-        console.warn(this.authService.tokenDecode());
+      //  console.warn(this.authService.getToken());
        this.router.navigate(['/dashboard'])
           .then(() => {
             window.location.reload();
           });
       },
       (error) => {
+          console.warn("error",error);
           this.error = true;
       }
     );

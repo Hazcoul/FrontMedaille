@@ -42,4 +42,9 @@ export class UtilisateurService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  count(): Observable<HttpResponse<any>> {
+    return this.http
+        .get<any>(`${this.resourceUrl}/statistique/count`, { observe: 'response' })
+  }
+
 }

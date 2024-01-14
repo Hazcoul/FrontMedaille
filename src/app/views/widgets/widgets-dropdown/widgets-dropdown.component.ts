@@ -3,12 +3,13 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Component, Input,
   OnInit,
   ViewChild
 } from '@angular/core';
 import { getStyle } from '@coreui/utils';
 import { ChartjsComponent } from '@coreui/angular-chartjs';
+import {UtilisateurService} from "../../../services/utilisateur.service";
 
 @Component({
   selector: 'app-widgets-dropdown',
@@ -17,9 +18,10 @@ import { ChartjsComponent } from '@coreui/angular-chartjs';
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
-
+  donnees: any[] = [];
   constructor(
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private utilisateurService: UtilisateurService
   ) {}
 
   data: any[] = [];
@@ -116,7 +118,18 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
   };
 
   ngOnInit(): void {
+    this.getStat();
     this.setData();
+  }
+
+  getStat(){
+    this.utilisateurService.count().subscribe(
+        {
+          next:(response)=>{
+            this.donnees = response.body;
+          }
+        }
+    )
   }
 
   ngAfterContentInit(): void {
