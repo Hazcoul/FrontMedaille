@@ -8,20 +8,10 @@ import {AuthentificationService} from "../authentification.service";
 export class AuthGuardService implements CanActivate {
     constructor(public auth: AuthentificationService, public router: Router) {}
     canActivate(): boolean {
-        /*if (!this.auth.isAuthenticated()) {
-            this.router.navigate(['/login']);
-            return false;
-        }
-        return true;*/
-        let status = false;
-        let session = this.auth.getToken();
-        let tokenExpired = this.auth.tokenIsExpired();
-        if (session != null && !tokenExpired) {
-            status = true;
-        }
-        else {
-            status = false;
-        }
-        return status;
+      if (!this.auth.isAuthenticated()) {
+        this.router.navigate(['/login']); // go to login if not authenticated
+        return false;
+      }
+      return true;
     }
 }

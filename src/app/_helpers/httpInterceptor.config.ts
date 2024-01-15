@@ -8,9 +8,9 @@ export const HttpInterceptorProviders = [
     useClass: AuthInterceptor,
     multi: true,
   },
-/*  {
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthExpiredInterceptor,
     multi: true,
-  },*/
+  },
 ];
