@@ -9,43 +9,53 @@ import { GradeComponent } from './grade/grade.component';
 import { MagasinComponent } from './magasin/magasin.component';
 import { MedailleComponent } from './medaille/medaille.component';
 import { DistinctionComponent } from './distinction/distinction.component';
+import {AuthGuardService} from "../../services/auth/auth-guard.service";
 
 const routes: Routes = [
   {
     path: 'beneficiaire',
-    component: BeneficiaireComponent
+    component: BeneficiaireComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'depot',
-    component: DepotComponent
+    component: DepotComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'fournisseur',
-    component: FournisseurComponent
+    component: FournisseurComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'detenteur',
-    component: DetenteurComponent
+    component: DetenteurComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'ordonnateur',
-    component: OrdonnateurComponent
+    component: OrdonnateurComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'grade',
-    component: GradeComponent
+    component: GradeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'magasin',
-    component: MagasinComponent
+    component: MagasinComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'medaille',
-    component: MedailleComponent
+    component: MedailleComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'distinction',
-    component: DistinctionComponent
+    component: DistinctionComponent,
+    canActivate: [AuthGuardService],
   },
 ];
 
