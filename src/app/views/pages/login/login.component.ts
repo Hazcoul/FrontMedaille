@@ -22,6 +22,7 @@ export class LoginComponent {
     this.authService.login(this.user).subscribe(
       (response) => {
        this.authService.saveToken(response);
+       this.authService.tokenDecode();
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
         this.router.navigateByUrl(returnUrl);
       //  console.warn(this.authService.getToken());

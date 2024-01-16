@@ -2,15 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ProfilsComponent} from "./profils.component";
 import {CreateUpdateProfilComponent} from "./create-update-profil/create-update-profil.component";
+import {AuthGuardService} from "../../../../services/auth/auth-guard.service";
 
 const routes: Routes = [
   {
     path:"",
-    component: ProfilsComponent
+    component: ProfilsComponent,
+    canActivate: [AuthGuardService],
+    data: {roles: ['ADMIN']}
   },
   {
     path:"creation",
-    component: CreateUpdateProfilComponent
+    component: CreateUpdateProfilComponent,
+    canActivate: [AuthGuardService],
+    data: {roles: ['ADMIN']}
   }
 ];
 
