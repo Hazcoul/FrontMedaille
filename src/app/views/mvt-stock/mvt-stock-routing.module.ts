@@ -6,6 +6,7 @@ import { AddEditEntreeComponent } from './entree/add-edit-entree/add-edit-entree
 import { AddEditSortieComponent } from './sortie/add-edit-sortie/add-edit-sortie.component';
 import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
+import {AuthGuardService} from "../../services/auth/auth-guard.service";
 import { IEntree } from 'src/app/entities/entree.model';
 import { EntreeService } from 'src/app/services/entree.service';
 import { mergeMap, of } from 'rxjs';
@@ -21,19 +22,23 @@ export const EntreeResolve: ResolveFn<IEntree | any> = (route: ActivatedRouteSna
 const routes: Routes = [
   {
     path: 'entree',
-    component: EntreeComponent
+    component: EntreeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'entree/nouvelle',
-    component: AddEditEntreeComponent
+    component: AddEditEntreeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'entree/:id/edit',
-    component: AddEditEntreeComponent
+    component: AddEditEntreeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'entree/:id/details',
     component: EntreeDetailComponent,
+    canActivate: [AuthGuardService],,
     resolve: {
       entree: EntreeResolve,
     }

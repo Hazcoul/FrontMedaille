@@ -43,6 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'parametre',
+        canActivate: [AuthGuardService],
         loadChildren: () =>
           import('./views/parameters/parametres.module').then((m) => m.ParametresModule)
       },
