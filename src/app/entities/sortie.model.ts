@@ -1,3 +1,4 @@
+import * as moment from "moment";
 import { IBeneficiaire } from "./beneficiaire.model";
 import { IDetenteur } from "./detenteur";
 import { ILigneSortie } from "./ligne-sortie.model";
@@ -7,7 +8,7 @@ import { Moment } from 'moment';
 
 export interface ISortie {
     idSortie?: number | null;
-    dateSortie?: Date;
+    dateSortie?: Date | string | null;
     motifSortie?: string | null;
     validerLe?: Date;
     validerPar?: string | null;
@@ -28,7 +29,7 @@ export interface ISortie {
 export class Sortie implements ISortie {
     constructor(
         public idSortie?: number | null,
-        public dateSortie?: Date,
+        public dateSortie?: Date | string | null,
         public motifSortie?: string | null,
         public validerLe?: Date,
         public validerPar?: string | null,
@@ -44,5 +45,7 @@ export class Sortie implements ISortie {
         public createdDate?: Moment,
         public lastModifiedBy?: string,
         public lastModifiedDate?: Moment,
-    ) {}
+    ) {
+        this.dateSortie = moment().format('yyyy-MM-DD');
+    }
 }

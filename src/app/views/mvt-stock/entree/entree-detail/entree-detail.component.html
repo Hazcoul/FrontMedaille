@@ -1,1 +1,159 @@
-<p>entree-detail works!</p>
+<c-card class="mb-4">
+    <c-card-header class="text-white">
+      <c-row>
+        <c-col md="10">
+          Détails / Traitement de l'entrée N°: {{entree!.numeroCmd}}
+        </c-col>
+        <c-col md="2">
+          <button cButton color="info" variant="outline" class="float-end" size="sm"
+            [routerLink]="['/mouvement/entree']">Retour</button>
+        </c-col>
+      </c-row>
+    </c-card-header>
+    <c-card-body>
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+                <button ngbNavLink>Informations sur l'entrée</button>
+                <ng-template ngbNavContent>
+                    <c-row>
+                        <c-col md="6">
+                            <c-row>
+                                <c-col md="12">
+                                    <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                        <legend cLabel="col" class="pt-0">Général</legend>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm no-border">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Date d'entrée</th>
+                                                        <td>{{': ' + entree!.dateEntree }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Date de réception</th>
+                                                        <td>{{': ' + entree?.dateReception }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Exercice budgétaire</th>
+                                                        <td>{{': ' + entree?.exerciceBudgetaire }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Mode d'acquisition</th>
+                                                        <td>{{': ' + entree?.acquisition}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </fieldset>
+                                </c-col>
+                                <c-col md="12">
+                                    <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                        <legend cLabel="col" class="pt-0">Magasin</legend>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm no-border">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Depôt</th>
+                                                        <td>{{': ' + entree?.magasin?.depot?.nomDepot }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nom</th>
+                                                        <td>{{': ' + entree?.magasin?.nomMagasin }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Capacité</th>
+                                                        <td>{{': ' + entree?.magasin?.capacite }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </fieldset>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                        <c-col md="6">
+                            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                <legend cLabel="col" class="pt-0">Fournisseur</legend>
+                                <div class="table-responsive">
+                                    <table class="table table-sm no-border">
+                                        <tbody>
+                                            <tr>
+                                                <th>Raison sociale</th>
+                                                <td>{{': ' + entree!.fournisseur?.libelle }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Sigle</th>
+                                                <td>{{': ' + entree?.fournisseur?.sigle }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° IFU</th>
+                                                <td>{{': ' + entree?.fournisseur?.numeroIfu }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° de téléphone fixe</th>
+                                                <td>{{': ' + entree?.fournisseur?.telephoneFix }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° de téléphone mobile</th>
+                                                <td>{{': ' + entree?.fournisseur?.numeroIfu }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Représentant</th>
+                                                <td>{{': ' + entree?.fournisseur?.nomCompletPersonneRessource }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° du représentant</th>
+                                                <td>{{': ' + entree?.fournisseur?.telephonePersonneRessource }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email du représentant</th>
+                                                <td>{{': ' + entree?.fournisseur?.email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Adresse :</th>
+                                                <td>
+                                                    <textarea class="form-control" name="adresse" id="field_adresse" rows="2" [value]="entree?.fournisseur?.adresse" [readOnly]="true"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </c-col>
+                    </c-row>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <button ngbNavLink>Lignes de l'entrée</button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                        farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+                        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+                        helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
+                        8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+                    </p>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+                <button ngbNavLink>Pièces justificatives</button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Pièces justificatives ici
+                    </p>
+                </ng-template>
+            </li>
+        </ul>
+        
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        <div class="modal-footer">
+            <div class="float-end">
+                <button cButton color="primary" variant="outline" size="sm"
+                    (click)="valider(entree!)">Rejeter l'entrée</button>
+                <button cButton color="success" variant="outline" class="mx-2" size="sm"
+                    (click)="valider(entree!)">Valider l'entrée</button>
+            </div>
+        </div>
+    </c-card-body>
+  </c-card>
+  

@@ -14,6 +14,7 @@ export class AddEditLigneEntreeComponent implements OnInit {
 
   ligneEntree: ILigneEntree = new LigneEntree();
   medailles?: IMedaille[];
+  selectedMedailleId?: number | null;
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -30,6 +31,7 @@ export class AddEditLigneEntreeComponent implements OnInit {
   }
 
   save(): void {
+    this.ligneEntree.medaille = this.medailles?.find((elem) => elem.idMedaille === this.selectedMedailleId);
     this.activeModal.close(this.ligneEntree);
   }
 

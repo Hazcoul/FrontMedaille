@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EntreeService } from '../../../services/entree.service';
 import { IEntree } from 'src/app/entities/entree.model';
@@ -20,6 +20,8 @@ export class EntreeComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
   predicate= 'idEntree';
   ascending!: boolean;
   ngbPaginationPage = 1;
@@ -123,7 +125,7 @@ export class EntreeComponent implements OnInit, OnDestroy {
   }
 
   protected onSuccess(data: IEntree[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
-    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.totalItems = Number(headers.get('x-total-count'));
     this.page = page;
     if (navigate) {
       this.router.navigate(['/mouvement/entree'], {
@@ -148,5 +150,15 @@ export class EntreeComponent implements OnInit, OnDestroy {
 
   showItem(entree: IEntree): void {
     this.router.navigate(['mouvement', 'entree', entree.idEntree, 'details'])
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
   }
 }

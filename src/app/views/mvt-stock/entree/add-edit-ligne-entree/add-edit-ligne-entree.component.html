@@ -10,8 +10,8 @@
             <c-row>
                 <c-col md="6">
                     <label cLabel for="field_medaille">Selectionner la médaille :</label>
-                    <select aria-label="Small select example" cSelect sizing="sm" [(ngModel)]="ligneEntree.medaille" name="medaille">
-                        <option *ngFor="let medaille of medailles" [ngValue]="medaille">{{medaille.nomComplet}}</option>
+                    <select aria-label="Small select example" cSelect sizing="sm" [(ngModel)]="selectedMedailleId" name="medaille">
+                        <option *ngFor="let medaille of medailles" [ngValue]="medaille.idMedaille">{{medaille.nomComplet}}</option>
                     </select>
                 </c-col>
                 <c-col md="6">

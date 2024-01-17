@@ -27,7 +27,7 @@ export class MedailleComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate!: string;
+  predicate='idMedaille';
   ascending!: boolean;
   ngbPaginationPage = 1;
 
@@ -74,8 +74,8 @@ export class MedailleComponent implements OnInit, OnDestroy {
 
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
+    if (this.predicate !== 'idMedaille') {
+      result.push('idMedaille');
     }
     return result;
   }

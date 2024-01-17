@@ -2,10 +2,10 @@
     <c-card-header class="text-white">
       <c-row>
         <c-col md="10">
-          Enregistrement d'une entrée
+          Ajouter/Modifier une entrée
         </c-col>
         <c-col md="2">
-          <button cButton color="info" variant="outline" class="float-end" ize="sm"
+          <button cButton color="info" variant="outline" class="float-end" size="sm"
             [routerLink]="['/mouvement/entree']">Retour</button>
         </c-col>
       </c-row>
@@ -21,19 +21,19 @@
                                 <c-col md="12">
                                     <label cLabel for="field_fournisseur">Selectionner le fournisseur :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="entree.fournisseur" name="fournisseur" id="field_fournisseur">
-                                        <option *ngFor="let fournisseur of fournisseurs" [ngValue]="fournisseur">{{ fournisseur.libelle }}</option>
+                                        [(ngModel)]="selectedFournisseurId" name="fournisseur" id="field_fournisseur">
+                                        <option *ngFor="let fournisseur of fournisseurs" [ngValue]="fournisseur.idFournisseur">{{ fournisseur.libelle }}</option>
                                     </select>
                                 </c-col>
                                 <c-col md="12">
                                     <label cLabel for="field_magasin">Selectionner le magasin :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="entree.magasin" name="magasin" id="field_magasin">
-                                        <option *ngFor="let magasin of magasins" [ngValue]="magasin">{{magasin.nomMagasin}}</option>
+                                        [(ngModel)]="selectedMagasinId" name="magasin" id="field_magasin">
+                                        <option *ngFor="let magasin of magasins" [ngValue]="magasin.idMagasin">{{magasin.nomMagasin}}</option>
                                     </select>
                                 </c-col>
                                 <c-col md="12">
-                                    <label cLabel for="field_acquisition">Selectionner l'acquisition :</label>
+                                    <label cLabel for="field_acquisition">Selectionner le mode d'acquisition :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
                                         [(ngModel)]="entree.acquisition" name="acquisition" id="field_acquisition">
                                         <option *ngFor="let acquisition of referentials?.acquisitions" [ngValue]="acquisition?.valeur">{{acquisition?.libelle}}</option>
@@ -47,7 +47,7 @@
                                 <c-col md="6">
                                     <label cLabel for="field_dateEntree">Date d'entrée :</label>
                                     <input cFormControl sizing="sm" id="field_dateEntree" type="date" 
-                                        [(ngModel)]="entree.dateEntree" name="dateEntree"/>
+                                        [(ngModel)]="entree.dateEntree" name="dateEntree" [disabled]="true"/>
                                 </c-col>
                                 <c-col md="6">
                                     <label cLabel for="field_dateReception">Date de réception :</label>
