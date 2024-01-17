@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: 'entree/:id/details',
     component: EntreeDetailComponent,
-    canActivate: [AuthGuardService],,
+    canActivate: [AuthGuardService],
     resolve: {
       entree: EntreeResolve,
     }
