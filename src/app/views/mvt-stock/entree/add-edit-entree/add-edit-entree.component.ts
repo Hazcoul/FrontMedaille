@@ -13,6 +13,7 @@ import { FournisseurService } from 'src/app/services/fournisseur.service';
 import { MagasinService } from 'src/app/services/magasin.service';
 import { IFournisseur } from 'src/app/entities/fournisseur.model';
 import { IMagasin } from 'src/app/entities/magasin.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-edit-entree',
@@ -26,6 +27,8 @@ export class AddEditEntreeComponent implements OnInit {
   referentials?: any;
   fournisseurs?: IFournisseur[];
   magasins?: IMagasin[];
+  selectedFournisseurId?: number | null;
+  selectedMagasinId?: number | null;
 
   constructor(
     private entreeService: EntreeService,
@@ -34,7 +37,7 @@ export class AddEditEntreeComponent implements OnInit {
     private modalService: NgbModal,
     private referentialService: ReferentialService,
     private fournisseurService: FournisseurService,
-    private magasinService: MagasinService
+    private magasinService: MagasinService,
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +48,11 @@ export class AddEditEntreeComponent implements OnInit {
         next: (res: HttpResponse<IEntree>) => {
           if(res.body) {
             this.entree = res.body
+            this.selectedFournisseurId = this.entree.fournisseur?.idFournisseur;
+            this.selectedMagasinId = this.entree.magasin?.idMagasin;
+            this.entree.dateEntree = moment(this.entree.dateEntree).format('yyyy-MM-DD');
+            this.entree.dateReception = moment(this.entree.dateReception).format('yyyy-MM-DD');
+            console.log('ENTREE : ', this.entree);
           }
         },
         error: (e) => console.log('ERROR : ', e)
@@ -87,6 +95,7 @@ export class AddEditEntreeComponent implements OnInit {
     const modalRef = this.modalService.open(AddEditLigneEntreeComponent, { size: 'lg', backdrop: 'static' });
     if(undefined != ligneEntree) {
       modalRef.componentInstance.ligneEntree = cloneDeep(ligneEntree);
+      modalRef.componentInstance.selectedMedailleId = ligneEntree.medaille?.idMedaille;
     }
     modalRef.result.then((res) => {
       if(undefined == this.entree.ligneEntrees){
@@ -118,6 +127,8 @@ export class AddEditEntreeComponent implements OnInit {
   }
 
   save(): void {
+    this.entree.fournisseur = this.fournisseurs?.find((elem) => elem.idFournisseur === this.selectedFournisseurId);
+    this.entree.magasin = this.magasins?.find((elem) => elem.idMagasin === this.selectedMagasinId);
     this.isSaving = true;
     if (this.entree?.idEntree !== undefined) {
       this.subscribeToSaveResponse(this.entreeService.update(this.entree));

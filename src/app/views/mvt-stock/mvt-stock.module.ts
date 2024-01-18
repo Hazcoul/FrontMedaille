@@ -10,8 +10,9 @@ import {
   AlertModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MvtStockRoutingModule } from './mvt-stock-routing.module';
 import { EntreeComponent } from './entree/entree.component';
 import { SortieComponent } from './sortie/sortie.component';
@@ -44,8 +45,10 @@ import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.comp
     TableModule,
     IconModule,
     NgbModule,
+    NgbNavModule,
     FormsModule,
-    AlertModule
+    AlertModule,
+    NgxPaginationModule
   ]
 })
 export class MvtStockModule { }

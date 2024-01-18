@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, ResolveFn, RouterModule, Routes } from '@angular/router';
 import { EntreeComponent } from './entree/entree.component';
 import { SortieComponent } from './sortie/sortie.component';
 import { AddEditEntreeComponent } from './entree/add-edit-entree/add-edit-entree.component';
@@ -7,7 +7,18 @@ import { AddEditSortieComponent } from './sortie/add-edit-sortie/add-edit-sortie
 import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
 import {AuthGuardService} from "../../services/auth/auth-guard.service";
+import { IEntree } from 'src/app/entities/entree.model';
+import { EntreeService } from 'src/app/services/entree.service';
+import { mergeMap, of } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
+export const EntreeResolve: ResolveFn<IEntree | any> = (route: ActivatedRouteSnapshot) => {
+  const id = Number(route.paramMap.get('id'));
+  if(id) {
+    return inject(EntreeService).find(id)
+  }
+  return of(null);
+};
 const routes: Routes = [
   {
     path: 'entree',
@@ -28,6 +39,9 @@ const routes: Routes = [
     path: 'entree/:id/details',
     component: EntreeDetailComponent,
     canActivate: [AuthGuardService],
+    resolve: {
+      entree: EntreeResolve,
+    }
   },
   {
     path: 'sortie',
