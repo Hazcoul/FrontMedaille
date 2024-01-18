@@ -9,6 +9,17 @@
         <div class="modal-body">
             <c-row>
               <c-col md="6">
+                <label cLabel for="typeGrade">Code :</label>
+                <ng-select [items]="codes"
+                           name="code"
+                           id="code"
+                           bindValue="code"
+                           bindLabel="libelle"
+                           [multiple]=false
+                           [(ngModel)]="grade.code">
+                </ng-select>
+              </c-col>
+              <c-col md="6">
                 <label cLabel for="typeGrade">Type grade :</label>
                 <ng-select [items]="typesGrades"
                            name="typeGrade"
@@ -22,11 +33,11 @@
                     <input cFormControl sizing="sm" id="field_libelle" type="text"
                         [(ngModel)]="grade.libelle" name="libelle"/>
                 </c-col>
-            </c-row>
-            <c-row>
+              <c-col md="6">
                 <label cLabel for="field_description">Description :</label>
-                <textarea cFormControl sizing="sm" id="field_description" type="text"
-                     name="description">{{grade.description}}</textarea>
+                <textarea cFormControl sizing="sm" id="field_description" type="text" [(ngModel)]="grade.description"
+                          name="description"></textarea>
+              </c-col>
             </c-row>
         </div>
         <div class="modal-footer">

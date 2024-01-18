@@ -88,6 +88,9 @@ export class EntreeService {
     );
     return this.http.post<Entree[]>(this.resourceUrl+'/statistique/commandes', recherche, { params: options, observe: 'response' });
   }
+  public getEntreeWithoutPagination(recherche: FilterEntree): Observable<HttpResponse<Entree[]>> {
+    return this.http.post<Entree[]>(this.resourceUrl+'/statistique/commandes', recherche, { observe: 'response' });
+  }
 
   generateStatistique(idCommande:number) {
     return this.http.get(`${this.resourceUrl}/statistique/commandes/impression/${idCommande}`, { observe: 'body', responseType: 'arraybuffer' });

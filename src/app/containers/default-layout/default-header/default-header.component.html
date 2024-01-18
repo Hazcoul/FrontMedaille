@@ -13,7 +13,7 @@
       ></svg>
     </button>
     <c-header-nav class="d-none d-lg-flex me-auto">
-      
+
     </c-header-nav>
 
     <c-header-nav class="d-none d-lg-flex">
@@ -38,7 +38,7 @@
     </c-header-nav>
 
   </c-container>
-  
+
 </ng-container>
 <!--</c-header>-->
 
@@ -65,23 +65,20 @@
         <h6 cDropdownHeader class="bg-light fw-semibold py-2">Informations</h6>
       </li>
       <li>
-        <a routerLink="./" cDropdownItem>
+        <button class="btn btn-success" (click)="logout()" cDropdownItem>
           <svg cIcon class="me-2" name="cilTask"></svg>
-          Tâches
-          <c-badge class="ms-2 float-end" color="danger">
-            42
-          </c-badge>
-        </a>
+          Deconnexion
+        </button>
       </li>
       <li>
         <h6 cDropdownHeader class="bg-light fw-semibold py-2">Configuration</h6>
       </li>
       <li></li>
       <li>
-        <a routerLink="./" cDropdownItem>
-          <svg cIcon class="me-2" name="cilUser"></svg>
+        <button class="btn btn-success" (click)="goToProfile()" cDropdownItem>
+          <svg cIcon class="me-2" name="cilTask"></svg>
           Profile
-        </a>
+        </button>
       </li>
       <li>
         <a routerLink="./" cDropdownItem>

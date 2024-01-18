@@ -10,6 +10,8 @@ export interface IUtilisateur {
   email?: string;
   profils?: string[];
   profilsObjet?: Profil[];
+  titreHonorifique?: string;
+  fonction?: string;
 }
 
 export class Utilisateur implements IUtilisateur {
@@ -23,5 +25,7 @@ export class Utilisateur implements IUtilisateur {
       public email?: string,
       public profils?: string[],
       public profilsobjet?: Profil[],
+      public titreHonorifique?: string,
+      public fonction?: string,
     ) {}
 }

@@ -4,6 +4,7 @@ export interface IGrade {
     idGrade?: number | null;
     typeGrade?: string | null;
     libelle?: string | null;
+    code?: number;
     description?: string | null;
     createdBy?: string;
     createdDate?: Moment;
@@ -16,6 +17,7 @@ export class Grade implements IGrade {
         public idGrade?: number | null,
         public typeGrade?: string | null,
         public libelle?: string | null,
+        public code?: number,
         public description?: string | null,
         public createdBy?: string,
         public createdDate?: Moment,

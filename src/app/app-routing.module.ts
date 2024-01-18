@@ -101,10 +101,10 @@ const routes: Routes = [
     }
   },
   {
-    path: '500',
+    path: '401',
     component: Page500Component,
     data: {
-      title: 'Page 500'
+      title: 'Page 401'
     }
   },
   {

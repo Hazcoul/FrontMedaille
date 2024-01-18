@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AuthGuardService} from "../../../services/auth/auth-guard.service";
+import {UtilisateursComponent} from "./utilisateur/utilisateurs.component";
+import {UserProfilComponent} from "./user-profil/user-profil.component";
 
 const routes: Routes = [
   {
@@ -17,6 +19,12 @@ const routes: Routes = [
     path: "droits",
     loadChildren: () =>
       import("./droit/droit.module").then((m) => m.DroitModule),
+  },
+  {
+    path:"profil-utilisateur/:id",
+    component: UserProfilComponent,
+    canActivate: [AuthGuardService],
+    data: {roles: []}
   },
 ];
 

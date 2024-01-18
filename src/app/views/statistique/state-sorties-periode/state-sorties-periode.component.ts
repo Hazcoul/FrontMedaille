@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-import {Sortie} from "../../../entities/sortie.model";
 import {Subscription} from "rxjs";
 import {ITEMS_PER_PAGE, MAX_SIZE} from "../../../shared/constants/pagination.constant";
 import {FilterSortie} from "../../../entities/filterSortie.model";
-import {Beneficiaire, IBeneficiaire} from "../../../entities/beneficiaire.model";
-import {IDetenteur} from "../../../entities/detenteur";
-import {IOrdonnateur} from "../../../entities/ordonnateur.model";
 import {SortieService} from "../../../services/sortie.service";
-import {BeneficiaireService} from "../../../services/beneficiaire.service";
-import {DetenteurService} from "../../../services/detenteur.service";
-import {OrdonnateurService} from "../../../services/ordonnateur.service";
 import {ReferentialService} from "../../../services/referential.service";
 import {HttpResponse} from "@angular/common/http";
 import {ILigneSortieImpression} from "../../../entities/ligne-sortie-impression.model";
@@ -40,7 +33,7 @@ export class StateSortiesPeriodeComponent {
   }
 
   ngOnInit(): void {
-    this.getAllFilterParameter()
+    this.getAllFilterParameter();
   }
 
   getAllFilterParameter() {
@@ -60,20 +53,12 @@ export class StateSortiesPeriodeComponent {
   }
 
   getAllSorties() {
-    if(this.filterSortie.dateDebut && this.filterSortie.motifSortie){
-      const request = {
-        page: this.page - 1,
-        size: this.itemsPerPage,
-      };
-      this.sorties = [];
-      const result = this.sortieService.getSortiesByperiode(request, this.filterSortie).subscribe(
+      const result = this.sortieService.getSortiesByperiodeWithoutPagination(this.filterSortie).subscribe(
           response => {
             console.log(response.body);
             if (response.body === null || response.body.length === 0) {
             } else {
               this.sorties = response.body;
-              this.totalItems = Number(response.headers.get('X-Total-Count'));
-              console.warn('TOTAL', response.headers)
             }
             result.unsubscribe();
           },
@@ -83,7 +68,7 @@ export class StateSortiesPeriodeComponent {
       );
 
     }
-  }
+
 
   exportToPdf() {
     console.warn("Filter variable",this.filterSortie)

@@ -15,7 +15,8 @@ export interface IMedaille {
     createdDate?: Moment;
     lastModifiedBy?: string;
     lastModifiedDate?: Moment;
-    image?:string
+    image?:string;
+    code?:string;
 }
 
 export class Medaille implements IMedaille {
@@ -32,7 +33,8 @@ export class Medaille implements IMedaille {
         public createdDate?: Moment,
         public lastModifiedBy?: string,
         public lastModifiedDate?: Moment,
-        public image?:string
+        public image?:string,
+        public code?:string,
     ) {
         this.horsUsage = horsUsage;
     }

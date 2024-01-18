@@ -6,6 +6,8 @@ import { IBeneficiaire } from '../entities/beneficiaire.model';
 import { SERVER_API_URL } from '../app.constants';
 import { createRequestOption } from '../shared/util/request.util';
 import {IUtilisateur} from "../entities/utilisateur.model";
+import {MResponse} from "../entities/m-response.model";
+import {ResetPassword} from "../entities/reset-password.model";
 
 type EntityResponseType = HttpResponse<IUtilisateur>;
 type EntityArrayResponseType = HttpResponse<IUtilisateur[]>;
@@ -27,6 +29,10 @@ export class UtilisateurService {
     return this.http
       .put<IUtilisateur>(this.resourceUrl, user, { observe: 'response' })}
 
+  updateWithProfils(user: IUtilisateur): Observable<EntityResponseType> {
+    return this.http
+      .put<IUtilisateur>(`${this.resourceUrl}/update/${user.id}`, user, { observe: 'response' })}
+
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<IUtilisateur>(`${this.resourceUrl}/${id}`, { observe: 'response' })
@@ -45,6 +51,19 @@ export class UtilisateurService {
   count(): Observable<HttpResponse<any>> {
     return this.http
         .get<any>(`${this.resourceUrl}/statistique/count`, { observe: 'response' })
+  }
+
+  public requestPasswordReset(login: string): Observable<HttpResponse<MResponse>> {
+    return this.http.post<MResponse>(`${this.resourceUrl}/reset-password-by-admin/init`, login, { observe: 'response' });
+  }
+
+  updatePasswd(resetPassword: ResetPassword): Observable<HttpResponse<MResponse>> {
+    return this.http.post<MResponse>(`${this.resourceUrl}/reset-connect-password`, resetPassword,{ observe: 'response' })
+  }
+
+  findUserInfo(): Observable<EntityResponseType> {
+    return this.http
+      .get<IUtilisateur>(`${this.resourceUrl}/utilisateur-info`, { observe: 'response' })
   }
 
 }

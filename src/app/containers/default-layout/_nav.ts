@@ -3,61 +3,76 @@ import { INavData } from '@coreui/angular';
 export const navItems: INavData[] = [
   {
     name: 'Tableau de bord',
-    url: '/dashboard'
+    url: '/dashboard',
+    children: [],
+    authorities: ['ADMIN'],
   },
   {
     name: 'Mouvement de stock',
     url:'#',
+    authorities: ['ADMIN'],
     children: [
       {
         name: 'Entree',
-        url: '/mouvement/entree'
+        url: '/mouvement/entree',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Sortie',
-        url: '/mouvement/sortie'
+        url: '/mouvement/sortie',
+        authorities: ['ADMIN'],
       },
     ]
   },
   {
     name: 'Paramétrage',
     url:'#',
+    authorities: ['ADMIN'],
     children: [
       {
         name: 'Bénéficiaire',
-        url: '/parametre/beneficiaire'
+        url: '/parametre/beneficiaire',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Détenteurs',
-        url: '/parametre/detenteur'
+        url: '/parametre/detenteur',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Ordonnateurs',
-        url: '/parametre/ordonnateur'
+        url: '/parametre/ordonnateur',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Médailles',
-        url: '/parametre/medaille'
+        url: '/parametre/medaille',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Grades/Dignités',
-        url: '/parametre/grade'
+        url: '/parametre/grade',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Fournisseurs',
-        url: '/parametre/fournisseur'
+        url: '/parametre/fournisseur',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Distinctions',
-        url: '/parametre/distinction'
+        url: '/parametre/distinction',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Dépôt',
-        url: '/parametre/depot'
+        url: '/parametre/depot',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Magasins',
-        url: '/parametre/magasin'
+        url: '/parametre/magasin',
+        authorities: ['ADMIN'],
       },
     ]
   },
@@ -65,18 +80,22 @@ export const navItems: INavData[] = [
   {
     name: 'Statistiques',
     url:'#',
+    authorities: ['ADMIN'],
     children: [
       {
         name: 'Entrees',
-        url: '/statistiques/commande'
+        url: '/statistiques/commande',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Sorties',
-        url: '/statistiques/sorties'
+        url: '/statistiques/sorties',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Sorties par période',
-        url: '/statistiques/sorties/periode'
+        url: '/statistiques/sorties/periode',
+        authorities: ['ADMIN'],
       },
     ]
   },
@@ -84,22 +103,27 @@ export const navItems: INavData[] = [
   {
     name: 'Sécurtié',
     url:'#',
+    authorities: ['ADMIN'],
     children: [
       {
         name: 'Profils',
-        url: '/pages/securite/profils'
+        url: '/pages/securite/profils',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Utilisateurs',
-        url: '/pages/securite/utilisateurs'
+        url: '/pages/securite/utilisateurs',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Droits',
-        url: '/pages/securite/droits'
+        url: '/pages/securite/droits',
+        authorities: ['ADMIN'],
       },
       {
         name: 'Audit',
-        url: '/pages/securite/audits'
+        url: '/pages/securite/audits',
+        authorities: ['ADMIN'],
       }
     ]
   },

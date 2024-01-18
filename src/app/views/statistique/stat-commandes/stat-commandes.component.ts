@@ -38,7 +38,6 @@ export class StatCommandesComponent {
 
   ngOnInit(): void {
     this.getFournisseurs();
-
   }
 
   getFournisseurs(){
@@ -58,21 +57,14 @@ export class StatCommandesComponent {
   }
 
   getAllCommandes() {
-    const request = {
-      page: this.page - 1,
-      size: this.itemsPerPage,
-    };
-    this.commandes = [];
     console.warn("filter",this.filterEntree);
-    const result = this.entreeService.getCommandes(request, this.filterEntree).subscribe(
+    const result = this.entreeService.getEntreeWithoutPagination(this.filterEntree).subscribe(
       response => {
         console.log(response.body);
         if (response.body === null || response.body.length === 0) {
          // this.notification.open('warning', 'Aucune demande trouvée !');
         } else {
           this.commandes = response.body;
-          this.totalItems = Number(response.headers.get('X-Total-Count'));
-          console.warn('TOTAL',response.headers)
         }
         result.unsubscribe();
       },

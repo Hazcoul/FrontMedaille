@@ -1,17 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
-import { Subscription, combineLatest } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MedailleService } from '../../../services/medaille.service';
 import {IMedaille, Medaille} from '../../../entities/medaille.model';
 import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
-import {IProfil, Profil} from "../../../entities/profil.model";
 import Swal from "sweetalert2";
-import {DetailProfilComponent} from "../../pages/securite/profile/detail-profil/detail-profil.component";
 import {cloneDeep} from "lodash-es";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {IBeneficiaire} from "../../../entities/beneficiaire.model";
-import {AddEditComponent} from "../beneficiaire/add-edit/add-edit.component";
 import {CreateUpdateMedailleComponent} from "./create-update-medaille/create-update-medaille.component";
 import {DetailMedailleComponent} from "./detail-medaille/detail-medaille.component";
 
@@ -159,14 +155,5 @@ export class MedailleComponent implements OnInit, OnDestroy {
     });
   }
 
-  getByteImage(lien: string): any{
-    this.medailleService.getByte(lien).subscribe(response => {
-      console.warn("RESP",response.body);
-      return response.body!;
-
-    }, error => {
-      console.error(JSON.stringify(error));
-    });
-  }
 
 }

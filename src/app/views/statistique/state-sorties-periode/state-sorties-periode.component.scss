@@ -18,3 +18,21 @@ ngb-pagination ::ng-deep ul > li.active > a {
   font-size: 18px !important;
   padding: 6px 12px !important;
 }
+
+c-card-header{
+  background-color: #538136;
+  c-row{
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: large;
+    button{
+      background-color: #FFF;
+      color: #538136;
+      font-weight: bold;
+    }
+  }
+}
+table thead tr th{
+  color: #538136;
+}
