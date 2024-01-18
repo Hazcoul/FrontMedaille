@@ -1,0 +1,77 @@
+
+<c-card class="mb-4">
+  <c-card-header class="text-white">
+    <c-row>
+      <c-col md="10" class="text-success text-center">
+        Informations personnellees
+      </c-col>
+      <c-col md="2">
+        <!--
+                <button class="btn btn-success btn-sm float-end text-white"><i class="fa fa-print"></i> Imprimer</button>
+        -->
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+      <div class="modal-body">
+        <c-row>
+          <c-col md="3">
+            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+              <legend cLabel="col" class="pt-0">Informations personnelles</legend>
+              <c-row>
+                <c-col md="12">
+                  <label cLabel for="nom">Nom :</label>
+                  <input cFormControl sizing="sm" id="nom" disabled type="text" [(ngModel)]="utilisateur.nom"
+                         name="nom"/>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="prenom">Prenom :</label>
+                  <input cFormControl sizing="sm" id="prenom" disabled type="text" [(ngModel)]="utilisateur.prenom"
+                         name="prenom"/>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="login">Login :</label>
+                  <input cFormControl sizing="sm" id="login" disabled type="text" [(ngModel)]="utilisateur.login"
+                         name="login"/>
+                </c-col>
+                <c-col md="12">
+                  <label cLabel for="login">Matricule :</label>
+                  <input cFormControl sizing="sm" id="matricule" disabled type="text" [(ngModel)]="utilisateur.matricule"
+                         name="matricule"/>
+                </c-col>
+               <!-- <c-col md="12">
+                  <button class="mt-4 btn btn-success btn-sm btn-block text-white"><i class="fa fa-search"></i> Mettre</button>
+                </c-col>-->
+              </c-row>
+            </fieldset>
+          </c-col>
+          <c-col md="9">
+            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+              <c-row>
+                <c-col md="4">
+                  <label cLabel for="password">Ancien mot de passe </label>
+                  <input cFormControl sizing="sm" id="password"  type="password" [(ngModel)]="resetPassword.oldPassword"
+                         name="password"/>
+                </c-col>
+                <c-col md="4">
+                  <label cLabel for="confirmPasswd">Nouveau mot de passe </label>
+                  <input cFormControl sizing="sm" id="confirmPasswd" type="password" [(ngModel)]="resetPassword.newPassword"
+                         name="confirmPasswd"/>
+                </c-col>
+                <c-col md="4" class="mt-2">
+                  <button class="mt-4 btn btn-success btn-sm btn-block text-white" (click)="updatePasswd()"><i class="fa fa-edit"></i> Modifier mon mot de passe</button>
+                </c-col>
+                <!-- <c-col md="12">
+                   <button class="mt-4 btn btn-success btn-sm btn-block text-white"><i class="fa fa-search"></i> Mettre</button>
+                 </c-col>-->
+              </c-row>
+            </fieldset>
+          </c-col>
+        </c-row>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </form>
+  </c-card-body>
+</c-card>
