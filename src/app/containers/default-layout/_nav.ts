@@ -1,4 +1,4 @@
-import { INavData } from '@coreui/angular';
+import {INavData} from "../../entities/nav-data.model";
 
 export const navItems: INavData[] = [
   {
