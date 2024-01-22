@@ -26,4 +26,10 @@ $enable-rtl: true;
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
-
+.section-authentication-signin {
+  height: 100vh;
+  background: linear-gradient( 0deg, #393a9c, rgb(227 6 19 / 36%)),
+  url(../assets/images/gcob-cover.jpg);
+  background-size: cover;
+  background-position: center center;
+}
