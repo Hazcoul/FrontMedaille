@@ -105,7 +105,43 @@ export class UtilisateursComponent {
     });
   }
 
+  resetAccountTodefault(user: Utilisateur) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible et reinitialisera le mot de passe par admin2023!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, procéder!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.reset(user);
+      }
+    });
+  }
+
   goToEditPage(user: Utilisateur){
     this.router.navigate(['pages','securite','utilisateurs','modification',user.id]);
   }
+
+
+   reset(user: Utilisateur) {
+    console.warn("LOGIN",user.login);
+     this.utilisateurService.requestPasswordReset(user.login!).subscribe(data=>{
+       if(data.body && data.body.code == "0"){
+         Swal.fire({
+           title: "",
+           text: data.body.msg,
+           icon: "success"
+         });
+       }else{
+         Swal.fire({
+           title: "",
+           text: data.body!.msg,
+           icon: "success"
+         });
+       }
+     })
+   }
 }

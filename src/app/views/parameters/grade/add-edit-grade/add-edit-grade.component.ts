@@ -15,6 +15,7 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
   isSaving = false;
   grade: IGrade = new Grade();
   typesGrades = ["GRADE","DIGNITE"]
+  codes = [{code:1,libelle:"Chevalier"},{code:2,libelle:"Officier"},{code:3,libelle:"Commandeur"},{code:4,libelle:"Grand-officier"},{code:4,libelle:"Grand-croix"}];
 
   constructor(
     private gradeService: GradeService,
@@ -34,6 +35,7 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
+    console.warn("ISSAVED",this.grade);
     this.isSaving = true;
     if (this.grade?.idGrade !== undefined) {
       this.subscribeToSaveResponse(this.gradeService.update(this.grade));

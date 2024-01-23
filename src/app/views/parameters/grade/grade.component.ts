@@ -112,7 +112,7 @@ export class GradeComponent implements OnInit, OnDestroy {
     })
   }
 
-  removeDistinction(distinction: IDistinction) {
+  removeGrade(grade: IGrade) {
     Swal.fire({
       title: "Etes-vous vraiment sûr?",
       text: "Cette action est irréversible!",
@@ -123,7 +123,7 @@ export class GradeComponent implements OnInit, OnDestroy {
       confirmButtonText: "Oui, supprimer!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.delete(distinction);
+        this.delete(grade);
       }
     });
   }

@@ -38,21 +38,17 @@ export class AuthentificationService {
   }
 
   public saveToken(token: any): void {
-   // localStorage.removeItem(TOKEN_KEY);
-   // localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
     sessionStorage.setItem('TOKEN_KEY', token.accessToken!);
-  //  console.warn("JSON",JSON.parse(localStorage.getItem(TOKEN_KEY)!));
-
   }
 
   public getToken(): string | null {
     return sessionStorage.getItem("TOKEN_KEY");
   }
 
-  public  getPrivilege(): Array<any> | null {
-    let privilege= JSON.parse(localStorage.getItem(TOKEN_KEY)!)
+  public  getPrivilege(): string {
+    let privilege= sessionStorage.getItem("TOKEN_KEY")!;
     if(privilege != null){
-      privilege = privilege.additionalInfo.privileges;
+      console.warn("PR",privilege);
     }
     return privilege;
   }
@@ -67,13 +63,14 @@ export class AuthentificationService {
 
   public tokenDecode() : any {
     const jwtHelper = new JwtHelperService();
+    const tokenDecode = jwtHelper.decodeToken(this.getToken()!);
+    sessionStorage.setItem('USER_ROLES', tokenDecode.roles);
     return jwtHelper.decodeToken(this.getToken()!);
   }
 
   signOut(): void {
     window.sessionStorage.clear();
     window.localStorage.clear();
-    localStorage.removeItem(TOKEN_KEY);
     this.router.navigate(['login']);
   }
 
@@ -83,35 +80,23 @@ export class AuthentificationService {
   }
 
 
-  public  checkPermission(permissions: string[], perm:string[]): boolean{
-    let resultat=false;
-    for( let i=0; i< permissions.length; i++){
-      for(let index=0; index<perm.length; index++)
-        if(permissions[i]== perm[index]){
-          return true;
-        }
-    }
-    return resultat;
-  }
-
-
-  public static checkPermissionTest(permissions: string[], perm:string[]): boolean{
-    let resultat=false;
-    for( let i=0; i< permissions.length; i++){
-      for(let index=0; index<perm.length; index++)
-        if(permissions[i]== perm[index]){
-          return true;
-        }
-    }
-    return resultat;
-  }
-
   public  static getPrivilegeTest(): Array<any> | null {
     let privilege= JSON.parse(localStorage.getItem(TOKEN_KEY)!)
     if(privilege != null){
       privilege = privilege.additionalInfo.privileges;
     }
     return privilege;
+  }
+
+  hasAnyAuthority(authorities: string[] | string): boolean {
+    const roles = this.tokenDecode().roles as string[];
+    if (!roles) {
+      return false;
+    }
+    if (!Array.isArray(authorities)) {
+      authorities = [authorities];
+    }
+    return roles.some((authority: string) => authorities.includes(authority));
   }
 
 }

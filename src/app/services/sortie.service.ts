@@ -89,6 +89,9 @@ export class SortieService {
     );
     return this.http.post<ISortie[]>(this.resourceUrl+'/statistique/sorties', recherche, { params: options, observe: 'response' });
   }
+  public getSortiesWithoutPagination(recherche: FilterEntree): Observable<HttpResponse<ISortie[]>> {
+    return this.http.post<ISortie[]>(this.resourceUrl+'/statistique/sorties', recherche, {observe: 'response' });
+  }
 
   generateStatistique(idSortie:number) {
     return this.http.get(`${this.resourceUrl}/statistique/sorties/impression/${idSortie}`, { observe: 'body', responseType: 'arraybuffer' });
@@ -102,6 +105,10 @@ export class SortieService {
         }
     );
     return this.http.post<LigneSortieImpression[]>(this.resourceUrl+'/statistique/sorties/periode', recherche, { params: options, observe: 'response' });
+  }
+
+  public getSortiesByperiodeWithoutPagination(recherche: FilterEntree): Observable<HttpResponse<LigneSortieImpression[]>> {
+    return this.http.post<LigneSortieImpression[]>(this.resourceUrl+'/statistique/sorties/periode', recherche, { observe: 'response' });
   }
 
   generateStatistiquePeriode(recherche: FilterEntree) {

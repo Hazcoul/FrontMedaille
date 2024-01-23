@@ -51,9 +51,8 @@ export class CreateUpdateUtilisateurComponent {
 
   saveOrUpdate() {
     this.utilisateur.profils = this.profilsSelected;
-    console.warn("USER TO SAVE",this.utilisateur);
     if (this.utilisateur.id) {
-      this.utilisateurService.update(this.utilisateur).subscribe(
+      this.utilisateurService.updateWithProfils(this.utilisateur).subscribe(
         {
           next: () => {
             Swal.fire({
@@ -71,7 +70,7 @@ export class CreateUpdateUtilisateurComponent {
             Swal.fire({
               position: 'center',
               icon: 'warning',
-              title: 'Une erreur est survenue',
+              title: "Une erreur est survenue lors de la modification",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -84,7 +83,7 @@ export class CreateUpdateUtilisateurComponent {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: "Enregistre effectuée avec succès lors de l'ajout",
+            title: "Enregistrement effectué avec succès",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -94,7 +93,7 @@ export class CreateUpdateUtilisateurComponent {
           Swal.fire({
             position: 'center',
             icon: 'warning',
-            title: 'Une erreur est survenue lors de la modification',
+            title: "Une erreur est survenue lors de l'ajout",
             showConfirmButton: false,
             timer: 1500,
           });

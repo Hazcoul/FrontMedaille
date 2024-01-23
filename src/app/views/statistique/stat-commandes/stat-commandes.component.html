@@ -1,13 +1,8 @@
 <c-card class="mb-4">
-  <c-card-header class="text-white">
+  <c-card-header>
     <c-row>
-      <c-col md="10" class="text-success text-center">
+      <c-col md="10">
         Statistique sur les entrées
-      </c-col>
-      <c-col md="2">
-<!--
-        <button class="btn btn-success btn-sm float-end text-white"><i class="fa fa-print"></i> Imprimer</button>
--->
       </c-col>
     </c-row>
   </c-card-header>
@@ -41,7 +36,7 @@
           <c-col md="9">
             <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
               <legend cLabel="col" class="text-success text-center">Liste des entrées</legend>
-              <table [striped]="true" cTable>
+              <table [striped]="true" cTable *ngIf="commandes.length >0">
                 <thead>
                 <tr>
                   <th scope="col">N°</th>
@@ -77,18 +72,7 @@
                 </tr>
                 </tbody>
               </table>
-              <ngb-pagination [collectionSize]="totalItems"
-                              [(page)]="page"
-                              [pageSize]="itemsPerPage"
-                              [maxSize]="maxSize"
-                              [rotate]="true"
-                              [boundaryLinks]="false"
-                              class="pagination"
-                              (pageChange)="loadPage($event)">
-
-                <ng-template ngbPaginationPrevious>Préc.</ng-template>
-                <ng-template ngbPaginationNext>Suiv.</ng-template>
-              </ngb-pagination>
+              <div class="alert alert-warning text-center" *ngIf="commandes.length == 0">Aucune donnée</div>
             </fieldset>
           </c-col>
         </c-row>

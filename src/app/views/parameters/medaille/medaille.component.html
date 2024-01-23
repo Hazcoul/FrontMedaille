@@ -1,9 +1,9 @@
 
 <c-card class="mb-4">
-  <c-card-header>
+  <c-card-header >
     <c-row>
-      <c-col md="10">
-        Médailles
+      <c-col md="10" class="text-center text-white">
+        <h2>Médailles</h2>
       </c-col>
       <c-col md="2">
         <button cButton color="primary" variant="outline" class="float-end" size="sm"
@@ -23,7 +23,7 @@
               <button title="Supprimer medaille" (click)="removeMedaille(item)" class=""><i class="fa fa fa-remove" style="color: orangered;margin-right: 12px" aria-hidden="true"></i></button>
             </div>
             <button type="button" class="btn btn-outline-dark mt-4">
-              {{item.nomComplet}} :  <span class="badge badge-light" style="color: orangered; font-weight: bold;font-size: 16px">{{item.stock}}</span>
+              {{item.code}} | {{item.nomComplet}} :  <span class="badge badge-light" style="color: orangered; font-weight: bold;font-size: 16px">{{item.stock}}</span>
             </button>
           </li>
         </ul>

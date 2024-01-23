@@ -49,7 +49,8 @@ export class StateSortiesComponent {
   }
 
   ngOnInit(): void {
-    this.getAllFilterParameter()
+    this.getAllFilterParameter();
+    this.getAllSorties();
   }
 
   getAllFilterParameter() {
@@ -95,20 +96,12 @@ export class StateSortiesComponent {
   }
 
   getAllSorties() {
-    console.warn("filterSortie",this.filterSortie);
-    const request = {
-      page: this.page - 1,
-      size: this.itemsPerPage,
-    };
-    this.sorties = [];
-    const result = this.sortieService.getSorties(request, this.filterSortie).subscribe(
+    const result = this.sortieService.getSortiesWithoutPagination(this.filterSortie).subscribe(
       response => {
         console.log(response.body);
         if (response.body === null || response.body.length === 0) {
         } else {
           this.sorties = response.body;
-          this.totalItems = Number(response.headers.get('X-Total-Count'));
-          console.warn('TOTAL', response.headers)
         }
         result.unsubscribe();
       },

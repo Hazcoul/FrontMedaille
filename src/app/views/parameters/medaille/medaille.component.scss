@@ -1,8 +1,22 @@
 // Full tutorial coming soon!
-
+c-card-header{
+  background-color: #538136;
+  c-row{
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: large;
+    button{
+      background-color: #FFF;
+      color: #538136;
+      font-weight: bold;
+    }
+  }
+}
+table thead tr th{
+  color: #538136;
+}
 .card {
-
-
   background-color: #f8f7f4;
   border-radius: 0.5rem;
   box-shadow: 0.10rem 0.4rem 0.3rem -0.03rem rgba(0, 0, 0, 0.80);

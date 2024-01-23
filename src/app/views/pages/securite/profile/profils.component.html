@@ -22,29 +22,24 @@
       <tbody>
       <tr *ngFor="let profil of profils; index as i">
         <td><span>{{i+1}}</span></td>
-        <td>
+        <td width="10%" >
           <span>{{profil.code}}</span>
         </td>
-        <td>
+        <td width="70%">
           <span>{{profil.libelle}}</span>
         </td>
-        <td>
-          <button cButton color="primary" variant="outline" size="sm" (click)="openAddEditModal(profil)">
+        <td width="20%">
+          <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(profil)">
             <svg cIcon name="cilPen" size="sm"></svg>
           </button>
-          <button cButton color="info" (click)="openModalDetail(profil)" variant="outline" size="sm">
-            <svg cIcon name="cilEye" size="sm"></svg>
+          <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;"
+                  (click)="openModalDetail(profil)">
+            <i class="fa fa-eye"></i>
           </button>
-          <button cButton color="danger" (click)="removeProfil(profil)" variant="outline" size="sm">
-            <svg cIcon name="cilX" size="sm"></svg>
+          <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                  (click)="removeProfil(profil)">
+            <i class="fa fa-remove"></i>
           </button>
-        </td>
-        <!--<td>
-          <div class="">
-            <button title="Modifier le profil" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
-            <button title="Supprimer le profil" (click)="removeProfil(profil)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
-          </div>
-        </td>-->
       </tr>
       </tbody>
     </table>

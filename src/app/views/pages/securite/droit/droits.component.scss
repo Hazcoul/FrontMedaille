@@ -85,3 +85,22 @@ body {
   padding-right: 1rem;
 }
 */
+
+c-card-header{
+  background-color: #538136;
+  c-row{
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: large;
+    button{
+      background-color: #FFF;
+      color: #538136;
+      font-weight: bold;
+    }
+  }
+}
+table thead tr th{
+  color: #538136;
+}
+
