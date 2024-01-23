@@ -7,7 +7,8 @@ import {
   FormModule,
   GridModule,
   TableModule,
-  AlertModule
+  AlertModule,
+  BadgeModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,6 +23,8 @@ import { AddEditLigneEntreeComponent } from './entree/add-edit-ligne-entree/add-
 import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-edit-ligne-sortie.component';
 import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
+import { RejetEntreeComponent } from './entree/rejet-entree/rejet-entree.component';
+import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.component';
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.comp
     AddEditLigneEntreeComponent,
     AddEditLigneSortieComponent,
     EntreeDetailComponent,
-    SortieDetailComponent
+    SortieDetailComponent,
+    RejetEntreeComponent,
+    ValiderEntreeComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +53,8 @@ import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.comp
     NgbNavModule,
     FormsModule,
     AlertModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BadgeModule
   ]
 })
 export class MvtStockModule { }

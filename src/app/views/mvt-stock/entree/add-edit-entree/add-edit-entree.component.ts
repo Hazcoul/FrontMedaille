@@ -14,6 +14,7 @@ import { MagasinService } from 'src/app/services/magasin.service';
 import { IFournisseur } from 'src/app/entities/fournisseur.model';
 import { IMagasin } from 'src/app/entities/magasin.model';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-entree',
@@ -131,6 +132,7 @@ export class AddEditEntreeComponent implements OnInit {
     this.entree.magasin = this.magasins?.find((elem) => elem.idMagasin === this.selectedMagasinId);
     this.isSaving = true;
     if (this.entree?.idEntree !== undefined) {
+      console.log('UPDATING : ', this.entree);
       this.subscribeToSaveResponse(this.entreeService.update(this.entree));
     } else {
       this.subscribeToSaveResponse(this.entreeService.create(this.entree!));
@@ -143,7 +145,7 @@ export class AddEditEntreeComponent implements OnInit {
         console.log("NEXT : ", res);
         this.onSaveSuccess();
       },
-      error: () => this.onSaveError()
+      error: (e) => this.onSaveError(e)
     });
   }
 
@@ -152,8 +154,16 @@ export class AddEditEntreeComponent implements OnInit {
     this.goBack();
   }
 
-  protected onSaveError(): void {
+  protected onSaveError(e: any): void {
+    console.log('ERROR OCCUR : ', e);
     this.isSaving = false;
+    if(e.error) {
+      Swal.fire({
+        icon: "error",
+        title: "Désolé!",
+        text: e.error.msg,
+      });
+    }
   }
 
   trackById(index: number, item: IEntree): any {

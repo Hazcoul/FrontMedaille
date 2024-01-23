@@ -33,7 +33,7 @@
                                     </select>
                                 </c-col>
                                 <c-col md="12">
-                                    <label cLabel for="field_acquisition">Selectionner le mode d'acquisition :</label>
+                                    <label cLabel for="field_acquisition">Selectionner le motif d'acquisition :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
                                         [(ngModel)]="entree.acquisition" name="acquisition" id="field_acquisition">
                                         <option *ngFor="let acquisition of referentials?.acquisitions" [ngValue]="acquisition?.valeur">{{acquisition?.libelle}}</option>

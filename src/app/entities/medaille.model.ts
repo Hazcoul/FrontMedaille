@@ -5,6 +5,7 @@ import { Moment } from 'moment';
 export interface IMedaille {
     idMedaille?: number | null;
     nomComplet?: string | null;
+    code?: string | null;
     stock?: number | null;
     lienImage?: string | null;
     description?: string | null;
@@ -22,6 +23,7 @@ export class Medaille implements IMedaille {
     constructor(
         public idMedaille?: number | null,
         public nomComplet?: string | null,
+        public code?: string | null,
         public stock?: number | null,
         public lienImage?: string | null,
         public description?: string | null,
