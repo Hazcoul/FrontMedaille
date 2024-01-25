@@ -14,11 +14,6 @@ export interface IOrdonnateur {
     actuel?: boolean | null;
     debutMandat?: Date | string | null;
     finMandat?: Date | string | null;
-    gradeMilitaire? : string;
-    titreHonorifique? : string;
-    actuel? : boolean;
-    debutMandat? : Date | string;
-    finMandat? : Date | string;
     createdBy?: string;
     createdDate?: Moment;
     lastModifiedBy?: string;
@@ -40,11 +35,6 @@ export class Ordonnateur implements IOrdonnateur {
         public actuel?: boolean | null,
         public debutMandat?: Date | string | null,
         public finMandat?: Date | string | null,
-        public gradeMilitaire? : string,
-        public titreHonorifique? : string,
-        public actuel? : boolean,
-        public debutMandat? : Date,
-        public finMandat? : Date,
         public createdBy?: string,
         public createdDate?: Moment,
         public lastModifiedBy?: string,
