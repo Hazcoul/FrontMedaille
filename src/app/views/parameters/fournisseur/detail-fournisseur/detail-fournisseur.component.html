@@ -1,0 +1,56 @@
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Détails d'un fournisseur</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-sm no-border">
+                <tbody>
+                    <tr>
+                        <th>Sigle</th>
+                        <td>{{': ' + fournisseur.sigle}}</td>
+                    </tr>
+                    <tr>
+                        <th>Libelle</th>
+                        <td>{{': ' + fournisseur.libelle}}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone Fix</th>
+                        <td>{{': ' + fournisseur.telephoneFix}}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone Mobile</th>
+                        <td>{{': ' + fournisseur.telephoneMobile}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{': ' + fournisseur.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{': ' + fournisseur.adresse}}</td>
+                    </tr>
+                    <tr>
+                        <th>Numéro Ifu</th>
+                        <td>{{': ' + fournisseur.numeroIfu}}</td>
+                    </tr>
+                    <tr>
+                        <th>NomComplet PersonneRessource</th>
+                        <td>{{': ' + fournisseur.nomCompletPersonneRessource}}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone PersonneRessource</th>
+                        <td>{{': ' + fournisseur.telephonePersonneRessource}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button cButton color="danger" variant="outline" class="float-end" size="sm"
+            (click)="close()">Fermer</button>
+    </div>
+</div>

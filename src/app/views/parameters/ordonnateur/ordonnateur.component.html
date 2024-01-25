@@ -1,20 +1,22 @@
 <c-card class="mb-4">
-    <c-card-header>
-      <c-row>
-        <c-col md="10">
-          Ordonnateurs
-        </c-col>
-        <c-col md="2">
-          <button cButton color="primary" variant="outline" class="float-end" size="sm"
-            (click)="openAddEditModal()">Ajouter</button>
-        </c-col>
-      </c-row>
-    </c-card-header>
-    <c-card-body>
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Ordonnateurs
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end" size="sm"
+          (click)="openAddEditModal()">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <div *ngIf="ordonnateurs && ordonnateurs.length > 0">
       <table [striped]="true" cTable>
         <thead>
           <tr>
             <th scope="col">N°</th>
+            <th scope="col">Grade Militaire</th>
             <th scope="col">Matricule</th>
             <th scope="col">Civilite</th>
             <th scope="col">Nom</th>
@@ -22,19 +24,46 @@
             <th scope="col">Fonction</th>
             <th scope="col">Telephone</th>
             <th scope="col">Email</th>
+            <th scope="col">Titre Honorifique</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let ordonnateur of ordonnateurs; index as i">
-            <td><span>{{start + i + 1}}</span></td>
-            <td><span>{{ordonnateur.matricule}}</span></td>
-            <td><span>{{ordonnateur.civilite}}</span></td>
-            <td><span>{{ordonnateur.nom}}</span></td>
-            <td><span>{{ordonnateur.prenom}}</span></td>
-            <td><span>{{ordonnateur.fonction}}</span></td>
-            <td><span>{{ordonnateur.telephone}}</span></td>
-            <td><span>{{ordonnateur.email}}</span></td>
+          <tr *ngFor="let ordonnateur of ordonnateurs
+            | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }; index as i">
+            <td><span>{{i + 1}}</span></td>
+            <td>
+              <span>{{ordonnateur.gradeMilitaire}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.matricule}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.civilite}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.nom}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.prenom}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.fonction}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.telephone}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.email}}</span>
+            </td>
+            <td>
+              <span>{{ordonnateur.titreHonorifique}}</span>
+            </td>
             <td>
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(ordonnateur)">
                 <svg cIcon name="cilPen" size="sm"></svg>
@@ -51,23 +80,17 @@
           </tr>
         </tbody>
       </table>
-      <nav aria-label="Pagination">
-        <ul class="pagination">
-            <li class="page-item" [ngClass]="{'disabled' : currentPage==1}" (click)="changePage(currentPage-1)">
-              <a class="page-link" href="javascript:void(0)">{{previousPage}}</a>
-            </li>
-            <li 
-              *ngFor="let page of pages" 
-              class="page-item" 
-              [ngClass]="{'active' : page == currentPage}"
-              (click)="changePage(page)"
-              >
-              <a class="page-link" href="javascript:void(0)">{{page}}</a>
-            </li>
-            <li class="page-item" [ngClass]="{'disabled' : currentPage==totalPages}" (click)="changePage(currentPage+1)">
-              <a class="page-link" href="javascript:void(0)">{{nextPage}}</a>
-            </li>
-        </ul>
-      </nav>
-    </c-card-body>
-  </c-card>
+      <div class="d-flex justify-content-end">
+        <pagination-controls
+          previousLabel= "{{previousLabel}}"
+          nextLabel= "{{nextLabel}}"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+    <div *ngIf="ordonnateurs && ordonnateurs.length == 0">
+      <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>
+    </div>
+  </c-card-body>
+</c-card>

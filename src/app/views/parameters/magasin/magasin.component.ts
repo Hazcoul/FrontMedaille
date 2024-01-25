@@ -3,8 +3,8 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { MagasinService } from '../../../services/magasin.service';
-import { IMagasin} from '../../../entities/magasin.model';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { IMagasin } from '../../../entities/magasin.model';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditMagasinComponent } from './add-edit-magasin/add-edit-magasin.component';
 import { cloneDeep } from 'lodash-es';
@@ -21,11 +21,13 @@ export class MagasinComponent implements OnInit, OnDestroy {
   magasins?: IMagasin[];
   eventSubscriber?: Subscription;
   totalItems = 0;
+  isLoading = false;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate!: string;
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
+  predicate = 'idMagasin';
   ascending!: boolean;
-  ngbPaginationPage = 1;
 
   constructor(
     private magasinService: MagasinService,
@@ -42,6 +44,16 @@ export class MagasinComponent implements OnInit, OnDestroy {
     console.log('Dans ben com, ngOnDestroy');
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
+  }
+
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
 
@@ -54,6 +66,7 @@ export class MagasinComponent implements OnInit, OnDestroy {
       .subscribe(
         {
           next: (res: HttpResponse<IMagasin[]>) => {
+            console.log('TOTAL_ITEMS_COUNT_FROM_RES_HEADER : ', res.headers.keys());
             this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
           },
           error: () => this.onError(),
@@ -62,10 +75,16 @@ export class MagasinComponent implements OnInit, OnDestroy {
   }
 
   protected handleNavigation(): void {
-    this.loadPage();    
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(
+      ([data, params]) => {
+        this.loadPage();
+      }
+    );
+
   }
 
   trackId(index: number, item: IMagasin): number {
+    
     return item.idMagasin!;
   }
 
@@ -99,17 +118,17 @@ export class MagasinComponent implements OnInit, OnDestroy {
     })
   }
 
-
   sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
+    if (this.predicate !== 'idMagasin') {
+      result.push('idMagasin');
     }
     return result;
   }
 
   protected onSuccess(data: IMagasin[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
-    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.totalItems = Number(headers.get('x-total-count'));
+    console.log('TOTAL_ITEMS =', this.totalItems);
     this.page = page;
     if (navigate) {
       this.router.navigate(['/parametre/magasin'], {
@@ -121,11 +140,10 @@ export class MagasinComponent implements OnInit, OnDestroy {
       });
     }
     this.magasins = data || [];
-    this.ngbPaginationPage = this.page;
   }
 
   protected onError(): void {
-    this.ngbPaginationPage = this.page ?? 1;
+    this.isLoading = false;
   }
 
   openAddEditModal(magasin?: IMagasin): void {

@@ -9,6 +9,11 @@ export interface IOrdonnateur {
     fonction?: string | null;
     telephone?: string | null;
     email?: string | null;
+    gradeMilitaire? : string;
+    titreHonorifique? : string;
+    actuel? : boolean;
+    debutMandat? : Date | string;
+    finMandat? : Date | string;
     createdBy?: string;
     createdDate?: Moment;
     lastModifiedBy?: string;
@@ -25,6 +30,11 @@ export class Ordonnateur implements IOrdonnateur {
         public fonction?: string | null,
         public telephone?: string | null,
         public email?: string | null,
+        public gradeMilitaire? : string,
+        public titreHonorifique? : string,
+        public actuel? : boolean,
+        public debutMandat? : Date,
+        public finMandat? : Date,
         public createdBy?: string,
         public createdDate?: Moment,
         public lastModifiedBy?: string,

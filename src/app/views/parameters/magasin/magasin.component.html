@@ -1,34 +1,51 @@
 <c-card class="mb-4">
-    <c-card-header>
-      <c-row>
-        <c-col md="10">
-          Magasin
-        </c-col>
-        <c-col md="2">
-          <button cButton color="primary" variant="outline" class="float-end" size="sm"
-            (click)="openAddEditModal()">Ajouter</button>
-        </c-col>
-      </c-row>
-    </c-card-header>
-    <c-card-body>
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Fournisseur
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end" size="sm"
+          (click)="openAddEditModal()">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <div *ngIf="magasins && magasins.length > 0">
       <table [striped]="true" cTable>
         <thead>
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nom</th>
-            <th scope="col">Capacité</th>
+            <th scope="col">Capacite</th>
+            <th scope="col">Description</th>
             <th scope="col">Dépot</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let magasin of magasins; index as i">
-            <td><span>{{i+1}}</span></td>
-            <td><span>{{magasin.nomMagasin}}</span></td>
-            <td><span>{{magasin.capacite}}</span></td>
-            <td><span>{{magasin.depot?.nomDepot}}</span></td>
+          <tr *ngFor="let magasin of magasins
+            | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }; index as i">
+            <td><span>{{i + 1}}</span></td>
             <td>
-              <button cButton color="primary" variant="outline" size="sm" (click)="openAddEditModal(magasin)">
+              <span>{{magasin.nomMagasin}}</span>
+            </td>
+            <td>
+              <span>{{magasin.capacite}}</span>
+            </td>
+            <td>
+              <span>{{magasin.description}}</span>
+            </td>
+            <td>
+              <span>{{magasin.depot?.nomDepot}}</span>
+            </td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(magasin)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
               <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
@@ -43,5 +60,17 @@
           </tr>
         </tbody>
       </table>
-    </c-card-body>
-  </c-card>
+      <div class="d-flex justify-content-end">
+        <pagination-controls
+          previousLabel= "{{previousLabel}}"
+          nextLabel= "{{nextLabel}}"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+    <div *ngIf="magasins && magasins.length == 0">
+      <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>
+    </div>
+  </c-card-body>
+</c-card>

@@ -1,9 +1,11 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Ordonnateur,IOrdonnateur } from 'src/app/entities/ordonnateur.model';
 import { OrdonnateurService } from 'src/app/services/ordonnateur.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-edit-ordonnateur',
@@ -15,14 +17,27 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
   isSaving = false;
   ordonnateur: IOrdonnateur = new Ordonnateur();
   civilites = ['Monsieur','Madame','Moidemoiselle'];
+  valActuel? : string;
 
   constructor(
     private ordonnateurService: OrdonnateurService,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-      
+    if (this.ordonnateur) {
+      console.log("Dans Edit ordonnateur");
+      if (this.ordonnateur.actuel) {
+        this.valActuel = "1";
+      }else{
+        this.valActuel="0";
+      }
+      this.ordonnateur.debutMandat = moment(this.ordonnateur?.debutMandat).format('DD/MM/yyyy');
+      this.ordonnateur.finMandat= moment(this.ordonnateur?.finMandat).format('DD/MM/yyyy');
+    }
+    console.log(this.ordonnateur.debutMandat)
   }
 
   ngOnDestroy(): void {
@@ -35,6 +50,11 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
 
   save(): void {
     this.isSaving = true;
+    if (this.valActuel=="1") {
+      this.ordonnateur.actuel=true;
+    }else{
+      this.ordonnateur.actuel=false;
+    }
     if (this.ordonnateur?.idOrdonnateur !== undefined) {
       this.subscribeToSaveResponse(this.ordonnateurService.update(this.ordonnateur));
     } else {
