@@ -43,6 +43,7 @@ import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.
 import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-detenteur.component';
 import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/detail-ordonnateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DetailFournisseurComponent } from './fournisseur/detail-fournisseur/detail-fournisseur.component';
 
 
 
@@ -75,7 +76,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DetailDepotComponent,
     DetailMagasinComponent,
     DetailDetenteurComponent,
-    DetailOrdonnateurComponent
+    DetailOrdonnateurComponent,
+    DetailFournisseurComponent
 
   ],
   imports: [

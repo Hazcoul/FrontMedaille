@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit, Input, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { OrdonnateurService } from '../../../services/ordonnateur.service';
-import { IOrdonnateur} from '../../../entities/ordonnateur.model';
-import { ITEMS_PER_PAGE,NEXT_PAGE,PREV_PAGE } from '../../../shared/constants/pagination.constant';
+import { IOrdonnateur } from '../../../entities/ordonnateur.model';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditOrdonnateurComponent } from './add-edit-ordonnateur/add-edit-ordonnateur.component';
 import { cloneDeep } from 'lodash-es';
@@ -18,25 +18,16 @@ import { DetailOrdonnateurComponent } from './detail-ordonnateur/detail-ordonnat
 })
 export class OrdonnateurComponent implements OnInit, OnDestroy {
 
-  @Input() currentPage : any;
-  @Input() totalItems = 0;
-  @Input() itemsPerPage = ITEMS_PER_PAGE;
-
-
   ordonnateurs?: IOrdonnateur[];
   eventSubscriber?: Subscription;
-  
-  nextPage = NEXT_PAGE;
-  previousPage = PREV_PAGE;
+  totalItems = 0;
+  isLoading = false;
+  itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
-  predicate!: string;
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
+  predicate = 'idOrdonnateur';
   ascending!: boolean;
-  ngbPaginationPage = 1;
-  resultDeleted! : boolean;
-  pages: number[] =[];
-  totalPages = 1;
-  start : number = 0;
-  end? : number;
 
   constructor(
     private ordonnateurService: OrdonnateurService,
@@ -53,6 +44,16 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
     console.log('Dans ben com, ngOnDestroy');
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
+  }
+
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
 
@@ -65,6 +66,7 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
       .subscribe(
         {
           next: (res: HttpResponse<IOrdonnateur[]>) => {
+            console.log('TOTAL_ITEMS_COUNT_FROM_RES_HEADER : ', res.headers.keys());
             this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
           },
           error: () => this.onError(),
@@ -73,19 +75,17 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
   }
 
   protected handleNavigation(): void {
-    this.loadPage();    
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(
+      ([data, params]) => {
+        this.loadPage();
+      }
+    );
+
   }
 
   trackId(index: number, item: IOrdonnateur): number {
+    
     return item.idOrdonnateur!;
-  }
-
-  sort(): string[] {
-    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
-    }
-    return result;
   }
 
   confirmDeleteItem(ordonnateur: IOrdonnateur) {
@@ -118,8 +118,17 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
     })
   }
 
+  sort(): string[] {
+    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
+    if (this.predicate !== 'idOrdonnateur') {
+      result.push('idOrdonnateur');
+    }
+    return result;
+  }
+
   protected onSuccess(data: IOrdonnateur[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
-    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.totalItems = Number(headers.get('x-total-count'));
+    console.log('TOTAL_ITEMS =', this.totalItems);
     this.page = page;
     if (navigate) {
       this.router.navigate(['/parametre/ordonnateur'], {
@@ -130,30 +139,11 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
         },
       });
     }
-    //alert("hors if et "+ JSON.stringify(data?.entries));
     this.ordonnateurs = data || [];
-    if(this.ordonnateurs.length!=0 && this.ordonnateurs.length != undefined){
-      //alert("dans if");
-      this.ngbPaginationPage = this.page;
-      this.totalPages = Math.ceil(this.ordonnateurs.length/this.itemsPerPage);
-      if(this.currentPage==null) this.currentPage =page;
-      this.pages = Array.from({length:this.totalPages }, (_, i)=> i + 1);
-      this.start = (this.currentPage-1)*this.itemsPerPage;
-      this.end = this.start+this.itemsPerPage;
-      if(this.ordonnateurs.length > this.itemsPerPage){
-        this.ordonnateurs = data?.slice(this.start,this.end);
-      }
-    }
-    
-  }
-  
-  changePage(page : number){
-    this.currentPage=page;
-    this.loadPage();
   }
 
   protected onError(): void {
-    this.ngbPaginationPage = this.page ?? 1;
+    this.isLoading = false;
   }
 
   openAddEditModal(ordonnateur?: IOrdonnateur): void {
