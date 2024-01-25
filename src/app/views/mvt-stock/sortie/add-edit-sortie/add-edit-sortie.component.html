@@ -2,7 +2,7 @@
     <c-card-header class="text-white">
       <c-row>
         <c-col md="10">
-          Enregistrement d'une sortie
+          Ajouter/Modifier une sortie
         </c-col>
         <c-col md="2">
           <button cButton color="info" variant="outline" class="float-end" ize="sm"
@@ -21,29 +21,29 @@
                                 <c-col md="12">
                                     <label cLabel for="field_ordonnateur">Selectionner l'ordonnateur :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="sortie.ordonnateur" name="ordonnateur" id="field_ordonnateur">
-                                        <option *ngFor="let ordonnateur of ordonnateurs" [ngValue]="ordonnateur">{{ ordonnateur.matricule + ' / ' + ordonnateur.nom + '/' + ordonnateur.prenom}}</option>
+                                        [(ngModel)]="ordonnateurId" name="ordonnateur" id="field_ordonnateur">
+                                        <option *ngFor="let ordonnateur of ordonnateurs" [ngValue]="ordonnateur.idOrdonnateur">{{ordonnateur.matricule + ' / ' + ordonnateur.nom + ' / ' + ordonnateur.prenom}}</option>
                                     </select>
                                 </c-col>
                                 <c-col md="12">
                                     <label cLabel for="field_beneficiaire">Selectionner la structure bénéficiaire :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="sortie.beneficiaire" name="beneficiaire" id="field_beneficiaire">
-                                        <option *ngFor="let beneficiaire of beneficiaires" [ngValue]="beneficiaire">{{beneficiaire.raisonSociale}}</option>
+                                        [(ngModel)]="selectedBeneficiaireId" name="beneficiaire" id="field_beneficiaire">
+                                        <option *ngFor="let beneficiaire of beneficiaires" [ngValue]="beneficiaire.idBeneficiaire">{{beneficiaire.raisonSociale}}</option>
                                     </select>
                                 </c-col>
                                 <c-col md="12">
-                                    <label cLabel for="field_detenteur">Selectionner le détenteur :</label>
+                                    <label cLabel for="field_detenteur">Selectionner le représentant :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="sortie.detenteur" name="ordonnateur" id="field_detenteur">
-                                        <option *ngFor="let detenteur of detenteurs" [ngValue]="detenteur">{{ detenteur.matricule + ' / ' + detenteur.nom + '/' + detenteur.prenom}}</option>
+                                        [(ngModel)]="selectedDetenteurId" name="detenteur" id="field_detenteur">
+                                        <option *ngFor="let detenteur of detenteurs" [ngValue]="detenteur.idDetenteur">{{ detenteur.matricule + ' / ' + detenteur.nom + '/' + detenteur.prenom}}</option>
                                     </select>
                                 </c-col>
                                 <c-col md="12">
                                     <label cLabel for="field_magasin">Selectionner le magasin :</label>
                                     <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="sortie.magasin" name="magasin" id="field_magasin">
-                                        <option *ngFor="let magasin of magasins" [ngValue]="magasin">{{magasin.nomMagasin}}</option>
+                                        [(ngModel)]="selectedMagasinId" name="magasin" id="field_magasin">
+                                        <option *ngFor="let magasin of magasins" [ngValue]="magasin.idMagasin">{{magasin.nomMagasin}}</option>
                                     </select>
                                 </c-col>
                                 <c-col md="12">
@@ -56,7 +56,7 @@
                                 <c-col md="12">
                                     <label cLabel for="field_dateSortie">Date de la sortie :</label>
                                     <input cFormControl sizing="sm" id="field_dateSortie" type="date" 
-                                        [(ngModel)]="sortie.dateSortie" name="dateSortie"/>
+                                        [(ngModel)]="sortie.dateSortie" name="dateSortie" [disabled]="true"/>
                                 </c-col>
                             </c-row>
                         </fieldset>

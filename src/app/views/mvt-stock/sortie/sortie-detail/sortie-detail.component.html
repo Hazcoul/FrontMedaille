@@ -1,1 +1,255 @@
-<p>sortie-detail works!</p>
+<c-card class="mb-4">
+    <c-card-header class="text-white">
+      <c-row>
+        <c-col md="10">
+          Détails / Traitement de la sortie N°: {{sortie!.numeroSortie}}
+        </c-col>
+        <c-col md="2">
+          <button cButton color="info" variant="outline" class="float-end" size="sm"
+            [routerLink]="['/mouvement/sortie']">Retour</button>
+        </c-col>
+      </c-row>
+    </c-card-header>
+    <c-card-body>
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+                <button ngbNavLink>Informations sur la sortie</button>
+                <ng-template ngbNavContent>
+                    <c-row>
+                        <c-col md="6">
+                            <c-row>
+                                <c-col md="12">
+                                    <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                        <legend cLabel="col" class="pt-0">Général</legend>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm no-border">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Date sortie</th>
+                                                        <td>{{': ' + sortie!.dateSortie }}</td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <th>Date de réception</th>
+                                                        <td>{{': ' + sortie?.dateReception }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Exercice budgétaire</th>
+                                                        <td>{{': ' + sortie?.exerciceBudgetaire }}</td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <th>Motif de sortie</th>
+                                                        <td>{{': ' + getMotifSortieLabel(sortie?.motifSortie!)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Statut</th>
+                                                        <td>{{': ' + getStatusLabel(sortie?.status!)}}</td>
+                                                    </tr>
+                                                    <tr *ngIf="sortie?.status == referentials?.mvtStatus[2].valeur">
+                                                        <th>Observaton :</th>
+                                                        <td>
+                                                            <textarea class="form-control" name="observation" id="field_observation" rows="2" [value]="sortie?.description" [readOnly]="true"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </fieldset>
+                                </c-col>
+                                <c-col md="12">
+                                    <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                        <legend cLabel="col" class="pt-0">Magasin</legend>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm no-border">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Depôt</th>
+                                                        <td>{{': ' + sortie?.magasin?.depot?.nomDepot }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nom</th>
+                                                        <td>{{': ' + sortie?.magasin?.nomMagasin }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Capacité</th>
+                                                        <td>{{': ' + sortie?.magasin?.capacite }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </fieldset>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+                        <c-col md="6">
+                            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                <legend cLabel="col" class="pt-0">Ordonnateur</legend>
+                                <div class="table-responsive">
+                                    <table class="table table-sm no-border">
+                                        <tbody>
+                                            <tr>
+                                                <th>Fonction</th>
+                                                <td>{{': ' + sortie!.ordonnateur?.fonction }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Matricule</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.matricule }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Titre honorifique</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.titreHonorifique }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Grade militaire</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.gradeMilitaire }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.nom }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Prénom</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.prenom }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° de téléphone</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.telephone }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.email }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </c-col>
+                        <c-col md="6">
+                            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                <legend cLabel="col" class="pt-0">Structure bénéficiaire</legend>
+                                <div class="table-responsive">
+                                    <table class="table table-sm no-border">
+                                        <tbody>
+                                            <tr>
+                                                <th>Sigle</th>
+                                                <td>{{': ' + sortie!.beneficiaire?.sigle }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Raison sociale</th>
+                                                <td>{{': ' + sortie?.beneficiaire?.raisonSociale }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° de téléphone mobile</th>
+                                                <td>{{': ' + sortie?.beneficiaire?.telephoneMobile }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° de téléphone fixe</th>
+                                                <td>{{': ' + sortie?.beneficiaire?.telephoneFix }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td>{{': ' + sortie?.beneficiaire?.email }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </c-col>
+                        <c-col md="6">
+                            <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                <legend cLabel="col" class="pt-0">Représentant</legend>
+                                <div class="table-responsive">
+                                    <table class="table table-sm no-border">
+                                        <tbody>
+                                            <tr>
+                                                <th>Fonction</th>
+                                                <td>{{': ' + sortie!.detenteur?.fonction }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Matricule</th>
+                                                <td>{{': ' + sortie?.detenteur?.matricule }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <td>{{': ' + sortie?.detenteur?.nom }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Prénom</th>
+                                                <td>{{': ' + sortie?.detenteur?.prenom }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>N° de téléphone</th>
+                                                <td>{{': ' + sortie?.detenteur?.telephone }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td>{{': ' + sortie?.ordonnateur?.email }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </c-col>
+                    </c-row>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <button ngbNavLink>Lignes de la sortie</button>
+                <ng-template ngbNavContent>
+                    <div class="table-responsive" *ngIf="sortie?.ligneSorties && sortie?.ligneSorties!.length > 0">
+                        <table [striped]="true" cTable>
+                            <thead style="font-weight: bold;">
+                              <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">Médaille(Désignation | Code | Sock disponible)</th>
+                                <th scope="col">Quantité</th>
+                                <!-- <th scope="col">Prix unitaire</th>
+                                <th scope="col">Montant</th> -->
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let ligne of sortie!.ligneSorties; index as i">
+                                <td><span>{{i + 1}}</span></td>
+                                <td>
+                                  <span>{{ligne.medaille?.nomComplet + ' | ' + ligne.medaille?.code + ' | ' + ligne.medaille?.stock}}</span>
+                                </td>
+                                <td>
+                                  <span>{{ligne.quantiteLigne}}</span>
+                                </td>
+                                <!-- <td>
+                                  <span>{{ligne.prixUnitaire}}</span>
+                                </td>
+                                <td>
+                                  <span>{{ligne.montantLigne}}</span>
+                                </td> -->
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="sortie?.ligneSorties && sortie?.ligneSorties!.length == 0">
+                        <c-alert color="warning">Aucun de lignes associées à cette sortie!</c-alert>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+                <button ngbNavLink>Pièces justificatives</button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Pièces justificatives ici
+                    </p>
+                    <hr>
+                    <div>
+                        <div class="float-end" *ngIf="sortie!.status != referentials.mvtStatus[1].valeur">
+                            <button cButton color="primary" variant="outline" size="sm"
+                                (click)="rejeter(sortie!)">Rejeter l'entrée</button>
+                            <button cButton color="success" variant="outline" class="mx-2" size="sm"
+                                (click)="valider(sortie!)">Valider l'entrée</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+        
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </c-card-body>
+  </c-card>
+  

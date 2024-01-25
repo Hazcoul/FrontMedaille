@@ -155,7 +155,6 @@ export class AddEditEntreeComponent implements OnInit {
   }
 
   protected onSaveError(e: any): void {
-    console.log('ERROR OCCUR : ', e);
     this.isSaving = false;
     if(e.error) {
       Swal.fire({

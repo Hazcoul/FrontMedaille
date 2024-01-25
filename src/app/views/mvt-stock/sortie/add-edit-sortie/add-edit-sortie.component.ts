@@ -17,6 +17,8 @@ import { IBeneficiaire } from 'src/app/entities/beneficiaire.model';
 import { BeneficiaireService } from 'src/app/services/beneficiaire.service';
 import { DetenteurService } from 'src/app/services/detenteur.service';
 import { OrdonnateurService } from 'src/app/services/ordonnateur.service';
+import * as moment from 'moment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-sortie',
@@ -32,6 +34,10 @@ export class AddEditSortieComponent implements OnInit {
   ordonnateurs?: IOrdonnateur[];
   detenteurs?: IDetenteur[];
   beneficiaires?: IBeneficiaire[];
+  ordonnateurId?: number | null;
+  selectedDetenteurId?: number | null;
+  selectedBeneficiaireId?: number | null;
+  selectedMagasinId?: number | null;
 
   constructor(
     private sortieService: SortieService,
@@ -46,18 +52,6 @@ export class AddEditSortieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    const idSortie = +this.activatedRoute.snapshot.paramMap.get('id')!;
-    if(idSortie) {
-      this.sortieService.find(idSortie).subscribe({
-        next: (res: HttpResponse<ISortie>) => {
-          if(res.body) {
-            this.sortie = res.body
-          }
-        },
-        error: (e) => console.log('ERROR : ', e)
-      })
-    }
 
     /**
      * Get all referentials
@@ -104,15 +98,36 @@ export class AddEditSortieComponent implements OnInit {
     this.ordonnateurService.query().subscribe({
       next: (res: HttpResponse<IOrdonnateur[]>) => {
         this.ordonnateurs = res.body || [];
+        console.log('ORDONNATEUR 1 :', this.ordonnateurs[1]);
       },
       error: (e) => console.log('ERROR : ', e)
     })
+
+    const idSortie = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    if(idSortie) {
+      this.sortieService.find(idSortie).subscribe({
+        next: (res: HttpResponse<ISortie>) => {
+          if(res.body) {
+            this.sortie = res.body
+            console.log('SORTIE : ', this.sortie);
+            this.ordonnateurId = this.sortie.ordonnateur?.idOrdonnateur;
+            this.selectedBeneficiaireId = this.sortie.beneficiaire?.idBeneficiaire;
+            this.selectedDetenteurId = this.sortie.detenteur?.idDetenteur;
+            this.selectedMagasinId = this.sortie.magasin?.idMagasin;
+            this.sortie.dateSortie = moment(this.sortie.dateSortie).format('yyyy-MM-DD');
+          }
+        },
+        error: (e) => console.log('ERROR : ', e)
+      })
+    }
+
   }
 
   openAddEditModal(ligneSortie?: ILigneSortie): void {
     const modalRef = this.modalService.open(AddEditLigneSortieComponent, { size: 'lg', backdrop: 'static' });
     if(undefined != ligneSortie) {
       modalRef.componentInstance.ligneSortie = cloneDeep(ligneSortie);
+      modalRef.componentInstance.selectedMedailleId = ligneSortie.medaille?.idMedaille;
     }
     modalRef.result.then((res) => {
       if(undefined == this.sortie.ligneSorties){
@@ -145,6 +160,12 @@ export class AddEditSortieComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
+    this.sortie.ordonnateur = this.ordonnateurs?.find((elem) => elem.idOrdonnateur === this.ordonnateurId);
+    this.sortie.beneficiaire = this.beneficiaires?.find((elem) => elem.idBeneficiaire === this.selectedBeneficiaireId);
+    this.sortie.magasin = this.magasins?.find((elem) => elem.idMagasin === this.selectedMagasinId);
+    if(this.selectedDetenteurId) {
+      this.sortie.detenteur = this.detenteurs?.find((elem) => elem.idDetenteur === this.selectedDetenteurId);
+    }
     if (this.sortie?.idSortie !== undefined) {
       this.subscribeToSaveResponse(this.sortieService.update(this.sortie));
     } else {
@@ -158,7 +179,7 @@ export class AddEditSortieComponent implements OnInit {
         console.log("NEXT : ", res);
         this.onSaveSuccess();
       },
-      error: () => this.onSaveError()
+      error: (e) => this.onSaveError(e)
     });
   }
 
@@ -167,8 +188,15 @@ export class AddEditSortieComponent implements OnInit {
     this.goBack();
   }
 
-  protected onSaveError(): void {
+  protected onSaveError(e: any): void {
     this.isSaving = false;
+    if(e.error) {
+      Swal.fire({
+        icon: "error",
+        title: "Désolé!",
+        text: e.error.msg,
+      });
+    }
   }
 
   trackById(index: number, item: ISortie): any {

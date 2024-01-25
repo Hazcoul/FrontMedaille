@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Rejet d'une sortie</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <h5 class="text-center">Etes-vous sûr de vouloir rejeter a sortie N° {{ numSortie }} ?</h5>
+            <c-row>
+                <c-col md="12">
+                    <label cLabel for="field_adresse">Observation :</label>
+                    <textarea cFormControl id="field_observation" rows="3"
+                        [(ngModel)]="comment" name="comment"></textarea>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Rejeter</button>
+            <button cButton color="warning" variant="outline" class="float-end" size="sm"
+                (click)="close()">Annuler</button>
+        </div>
+    </form>
+</div>

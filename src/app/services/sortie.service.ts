@@ -114,4 +114,20 @@ export class SortieService {
   generateStatistiquePeriode(recherche: FilterEntree) {
     return this.http.post(`${this.resourceUrl}/statistique/sorties/periode/impression`,recherche, { observe: 'body', responseType: 'arraybuffer' });
   }
+
+  generateEtat(id:number, format: string) {
+    return this.http.get(`${this.resourceUrl}/${id}/bordereau/${format}`, { observe: 'body', responseType: 'arraybuffer' });
+  }
+
+  valider(id: number): Observable<EntityResponseType> {
+    return this.http
+      .get<ISortie>(`${this.resourceUrl}/${id}/valider`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  rejeter(id: number, comment: string): Observable<EntityResponseType> {
+    return this.http
+      .get<ISortie>(`${this.resourceUrl}/${id}/rejeter?comment=${comment}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
 }

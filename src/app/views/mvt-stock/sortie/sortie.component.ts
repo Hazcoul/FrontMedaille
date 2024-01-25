@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { cloneDeep } from 'lodash-es';
 import { SortieService } from '../../../services/sortie.service';
@@ -10,6 +10,7 @@ import { ISortie, Sortie } from '../../../entities/sortie.model'
 import { AddEditLigneSortieComponent } from './add-edit-ligne-sortie/add-edit-ligne-sortie.component';
 import { ILigneSortie } from 'src/app/entities/ligne-sortie.model';
 import Swal from 'sweetalert2';
+import { ReferentialService } from 'src/app/services/referential.service';
 
 @Component({
   selector: 'app-sortie',
@@ -18,6 +19,7 @@ import Swal from 'sweetalert2';
 })
 export class SortieComponent implements OnInit, OnDestroy {
 
+  referentials: any;
   sorties?: ISortie[];
   eventSubscriber?: Subscription;
   totalItems = 0;
@@ -27,15 +29,29 @@ export class SortieComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
   sortie: ISortie = new Sortie();
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
 
   constructor(
     private sortieService: SortieService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private referentialService: ReferentialService
   ) {}
 
   ngOnInit(): void {
+    /**
+     * Get all referentials
+     */
+    this.referentialService.query().subscribe({
+      next: (res: HttpResponse<any>) => {
+        this.referentials = res.body || [];
+        console.log('REFERENTIALS : ', this.referentials);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+
     this.handleNavigation();
   }
 
@@ -165,5 +181,21 @@ export class SortieComponent implements OnInit, OnDestroy {
 
   showItem(sortie: ISortie): void {
     this.router.navigate(['mouvement', 'sortie', sortie.idSortie, 'details'])
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
+  }
+  
+  getStatusLabel(value: string): string {
+    const found = this.referentials.mvtStatus.find((status: any) => status.valeur == value);
+    return found.libelle;
   }
 }

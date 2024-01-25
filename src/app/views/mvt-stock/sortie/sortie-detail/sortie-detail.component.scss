@@ -1,0 +1,35 @@
+c-card-header{
+    background-color: #538136;
+    c-row{
+        color: #FFF;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: large;
+        button{
+            background-color: #FFF;
+            color: #538136;
+            font-weight: bold;
+        }
+    }
+}
+.nav-tabs li:not(:first-child) {
+    margin-left: 0.2rem !important;
+}
+.nav-tabs {
+    border-bottom: unset !important;
+}
+.nav-tabs .nav-link {
+    color: #FFF;
+    font-weight: 500;
+    background-color: #538136;
+    border: 2px solid #538136;
+}
+.nav-tabs .nav-link.active {
+    border: 2px solid blue;
+}
+.nav-tabs .nav-link:hover {
+    border: 2px solid yellow;
+}
+// table thead tr th{
+//     color: #538136;
+// }

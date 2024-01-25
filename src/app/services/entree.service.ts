@@ -97,7 +97,7 @@ export class EntreeService {
   }
 
   generateEtat(id:number, format: string) {
-    return this.http.get(`${this.resourceUrl}/${id}/valider/etat/${format}`, { observe: 'body', responseType: 'arraybuffer' });
+    return this.http.get(`${this.resourceUrl}/${id}/etat/${format}`, { observe: 'body', responseType: 'arraybuffer' });
   }
 
   valider(id: number): Observable<EntityResponseType> {

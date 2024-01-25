@@ -25,6 +25,8 @@ import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.comp
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
 import { RejetEntreeComponent } from './entree/rejet-entree/rejet-entree.component';
 import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.component';
+import { ValiderSortieComponent } from './sortie/valider-sortie/valider-sortie.component';
+import { RejeterSortieComponent } from './sortie/rejeter-sortie/rejeter-sortie.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.c
     EntreeDetailComponent,
     SortieDetailComponent,
     RejetEntreeComponent,
-    ValiderEntreeComponent
+    ValiderEntreeComponent,
+    ValiderSortieComponent,
+    RejeterSortieComponent
   ],
   imports: [
     CommonModule,
