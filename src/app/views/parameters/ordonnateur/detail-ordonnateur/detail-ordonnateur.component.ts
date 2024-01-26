@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 import { IOrdonnateur } from 'src/app/entities/ordonnateur.model';
 
 @Component({
@@ -7,21 +8,15 @@ import { IOrdonnateur } from 'src/app/entities/ordonnateur.model';
   templateUrl: './detail-ordonnateur.component.html',
   styleUrl: './detail-ordonnateur.component.scss'
 })
-export class DetailOrdonnateurComponent {
+export class DetailOrdonnateurComponent implements OnInit {
 
   ordonnateur!: IOrdonnateur;
-  valActuel? : string;
 
   constructor(private activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
-    if (this.ordonnateur) {
-      if (this.ordonnateur.actuel) {
-        this.valActuel="1";
-      } else {
-        this.valActuel="0";
-      }
-    }
+    this.ordonnateur.debutMandat = moment(this.ordonnateur.debutMandat).format('DD/MM/yyyy');
+    this.ordonnateur.finMandat = moment(this.ordonnateur.finMandat).isValid() ? moment(this.ordonnateur.finMandat).format('DD/MM/yyyy') : '';
 }
 
   close(): void {

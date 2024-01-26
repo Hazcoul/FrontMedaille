@@ -68,10 +68,10 @@
                 <c-col md="6">
                     <label cLabel for="field_actuel">Acutel :</label>
                     <select aria-label="Small select example" cSelect sizing="sm" 
-                    name="valActuel" id="field_actuel" [(ngModel)]="ordonnateur.actuel" >
-                        <option value="">Choisir la réponse</option>
-                        <option value="1" [selected]="ordonnateur.actuel == true">Oui</option>
-                        <option value="0" [selected]="ordonnateur.actuel == false">Non</option>
+                        name="valActuel" id="field_actuel" [(ngModel)]="valActuel" >
+                        <option value="" selected>Choisir la réponse</option>
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
                     </select>
                 </c-col>
             </c-row>

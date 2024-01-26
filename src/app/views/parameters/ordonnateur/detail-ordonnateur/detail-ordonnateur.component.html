@@ -47,11 +47,11 @@
                     </tr>
                     <tr>
                         <th>Actuel</th>
-                        <td>{{': ' + ordonnateur.actuel}}</td>
+                        <td>{{ ordonnateur.actuel ? ': Oui' : ': Non'}}</td>
                     </tr>
                     <tr>
                         <th>Date de debut de mandat</th>
-                        <td>{{': ' + ordonnateur.debutMandat}}</td>
+                        <td>{{': ' + ordonnateur.debutMandat }}</td>
                     </tr>
                     <tr>
                         <th>Date de fin de mandat</th>

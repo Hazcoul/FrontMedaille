@@ -17,7 +17,7 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
   isSaving = false;
   ordonnateur: IOrdonnateur = new Ordonnateur();
   civilites = ['Monsieur','Madame','Moidemoiselle'];
-  valActuel? : string;
+  valActuel? : number;
 
   constructor(
     private ordonnateurService: OrdonnateurService,
@@ -30,12 +30,12 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
     if (this.ordonnateur) {
       console.log("Dans Edit ordonnateur");
       if (this.ordonnateur.actuel) {
-        this.valActuel = "1";
+        this.valActuel = 1;
       }else{
-        this.valActuel="0";
+        this.valActuel= 0;
       }
-      this.ordonnateur.debutMandat = moment(this.ordonnateur?.debutMandat).format('DD/MM/yyyy');
-      this.ordonnateur.finMandat= moment(this.ordonnateur?.finMandat).format('DD/MM/yyyy');
+      this.ordonnateur.debutMandat = moment(this.ordonnateur?.debutMandat).format('yyyy-MM-DD');
+      this.ordonnateur.finMandat= moment(this.ordonnateur?.finMandat).format('yyyy-MM-DD');
     }
     console.log(this.ordonnateur.debutMandat)
   }
@@ -50,7 +50,7 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
 
   save(): void {
     this.isSaving = true;
-    if (this.valActuel=="1") {
+    if (this.valActuel==1) {
       this.ordonnateur.actuel=true;
     }else{
       this.ordonnateur.actuel=false;
