@@ -55,6 +55,8 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
     }else{
       this.ordonnateur.actuel=false;
     }
+    this.ordonnateur.finMandat = this.ordonnateur.finMandat && moment(this.ordonnateur.finMandat).isValid() ? this.ordonnateur.finMandat : null;
+    console.log('ORDONNATEUR TO SAVE : ', this.ordonnateur);
     if (this.ordonnateur?.idOrdonnateur !== undefined) {
       this.subscribeToSaveResponse(this.ordonnateurService.update(this.ordonnateur));
     } else {

@@ -158,6 +158,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   openAddEditModal(beneficiaire?: IBeneficiaire): void {
     const modalRef = this.modalService.open(AddEditComponent, { size: 'lg', backdrop: 'static' });
     if(undefined != beneficiaire?.idBeneficiaire) {
+      console.log('BENEFICIAIRE TO EDIT : ', beneficiaire);
       modalRef.componentInstance.beneficiaire = cloneDeep(beneficiaire);
     }
     modalRef.result.then(() => {

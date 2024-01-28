@@ -149,6 +149,7 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
   openAddEditModal(ordonnateur?: IOrdonnateur): void {
     const modalRef = this.modalService.open(AddEditOrdonnateurComponent, { size: 'lg', backdrop: 'static' });
     if(undefined != ordonnateur?.idOrdonnateur) {
+      console.log('ORDONNATEUR TO EDIT : ', ordonnateur);
       modalRef.componentInstance.ordonnateur = cloneDeep(ordonnateur);
     }
     modalRef.result.then(() => {

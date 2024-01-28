@@ -149,6 +149,7 @@ export class DetenteurComponent implements OnInit, OnDestroy {
   openAddEditModal(detenteur?: IDetenteur): void {
     const modalRef = this.modalService.open(AddEditDetenteurComponent, { size: 'lg', backdrop: 'static' });
     if(undefined != detenteur?.idDetenteur) {
+      console.log('DETENTEUR TO EDIT : ',  detenteur);
       modalRef.componentInstance.detenteur = cloneDeep(detenteur);
     }
     modalRef.result.then(() => {
