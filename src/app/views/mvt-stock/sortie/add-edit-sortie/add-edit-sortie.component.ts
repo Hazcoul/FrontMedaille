@@ -137,6 +137,7 @@ export class AddEditSortieComponent implements OnInit {
       if (-1 != foundIdxLine) {
         this.sortie.ligneSorties!.splice(foundIdxLine, 1);
       }
+      console.log('MEDAILLE CHOOSED : ', res);
       this.sortie.ligneSorties!.push(res);
     },
     error => {
