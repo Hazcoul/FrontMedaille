@@ -44,6 +44,7 @@ import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-de
 import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/detail-ordonnateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority.directive";
+import { DetailFournisseurComponent } from './fournisseur/detail-fournisseur/detail-fournisseur.component';
 
 
 
@@ -76,7 +77,8 @@ import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority
     DetailDepotComponent,
     DetailMagasinComponent,
     DetailDetenteurComponent,
-    DetailOrdonnateurComponent
+    DetailOrdonnateurComponent,
+    DetailFournisseurComponent
 
   ],
   imports: [

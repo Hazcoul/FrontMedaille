@@ -48,9 +48,19 @@
                 </c-col>
             </c-row>
             <c-row>
-                <label cLabel for="field_email">Email :</label>
-                <input cFormControl sizing="sm" id="field_email" type="text"
-                   [(ngModel)]="detenteur.email" name="email"/>
+                <c-col md="6">
+                    <label cLabel for="field_email">Email :</label>
+                    <input cFormControl sizing="sm" id="field_email" type="text"
+                    [(ngModel)]="detenteur.email" name="email"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_email">Bénéficiaire :</label>
+                    <select aria-label="Small select example" cSelect sizing="sm" 
+                     name="beneficiaire" id="field_beneficiaire" [(ngModel)]="selectedBeneficiaireId" >
+                        <option value="">Choisir le bénéficiaire</option>
+                        <option *ngFor="let beneficiaire of beneficiaires" [ngValue]="beneficiaire.idBeneficiaire">{{ beneficiaire.raisonSociale }}</option>
+                    </select>
+                </c-col>
             </c-row>
         </div>
         <div class="modal-footer">

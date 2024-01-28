@@ -37,8 +37,18 @@
                                                         <td>{{': ' + entree?.exerciceBudgetaire }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Mode d'acquisition</th>
-                                                        <td>{{': ' + entree?.acquisition}}</td>
+                                                        <th>Motif d'acquisition</th>
+                                                        <td>{{': ' + getAcquisitionLabel(entree?.acquisition!)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Statut</th>
+                                                        <td>{{': ' + getStatusLabel(entree?.status!)}}</td>
+                                                    </tr>
+                                                    <tr *ngIf="entree?.status == referentials?.mvtStatus[2].valeur">
+                                                        <th>Observaton :</th>
+                                                        <td>
+                                                            <textarea class="form-control" name="observation" id="field_observation" rows="2" [value]="entree?.observation" [readOnly]="true"></textarea>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -125,14 +135,39 @@
             <li [ngbNavItem]="2">
                 <button ngbNavLink>Lignes de l'entrée</button>
                 <ng-template ngbNavContent>
-                    <p>
-                        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-                        farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-                        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-                        helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-                        8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-                        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                    </p>
+                    <div class="table-responsive" *ngIf="entree?.ligneEntrees && entree?.ligneEntrees!.length > 0">
+                        <table [striped]="true" cTable>
+                            <thead style="font-weight: bold;">
+                              <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">Médaille(Désignation | Code | Sock disponible)</th>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Prix unitaire</th>
+                                <th scope="col">Montant</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let ligne of entree!.ligneEntrees; index as i">
+                                <td><span>{{i + 1}}</span></td>
+                                <td>
+                                  <span>{{ligne.medaille?.nomComplet + ' | ' + ligne.medaille?.code + ' | ' + ligne.medaille?.stock}}</span>
+                                </td>
+                                <td>
+                                  <span>{{ligne.quantiteLigne}}</span>
+                                </td>
+                                <td>
+                                  <span>{{ligne.prixUnitaire}}</span>
+                                </td>
+                                <td>
+                                  <span>{{ligne.montantLigne}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="entree?.ligneEntrees && entree?.ligneEntrees!.length == 0">
+                        <c-alert color="warning">Aucun de lignes associées à cette entrée!</c-alert>
+                    </div>
                 </ng-template>
             </li>
             <li [ngbNavItem]="3">
@@ -141,19 +176,20 @@
                     <p>
                         Pièces justificatives ici
                     </p>
+                    <hr>
+                    <div>
+                        <div class="float-end" *ngIf="entree!.status != referentials.mvtStatus[1].valeur">
+                            <button cButton color="primary" variant="outline" size="sm"
+                                (click)="rejeter(entree!)">Rejeter l'entrée</button>
+                            <button cButton color="success" variant="outline" class="mx-2" size="sm"
+                                (click)="valider(entree!)">Valider l'entrée</button>
+                        </div>
+                    </div>
                 </ng-template>
             </li>
         </ul>
         
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
-        <div class="modal-footer">
-            <div class="float-end">
-                <button cButton color="primary" variant="outline" size="sm"
-                    (click)="valider(entree!)">Rejeter l'entrée</button>
-                <button cButton color="success" variant="outline" class="mx-2" size="sm"
-                    (click)="valider(entree!)">Valider l'entrée</button>
-            </div>
-        </div>
     </c-card-body>
   </c-card>
   

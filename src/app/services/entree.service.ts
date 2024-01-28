@@ -95,4 +95,20 @@ export class EntreeService {
   generateStatistique(idCommande:number) {
     return this.http.get(`${this.resourceUrl}/statistique/commandes/impression/${idCommande}`, { observe: 'body', responseType: 'arraybuffer' });
   }
+
+  generateEtat(id:number, format: string) {
+    return this.http.get(`${this.resourceUrl}/${id}/etat/${format}`, { observe: 'body', responseType: 'arraybuffer' });
+  }
+
+  valider(id: number): Observable<EntityResponseType> {
+    return this.http
+      .get<IEntree>(`${this.resourceUrl}/${id}/valider`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  rejeter(id: number, comment: string): Observable<EntityResponseType> {
+    return this.http
+      .get<IEntree>(`${this.resourceUrl}/${id}/rejeter?comment=${comment}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
 }

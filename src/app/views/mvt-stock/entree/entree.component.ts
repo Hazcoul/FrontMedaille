@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EntreeService } from '../../../services/entree.service';
 import { IEntree } from 'src/app/entities/entree.model';
 import Swal from 'sweetalert2';
+import { ReferentialService } from 'src/app/services/referential.service';
 
 @Component({
   selector: 'app-entree',
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class EntreeComponent implements OnInit, OnDestroy {
 
+  referentials: any;
   entrees?: IEntree[];
   eventSubscriber?: Subscription;
   totalItems = 0;
@@ -30,10 +32,21 @@ export class EntreeComponent implements OnInit, OnDestroy {
     private entreeService: EntreeService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private modalService: NgbModal
+    private referentialService: ReferentialService
   ) {}
 
   ngOnInit(): void {
+     /**
+     * Get all referentials
+     */
+     this.referentialService.query().subscribe({
+      next: (res: HttpResponse<any>) => {
+        this.referentials = res.body || [];
+        console.log('REFERENTIALS : ', this.referentials);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+
     this.handleNavigation();
   }
 
@@ -156,9 +169,15 @@ export class EntreeComponent implements OnInit, OnDestroy {
     this.page = event;
     this.loadPage();
   }
+
   onTableSizeChange(event: any): void {
     this.itemsPerPage = event.target.value;
     this.page = 1;
     this.loadPage();
+  }
+
+  getStatusLabel(value: string): string {
+    const found = this.referentials.mvtStatus.find((status: any) => status.valeur == value);
+    return found.libelle;
   }
 }

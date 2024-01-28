@@ -7,7 +7,8 @@ import {
   FormModule,
   GridModule,
   TableModule,
-  AlertModule
+  AlertModule,
+  BadgeModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,6 +24,10 @@ import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-
 import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
 import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority.directive";
+import { RejetEntreeComponent } from './entree/rejet-entree/rejet-entree.component';
+import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.component';
+import { ValiderSortieComponent } from './sortie/valider-sortie/valider-sortie.component';
+import { RejeterSortieComponent } from './sortie/rejeter-sortie/rejeter-sortie.component';
 
 
 @NgModule({
@@ -34,7 +39,11 @@ import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority
     AddEditLigneEntreeComponent,
     AddEditLigneSortieComponent,
     EntreeDetailComponent,
-    SortieDetailComponent
+    SortieDetailComponent,
+    RejetEntreeComponent,
+    ValiderEntreeComponent,
+    ValiderSortieComponent,
+    RejeterSortieComponent
   ],
     imports: [
         CommonModule,
@@ -50,7 +59,8 @@ import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority
         FormsModule,
         AlertModule,
         NgxPaginationModule,
-        HasAnyAuthorityDirective
+        HasAnyAuthorityDirective,
+      BadgeModule
     ]
 })
 export class MvtStockModule { }

@@ -11,16 +11,17 @@
       </c-row>
     </c-card-header>
     <c-card-body>
-        <div *ngIf="entrees && entrees.length > 0">
+        <div class="table-responsive" *ngIf="entrees && entrees.length > 0">
             <table [striped]="true" cTable>
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Date</th>
-                    <th scope="col">N° commande</th>
+                    <th scope="col">N° entrée</th>
                     <th scope="col">Exercice budgétaire</th>
                     <th scope="col">Magasin</th>
                     <th scope="col">Fournisseur</th>
+                    <th scope="col">Statut</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -49,11 +50,22 @@
                             <span>{{entree.fournisseur?.libelle}}</span>
                         </td>
                         <td>
-                            <button class="btn btn-outline-primary btn-sm" type="button"
-                                (click)="editItem(entree)">
+                            <span *ngIf="entree.status == referentials.mvtStatus[0].valeur">
+                                <c-badge color="warning">{{getStatusLabel(entree.status!)}}</c-badge>
+                            </span>
+                            <span *ngIf="entree.status == referentials.mvtStatus[1].valeur">
+                                <c-badge color="success">{{getStatusLabel(entree.status!)}}</c-badge>
+                            </span>
+                            <span *ngIf="entree.status == referentials.mvtStatus[2].valeur">
+                                <c-badge color="danger">{{getStatusLabel(entree.status!)}}</c-badge>
+                            </span>
+                        </td>
+                        <td>
+                            <button [disabled]="entree.status == referentials.mvtStatus[1].valeur"
+                                class="btn btn-outline-primary btn-sm" type="button" (click)="editItem(entree)">
                                 <svg cIcon name="cilPen" size="sm"></svg>
                               </button>
-                              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;"
+                              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
                                 (click)="showItem(entree)">
                                 <i class="fa fa-eye"></i>
                               </button>
@@ -79,3 +91,4 @@
         </div>
     </c-card-body>
   </c-card>
+  

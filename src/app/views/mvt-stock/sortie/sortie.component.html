@@ -11,7 +11,7 @@
     </c-row>
   </c-card-header>
   <c-card-body>
-    <div *ngIf="sorties && sorties.length > 0">
+    <div *ngIf="sorties && sorties.length > 0" class="table-responsive">
       <table [striped]="true" cTable>
         <thead>
           <tr>
@@ -20,16 +20,23 @@
             <th scope="col">N° sortie</th>
             <th scope="col">Ordonnateur</th>
             <th scope="col">Bénéficiaire</th>
-            <th scope="col">Détenteur</th>
+            <!-- <th scope="col">Détenteur</th> -->
             <th scope="col">Magasin</th>
+            <th scope="col">Statut</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let sortie of sorties; index as i">
+          <tr *ngFor="let sortie of sorties 
+          | paginate
+          : {
+              itemsPerPage: itemsPerPage,
+              currentPage: page,
+              totalItems: totalItems
+              }; index as i">
             <td><span>{{i + 1}}</span></td>
             <td>
-              <span>{{sortie.dateSortie}}</span>
+              <span>{{sortie.dateSortie | date: 'dd/MM/yyyy'}}</span>
             </td>
             <td>
               <span>{{sortie.numeroSortie}}</span>
@@ -40,15 +47,26 @@
             <td>
               <span>{{sortie.beneficiaire?.raisonSociale}}</span>
             </td>
-            <td>
+            <!-- <td>
               <span>{{sortie.detenteur?.matricule}}</span>
-            </td>
+            </td> -->
             <td>
               <span>{{sortie.magasin?.nomMagasin}}</span>
             </td>
             <td>
-              <button class="btn btn-outline-primary btn-sm" type="button" 
-                (click)="editItem(sortie)">
+              <span *ngIf="sortie.status == referentials.mvtStatus[0].valeur">
+                  <c-badge color="warning">{{getStatusLabel(sortie.status!)}}</c-badge>
+              </span>
+              <span *ngIf="sortie.status == referentials.mvtStatus[1].valeur">
+                  <c-badge color="success">{{getStatusLabel(sortie.status!)}}</c-badge>
+              </span>
+              <span *ngIf="sortie.status == referentials.mvtStatus[2].valeur">
+                  <c-badge color="danger">{{getStatusLabel(sortie.status!)}}</c-badge>
+              </span>
+            </td>
+            <td>
+              <button [disabled]="sortie.status == referentials.mvtStatus[1].valeur" 
+                class="btn btn-outline-primary btn-sm" type="button" (click)="editItem(sortie)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
               <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
@@ -63,6 +81,14 @@
           </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-end">
+        <pagination-controls
+          previousLabel= "{{previousLabel}}"
+          nextLabel= "{{nextLabel}}"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
     </div>
     <div *ngIf="sorties && sorties.length == 0">
         <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>

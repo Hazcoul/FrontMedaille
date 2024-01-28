@@ -1,30 +1,43 @@
 <c-card class="mb-4">
-    <c-card-header>
-      <c-row>
-        <c-col md="10">
-          Dépots
-        </c-col>
-        <c-col md="2">
-          <button cButton color="primary" variant="outline" class="float-end" size="sm"
-            (click)="openAddEditModal()">Ajouter</button>
-        </c-col>
-      </c-row>
-    </c-card-header>
-    <c-card-body>
+  <c-card-header>
+    <c-row>
+      <c-col md="10">
+        Dépots
+      </c-col>
+      <c-col md="2">
+        <button cButton color="primary" variant="outline" class="float-end" size="sm"
+          (click)="openAddEditModal()">Ajouter</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <div *ngIf="depots && depots.length > 0">
       <table [striped]="true" cTable>
         <thead>
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nom</th>
+            <th scope="col">Description</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let depot of depots; index as i">
-            <td><span>{{i+1}}</span></td>
-            <td><span>{{depot.nomDepot}}</span></td>
+          <tr *ngFor="let depot of depots
+            | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }; index as i">
+            <td><span>{{i + 1}}</span></td>
             <td>
-              <button cButton color="primary" variant="outline" size="sm" (click)="openAddEditModal(depot)">
+              <span>{{depot.nomDepot}}</span>
+            </td>
+            <td>
+              <span>{{depot.description}}</span>
+            </td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(depot)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
               <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
@@ -39,5 +52,17 @@
           </tr>
         </tbody>
       </table>
-    </c-card-body>
-  </c-card>
+      <div class="d-flex justify-content-end">
+        <pagination-controls
+          previousLabel= "{{previousLabel}}"
+          nextLabel= "{{nextLabel}}"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+    <div *ngIf="depots && depots.length == 0">
+      <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>
+    </div>
+  </c-card-body>
+</c-card>

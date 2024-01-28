@@ -10,30 +10,32 @@
             <c-row>
               <c-col md="6">
                 <label cLabel for="typeGrade">Code :</label>
-                <ng-select [items]="codes"
+                <ng-select [items]="referentials?.codesGrade"
                            name="code"
                            id="code"
-                           bindValue="code"
+                           bindValue="valeur"
                            bindLabel="libelle"
                            [multiple]=false
-                           [(ngModel)]="grade.code">
+                           [(ngModel)]="grade.code" (ngModelChange)="onCodeChange($event)">
                 </ng-select>
               </c-col>
               <c-col md="6">
                 <label cLabel for="typeGrade">Type grade :</label>
-                <ng-select [items]="typesGrades"
+                <ng-select [items]="referentials?.typeGrades"
                            name="typeGrade"
                            id="typeGrade"
+                           bindValue="valeur"
+                           bindLabel="libelle"
                            [multiple]=false
                            [(ngModel)]="grade.typeGrade">
                 </ng-select>
               </c-col>
-                <!--<c-col md="6">
+                <c-col md="6">
                     <label cLabel for="field_libelle">Libelle :</label>
                     <input cFormControl sizing="sm" id="field_libelle" type="text"
-                        [(ngModel)]="grade.libelle" name="libelle"/>
-                </c-col>-->
-              <c-col md="12">
+                        [(ngModel)]="grade.libelle" name="libelle" [disabled]="true"/>
+                </c-col>
+              <c-col md="6">
                 <label cLabel for="field_description">Description :</label>
                 <textarea cFormControl sizing="sm" id="field_description" type="text" [(ngModel)]="grade.description"
                           name="description"></textarea>

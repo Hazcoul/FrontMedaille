@@ -17,6 +17,7 @@ export class AddEditMagasinComponent implements OnInit, OnDestroy {
   isSaving = false;
   magasin: IMagasin = new Magasin();
   depots?: IDepot[];
+  selectedDepotId?: number | null;
 
   constructor(
     private magasinService: MagasinService,
@@ -25,6 +26,11 @@ export class AddEditMagasinComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+
+    if (this.magasin) {
+      this.selectedDepotId = this.magasin.depot?.idDepot;
+    }
+    
       /**
      * Get all depots
      */
@@ -46,6 +52,7 @@ export class AddEditMagasinComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
+    this.magasin.depot = this.depots?.find((elem) => elem.idDepot === this.selectedDepotId);
     this.isSaving = true;
     if (this.magasin?.idMagasin !== undefined) {
       this.subscribeToSaveResponse(this.magasinService.update(this.magasin));

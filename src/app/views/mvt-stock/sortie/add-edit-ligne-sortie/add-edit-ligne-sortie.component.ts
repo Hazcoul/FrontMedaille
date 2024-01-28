@@ -14,6 +14,7 @@ export class AddEditLigneSortieComponent implements OnInit {
 
   ligneSortie: ILigneSortie = new LigneSortie();
   medailles?: IMedaille[];
+  selectedMedailleId?: number | null;
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -30,6 +31,7 @@ export class AddEditLigneSortieComponent implements OnInit {
   }
 
   save(): void {
+    this.ligneSortie.medaille = this.medailles?.find((elem) => elem.idMedaille === this.selectedMedailleId);
     this.activeModal.close(this.ligneSortie);
   }
 

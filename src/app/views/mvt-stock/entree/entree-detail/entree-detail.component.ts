@@ -1,9 +1,14 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { IEntree } from 'src/app/entities/entree.model';
 import { EntreeService } from 'src/app/services/entree.service';
+import { ReferentialService } from 'src/app/services/referential.service';
+import { RejetEntreeComponent } from '../rejet-entree/rejet-entree.component';
+import { ValiderEntreeComponent } from '../valider-entree/valider-entree.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-entree-detail',
@@ -12,16 +17,30 @@ import { EntreeService } from 'src/app/services/entree.service';
 })
 export class EntreeDetailComponent implements OnInit {
 
+  referentials: any;
   entree: IEntree | null = null;
   active = 1;
 
   constructor(
     private entreeService: EntreeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private referentialService: ReferentialService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit(): void {
+     /**
+     * Get all referentials
+     */
+     this.referentialService.query().subscribe({
+      next: (res: HttpResponse<any>) => {
+        this.referentials = res.body || [];
+        console.log('REFERENTIALS : ', this.referentials);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+    
     this.activatedRoute.data.subscribe(({entree}) =>{
       console.log('ENTRE RESOLVE : ', entree.body);
       this.entree = entree.body;
@@ -46,7 +65,85 @@ export class EntreeDetailComponent implements OnInit {
     this.router.navigate(['/mouvement/entree']);
   }
 
+  generateEtat(id: number, format: string) {
+    this.entreeService.generateEtat(id, format).subscribe({
+      next: response => {
+        console.log(response);
+        if (response !== null) {
+          const file = new Blob([response], { type: 'application/pdf' });
+          const fileURL = URL.createObjectURL(file);
+          window.open(fileURL, '_blank');
+        }
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
   valider(entree: IEntree): void {
-    
+    const modalRef = this.modalService.open(ValiderEntreeComponent, { size: 'md', backdrop: 'static' });
+    modalRef.componentInstance.numEntree = entree.numeroCmd;
+    modalRef.result.then((format) => {
+      this.entreeService.valider(entree.idEntree!).subscribe({
+        next: (res) => {
+          if(res.body && 'msg' in res.body) {
+            const msg = '' + res.body.msg;
+            Swal.fire({
+              icon: "error",
+              title: "Désolé!",
+              text: msg,
+            });
+          } else {
+            this.generateEtat(entree.idEntree!, format);
+            this.goBack();
+          }
+        },
+        error: (e) => console.log('ERROR : ', e)
+      })
+    },
+      error => console.log(error)
+    )
+  }
+
+  rejeter(entree: IEntree): void {
+    const modalRef = this.modalService.open(RejetEntreeComponent, { size: 'md', backdrop: 'static' });
+    modalRef.componentInstance.numEntree = entree.numeroCmd;
+    modalRef.result.then((comment) => {
+        entree.observation = comment;
+        console.log('REJET : ', entree)
+        this.entreeService.rejeter(entree.idEntree!, comment).subscribe({
+          next: (res) => {
+            if(res.body && 'msg' in res.body) {
+              const msg = '' + res.body.msg;
+              Swal.fire({
+                icon: "error",
+                title: "Désolé!",
+                text: msg,
+              });
+            } else {
+              this.goBack();
+            }
+          },
+          error: (e) => console.log('ERROR : ', e)
+        })
+      },
+      error => console.log(error)
+    )
+  }
+
+  getStatusLabel(value: string): string {
+    if(this.referentials) {
+      const found = this.referentials.mvtStatus.find((status: any) => status.valeur == value);
+      return found.libelle;
+    }
+    return '';
+  }
+
+  getAcquisitionLabel(value: string): string {
+    if(this.referentials) {
+      const found = this.referentials.acquisitions.find((status: any) => status.valeur == value);
+      return found.libelle;
+    }
+    return '';
   }
 }

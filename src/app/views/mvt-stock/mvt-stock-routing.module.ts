@@ -9,8 +9,8 @@ import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.comp
 import {AuthGuardService} from "../../services/auth/auth-guard.service";
 import { IEntree } from 'src/app/entities/entree.model';
 import { EntreeService } from 'src/app/services/entree.service';
-import { mergeMap, of } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { of } from 'rxjs';
+import { SortieService } from 'src/app/services/sortie.service';
 
 export const EntreeResolve: ResolveFn<IEntree | any> = (route: ActivatedRouteSnapshot) => {
   const id = Number(route.paramMap.get('id'));
@@ -19,6 +19,15 @@ export const EntreeResolve: ResolveFn<IEntree | any> = (route: ActivatedRouteSna
   }
   return of(null);
 };
+
+export const SortieResolve: ResolveFn<IEntree | any> = (route: ActivatedRouteSnapshot) => {
+  const id = Number(route.paramMap.get('id'));
+  if(id) {
+    return inject(SortieService).find(id)
+  }
+  return of(null);
+};
+
 const routes: Routes = [
   {
     path: 'entree',
@@ -57,7 +66,10 @@ const routes: Routes = [
   },
   {
     path: 'sortie/:id/details',
-    component: SortieDetailComponent
+    component: SortieDetailComponent,
+    resolve: {
+      sortie: SortieResolve,
+    }
   }
 ];
 

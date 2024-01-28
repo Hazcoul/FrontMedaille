@@ -25,6 +25,18 @@
             </c-row>
             <c-row>
                 <c-col md="6">
+                    <label cLabel for="field_gradeMilitaire">Grade Militaire :</label>
+                    <input cFormControl sizing="sm" id="field_gradeMilitaire" type="text" 
+                        [(ngModel)]="ordonnateur.gradeMilitaire" name="gradeMilitaire"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_titreHonorifique">Titre Honorifique :</label>
+                    <input cFormControl sizing="sm" id="field_titreHonorifique" type="text" 
+                        [(ngModel)]="ordonnateur.titreHonorifique" name="titreHonorifique"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
                     <label cLabel for="field_nom">Nom :</label>
                     <input cFormControl sizing="sm" id="field_nom" type="text" 
                         [(ngModel)]="ordonnateur.nom" name="nom"/>
@@ -48,9 +60,32 @@
                 </c-col>
             </c-row>
             <c-row>
-                <label cLabel for="field_email">Email :</label>
-                <input cFormControl sizing="sm" id="field_email" type="text"
+                <c-col md="6">
+                    <label cLabel for="field_email">Email :</label>
+                    <input cFormControl sizing="sm" id="field_email" type="text"
                    [(ngModel)]="ordonnateur.email" name="email"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_actuel">Acutel :</label>
+                    <select aria-label="Small select example" cSelect sizing="sm" 
+                        name="valActuel" id="field_actuel" [(ngModel)]="valActuel" >
+                        <option value="" selected>Choisir la réponse</option>
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
+                    </select>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_debutMandat">Debut Mandat :</label>
+                    <input cFormControl sizing="sm" id="field_debutMandat" type="date"
+                   [(ngModel)]="ordonnateur.debutMandat" name="debutMandat"/>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_finMandat">Fin Mandat :</label>
+                    <input cFormControl sizing="sm" id="field_finMandat" type="date" 
+                        [(ngModel)]="ordonnateur.finMandat" name="finMandat"/>
+                </c-col>
             </c-row>
         </div>
         <div class="modal-footer">
