@@ -2,7 +2,7 @@
     <c-card-header>
       <c-row>
         <c-col md="10">
-          Détenteurs
+          Représentants
         </c-col>
         <c-col md="2">
           <button cButton color="primary" variant="outline" class="float-end" size="sm"
@@ -39,7 +39,7 @@
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(detenteur)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;"
                 (click)="openDetailModal(detenteur)">
                 <i class="fa fa-eye"></i>
               </button>
@@ -56,9 +56,9 @@
             <li class="page-item" [ngClass]="{'disabled' : currentPage==1}" (click)="changePage(currentPage-1)">
               <a class="page-link" href="javascript:void(0)">{{previousPage}}</a>
             </li>
-            <li 
-              *ngFor="let page of pages" 
-              class="page-item" 
+            <li
+              *ngFor="let page of pages"
+              class="page-item"
               [ngClass]="{'active' : page == currentPage}"
               (click)="changePage(page)"
               >

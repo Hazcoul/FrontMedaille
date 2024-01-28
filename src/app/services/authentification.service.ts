@@ -65,6 +65,7 @@ export class AuthentificationService {
     const jwtHelper = new JwtHelperService();
     const tokenDecode = jwtHelper.decodeToken(this.getToken()!);
     sessionStorage.setItem('USER_ROLES', tokenDecode.roles);
+    console.warn("USER ROLES",sessionStorage.getItem('USER_ROLES'));
     return jwtHelper.decodeToken(this.getToken()!);
   }
 

@@ -8,7 +8,7 @@ const routes: Routes = [
     path:"",
     component: DroitsComponent,
     canActivate: [AuthGuardService],
-    data: {roles: ['ADMIN']}
+    data: {roles: ['ADD_USER','VIEW_USER']}
   }
 ];
 

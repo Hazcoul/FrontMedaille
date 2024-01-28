@@ -9,19 +9,19 @@ const routes: Routes = [
     path:"",
     component: UtilisateursComponent,
     canActivate: [AuthGuardService],
-    data: {roles: ['ADMIN']}
+    data: {roles: ['ADD_USER','VIEW_USER']}
   },
   {
     path:"creation",
     component: CreateUpdateUtilisateurComponent,
     canActivate: [AuthGuardService],
-    data: {roles: ['ADMIN']}
+    data: {roles: ['ADD_USER','VIEW_USER']}
   },
   {
     path:"modification/:id",
     component: CreateUpdateUtilisateurComponent,
     canActivate: [AuthGuardService],
-    data: {roles: ['ADMIN']}
+    data: {roles: ['ADD_USER','VIEW_USER']}
   }
 ];
 

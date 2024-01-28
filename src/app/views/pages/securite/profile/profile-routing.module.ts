@@ -9,13 +9,13 @@ const routes: Routes = [
     path:"",
     component: ProfilsComponent,
     canActivate: [AuthGuardService],
-    data: {roles: ['ADMIN']}
+    data: {roles: ['ADD_USER','VIEW_USER']}
   },
   {
     path:"creation",
     component: CreateUpdateProfilComponent,
     canActivate: [AuthGuardService],
-    data: {roles: ['ADMIN']}
+    data: {roles: ['ADD_USER','VIEW_USER']}
   }
 ];
 

@@ -22,6 +22,7 @@ import { AddEditLigneEntreeComponent } from './entree/add-edit-ligne-entree/add-
 import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-edit-ligne-sortie.component';
 import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
+import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority.directive";
 
 
 @NgModule({
@@ -35,20 +36,21 @@ import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.comp
     EntreeDetailComponent,
     SortieDetailComponent
   ],
-  imports: [
-    CommonModule,
-    MvtStockRoutingModule,
-    ButtonModule,
-    CardModule,
-    FormModule,
-    GridModule,
-    TableModule,
-    IconModule,
-    NgbModule,
-    NgbNavModule,
-    FormsModule,
-    AlertModule,
-    NgxPaginationModule
-  ]
+    imports: [
+        CommonModule,
+        MvtStockRoutingModule,
+        ButtonModule,
+        CardModule,
+        FormModule,
+        GridModule,
+        TableModule,
+        IconModule,
+        NgbModule,
+        NgbNavModule,
+        FormsModule,
+        AlertModule,
+        NgxPaginationModule,
+        HasAnyAuthorityDirective
+    ]
 })
 export class MvtStockModule { }

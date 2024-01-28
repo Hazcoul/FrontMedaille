@@ -1,9 +1,9 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
-import { Grade,IGrade } from 'src/app/entities/grade.model';
-import { GradeService } from 'src/app/services/grade.service';
+import {HttpResponse} from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from 'rxjs';
+import {Grade, IGrade} from 'src/app/entities/grade.model';
+import {GradeService} from 'src/app/services/grade.service';
 
 @Component({
   selector: 'app-add-edit-grade',
@@ -35,7 +35,7 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    console.warn("ISSAVED",this.grade);
+    this.grade.libelle = this.codes.find(item => item.code == this.grade.code)?.libelle;
     this.isSaving = true;
     if (this.grade?.idGrade !== undefined) {
       this.subscribeToSaveResponse(this.gradeService.update(this.grade));
