@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Grade,IGrade } from 'src/app/entities/grade.model';
 import { GradeService } from 'src/app/services/grade.service';
+import { ReferentialService } from 'src/app/services/referential.service';
 
 @Component({
   selector: 'app-add-edit-grade',
@@ -14,15 +15,25 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   grade: IGrade = new Grade();
-  typesGrades = ["GRADE","DIGNITE"]
-  codes = [{code:1,libelle:"Chevalier"},{code:2,libelle:"Officier"},{code:3,libelle:"Commandeur"},{code:4,libelle:"Grand-officier"},{code:4,libelle:"Grand-croix"}];
-
+  referentials: any;
   constructor(
     private gradeService: GradeService,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
+    private referentialService: ReferentialService
   ) {}
 
   ngOnInit(): void {
+
+    /**
+     * Get all referentials
+     */
+    this.referentialService.query().subscribe({
+      next: (res: HttpResponse<any>) => {
+        this.referentials = res.body || [];
+        console.log('REFERENTIALS : ', this.referentials);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
 
   }
 
@@ -71,5 +82,12 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
   close(): void {
     console.log("close");
     this.activeModal.dismiss();
+  }
+
+  onCodeChange($target: any): void {
+    const found = this.referentials.codesGrade.find((code: any) => code.valeur == $target);
+    if(-1 != found) {
+      this.grade.libelle = found.libelle;
+    }
   }
 }
