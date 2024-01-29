@@ -22,11 +22,11 @@ export const navItems: INavData[] = [
         url: '/mouvement/sortie',
         authorities: ['ADD_MVT','VIEW_MVT'],
       },
-      {
-        name: 'Répresentant',
+     /* {
+        name: 'Représentant',
         url: '/parametre/detenteur',
         authorities: ['ADD_MVT','VIEW_MVT'],
-      },
+      },*/
     ]
   },
   {
@@ -39,11 +39,11 @@ export const navItems: INavData[] = [
         url: '/parametre/beneficiaire',
         authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
-      /*{
-        name: 'Détenteurs',
+      {
+        name: 'Représentant',
         url: '/parametre/detenteur',
         authorities: ['ADMIN','GEST'],
-      },*/
+      },
       {
         name: 'Ordonnateur',
         url: '/parametre/ordonnateur',
@@ -65,7 +65,7 @@ export const navItems: INavData[] = [
         authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
-        name: 'Distinction honnorifique',
+        name: 'Distinction honorifique',
         url: '/parametre/distinction',
         authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
