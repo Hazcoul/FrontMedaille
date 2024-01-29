@@ -1,7 +1,7 @@
 <div class="card">
     <div class="modal-header text-white">
-        <h4 class="modal-tile">Ajouter/Modifier un détenteur</h4>
-        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+        <h4 class="modal-tile">Ajouter/Modifier un représentant</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();">
             <span aria-hidden="true">X</span>
         </button>
     </div>
@@ -10,7 +10,7 @@
             <c-row>
                 <c-col md="6">
                     <label cLabel for="field_matricule">Matricule :</label>
-                    <input cFormControl sizing="sm" id="field_matricule" type="text" 
+                    <input cFormControl sizing="sm" id="field_matricule" type="text"
                         [(ngModel)]="detenteur.matricule" name="matricule"/>
                 </c-col>
                 <c-col md="6">
@@ -26,24 +26,24 @@
             <c-row>
                 <c-col md="6">
                     <label cLabel for="field_nom">Nom :</label>
-                    <input cFormControl sizing="sm" id="field_nom" type="text" 
+                    <input cFormControl sizing="sm" id="field_nom" type="text"
                         [(ngModel)]="detenteur.nom" name="nom"/>
                 </c-col>
                 <c-col md="6">
                     <label cLabel for="field_prenom">Prenom :</label>
-                    <input cFormControl sizing="sm" id="field_prenom" type="text" 
+                    <input cFormControl sizing="sm" id="field_prenom" type="text"
                         [(ngModel)]="detenteur.prenom" name="prenom"/>
                 </c-col>
             </c-row>
             <c-row>
                 <c-col md="6">
                     <label cLabel for="field_fonction">Fonction :</label>
-                    <input cFormControl sizing="sm" id="field_fonction" type="text" 
+                    <input cFormControl sizing="sm" id="field_fonction" type="text"
                         [(ngModel)]="detenteur.fonction" name="fonction"/>
                 </c-col>
                 <c-col md="6">
                     <label cLabel for="field_telephone">Téléphone :</label>
-                    <input cFormControl sizing="sm" id="field_telephone" type="text" 
+                    <input cFormControl sizing="sm" id="field_telephone" type="text"
                         [(ngModel)]="detenteur.telephone" name="telephone"/>
                 </c-col>
             </c-row>

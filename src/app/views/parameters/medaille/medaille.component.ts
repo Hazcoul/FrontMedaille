@@ -26,6 +26,7 @@ export class MedailleComponent implements OnInit, OnDestroy {
   predicate='idMedaille';
   ascending!: boolean;
   ngbPaginationPage = 1;
+  droit = "ADD_PARAM"
 
   constructor(
     private medailleService: MedailleService,

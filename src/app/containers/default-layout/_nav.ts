@@ -5,74 +5,79 @@ export const navItems: INavData[] = [
     name: 'Tableau de bord',
     url: '/dashboard',
     children: [],
-    authorities: ['ADMIN'],
+    authorities: ['ADD_MVT','VIEW_MVT','ADD_PARAM','VIEW_PARAM','ADD_USER','VIEW_USER','ADD_MVT','VIEW_MVT','VIEW_STAT'],
   },
   {
     name: 'Mouvement de stock',
     url:'#',
-    authorities: ['ADMIN'],
+    authorities: ['ADD_MVT','VIEW_MVT'],
     children: [
       {
         name: 'Entree',
         url: '/mouvement/entree',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_MVT','VIEW_MVT'],
       },
       {
         name: 'Sortie',
         url: '/mouvement/sortie',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_MVT','VIEW_MVT'],
+      },
+      {
+        name: 'Répresentant',
+        url: '/parametre/detenteur',
+        authorities: ['ADD_MVT','VIEW_MVT'],
       },
     ]
   },
   {
     name: 'Paramétrage',
     url:'#',
-    authorities: ['ADMIN'],
+    authorities: ['ADD_PARAM','VIEW_PARAM'],
     children: [
       {
         name: 'Structure bénéficiaire',
         url: '/parametre/beneficiaire',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
-      {
-        name: 'Représentant',
+      /*{
+        name: 'Détenteurs',
         url: '/parametre/detenteur',
-        authorities: ['ADMIN'],
-      },
+        authorities: ['ADMIN','GEST'],
+      },*/
       {
         name: 'Ordonnateur',
         url: '/parametre/ordonnateur',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Médaille',
         url: '/parametre/medaille',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Grade/Dignité',
         url: '/parametre/grade',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Fournisseur',
         url: '/parametre/fournisseur',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Distinction honnorifique',
         url: '/parametre/distinction',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Dépôt',
         url: '/parametre/depot',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Magasin',
         url: '/parametre/magasin',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
     ]
   },
@@ -80,22 +85,22 @@ export const navItems: INavData[] = [
   {
     name: 'Statistiques',
     url:'#',
-    authorities: ['ADMIN'],
+    authorities: ['VIEW_STAT'],
     children: [
       {
         name: 'Entrees',
         url: '/statistiques/commande',
-        authorities: ['ADMIN'],
+        authorities: ['VIEW_STAT'],
       },
       {
         name: 'Sorties',
         url: '/statistiques/sorties',
-        authorities: ['ADMIN'],
+        authorities: ['VIEW_STAT'],
       },
       {
         name: 'Sorties par période',
         url: '/statistiques/sorties/periode',
-        authorities: ['ADMIN'],
+        authorities: ['VIEW_STAT'],
       },
     ]
   },
@@ -103,28 +108,28 @@ export const navItems: INavData[] = [
   {
     name: 'Sécurtié',
     url:'#',
-    authorities: ['ADMIN'],
+    authorities: ['ADD_USER','VIEW_USER'],
     children: [
       {
         name: 'Profils',
         url: '/pages/securite/profils',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_USER','VIEW_USER'],
       },
       {
         name: 'Utilisateurs',
         url: '/pages/securite/utilisateurs',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_USER','VIEW_USER'],
       },
       {
         name: 'Droits',
         url: '/pages/securite/droits',
-        authorities: ['ADMIN'],
+        authorities: ['ADD_USER','VIEW_USER'],
       },
-      {
+      /*{
         name: 'Audit',
         url: '/pages/securite/audits',
         authorities: ['ADMIN'],
-      }
+      }*/
     ]
   },
 ];

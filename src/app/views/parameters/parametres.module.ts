@@ -43,6 +43,7 @@ import { DetailMagasinComponent } from './magasin/detail-magasin/detail-magasin.
 import { DetailDetenteurComponent } from './detenteur/detail-detenteur/detail-detenteur.component';
 import { DetailOrdonnateurComponent } from './ordonnateur/detail-ordonnateur/detail-ordonnateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority.directive";
 import { DetailFournisseurComponent } from './fournisseur/detail-fournisseur/detail-fournisseur.component';
 
 
@@ -94,7 +95,8 @@ import { DetailFournisseurComponent } from './fournisseur/detail-fournisseur/det
     NgSelectModule,
     SharedModule,
     NgxPaginationModule,
-    AlertModule
+    AlertModule,
+    HasAnyAuthorityDirective
   ]
 })
 export class ParametresModule { }

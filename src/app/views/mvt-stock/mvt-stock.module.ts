@@ -23,6 +23,7 @@ import { AddEditLigneEntreeComponent } from './entree/add-edit-ligne-entree/add-
 import { AddEditLigneSortieComponent } from './sortie/add-edit-ligne-sortie/add-edit-ligne-sortie.component';
 import { EntreeDetailComponent } from './entree/entree-detail/entree-detail.component';
 import { SortieDetailComponent } from './sortie/sortie-detail/sortie-detail.component';
+import {HasAnyAuthorityDirective} from "../../shared/directive/has-any-authority.directive";
 import { RejetEntreeComponent } from './entree/rejet-entree/rejet-entree.component';
 import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.component';
 import { ValiderSortieComponent } from './sortie/valider-sortie/valider-sortie.component';
@@ -44,21 +45,22 @@ import { RejeterSortieComponent } from './sortie/rejeter-sortie/rejeter-sortie.c
     ValiderSortieComponent,
     RejeterSortieComponent
   ],
-  imports: [
-    CommonModule,
-    MvtStockRoutingModule,
-    ButtonModule,
-    CardModule,
-    FormModule,
-    GridModule,
-    TableModule,
-    IconModule,
-    NgbModule,
-    NgbNavModule,
-    FormsModule,
-    AlertModule,
-    NgxPaginationModule,
-    BadgeModule
-  ]
+    imports: [
+        CommonModule,
+        MvtStockRoutingModule,
+        ButtonModule,
+        CardModule,
+        FormModule,
+        GridModule,
+        TableModule,
+        IconModule,
+        NgbModule,
+        NgbNavModule,
+        FormsModule,
+        AlertModule,
+        NgxPaginationModule,
+        HasAnyAuthorityDirective,
+      BadgeModule
+    ]
 })
 export class MvtStockModule { }
