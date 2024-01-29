@@ -41,7 +41,7 @@ export class CreateUpdateMedailleComponent {
               icon: 'success',
               title: 'Modification effectuée avec succès',
               showConfirmButton: false,
-              timer: 1500,
+              timer: 3000,
             });
             this.activeModal.close(true);
 

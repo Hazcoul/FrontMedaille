@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Ordonnateur,IOrdonnateur } from 'src/app/entities/ordonnateur.model';
 import { OrdonnateurService } from 'src/app/services/ordonnateur.service';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-ordonnateur',
@@ -78,6 +79,13 @@ export class AddEditOrdonnateurComponent implements OnInit, OnDestroy {
     this.isSaving = false;
     this.activeModal.close();
     this.goBack();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 
   protected onSaveError(): void {

@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Depot,IDepot } from 'src/app/entities/depot.model';
 import { DepotService } from 'src/app/services/depot.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-depot',
@@ -54,6 +55,13 @@ export class AddEditDepotComponent implements OnInit, OnDestroy {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.activeModal.close();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
 //    this.goBack();
   }
 

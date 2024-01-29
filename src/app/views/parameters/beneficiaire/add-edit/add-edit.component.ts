@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Beneficiaire, IBeneficiaire } from 'src/app/entities/beneficiaire.model';
 import { BeneficiaireService } from 'src/app/services/beneficiaire.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit',
@@ -54,6 +55,13 @@ export class AddEditComponent implements OnInit, OnDestroy {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.activeModal.close();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
     // this.goBack();
   }
 

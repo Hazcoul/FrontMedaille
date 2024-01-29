@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Fournisseur,IFournisseur } from 'src/app/entities/fournisseur.model';
 import { FournisseurService } from 'src/app/services/fournisseur.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-fournisseur',
@@ -55,6 +56,13 @@ export class AddEditFournisseurComponent implements OnInit, OnDestroy {
     this.isSaving = false;
     this.activeModal.close();
     this.goBack();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 
   protected onSaveError(): void {

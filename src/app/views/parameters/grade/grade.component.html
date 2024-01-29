@@ -14,7 +14,7 @@
       <table [striped]="true" cTable>
         <thead>
           <tr>
-            <th scope="col"  >#</th>
+            <th scope="col"  >N°</th>
             <th scope="col" width="20%">Code</th>
             <th scope="col" width="20%">Type</th>
             <th scope="col" width="40%">Désignation</th>
@@ -23,17 +23,33 @@
         </thead>
         <tbody>
           <tr *ngFor="let grade of grades; index as i">
-            <td><span>{{i}}</span></td>
+            <td><span>{{i+1}}</span></td>
             <td><span>{{grade.code}}</span></td>
             <td><span>{{grade.typeGrade}}</span></td>
             <td><span>{{grade.libelle}}</span></td>
+
+
             <td>
+              <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(grade)">
+                <svg cIcon name="cilPen" size="sm"></svg>
+              </button>
+              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                (click)="openModalDetail(grade)">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                (click)="removeGrade(grade)">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
+
+            <!-- <td>
               <div class="">
                 <button title="Modifier distinction" (click)="openAddEditModal(grade)" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
                 <button title="Detail distinction" (click)="openModalDetail(grade)" class=""><i class="fa fa-eye" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
                 <button title="Supprimer distinction" (click)="removeGrade(grade)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
               </div>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Grade,IGrade } from 'src/app/entities/grade.model';
 import { GradeService } from 'src/app/services/grade.service';
 import { ReferentialService } from 'src/app/services/referential.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-grade',
@@ -68,6 +69,13 @@ export class AddEditGradeComponent implements OnInit, OnDestroy {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.activeModal.close();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
     this.goBack();
   }
 

@@ -2,7 +2,7 @@
     <c-card-header>
       <c-row>
         <c-col md="10">
-          Distinction
+          Distinctions Honnorifiques
         </c-col>
         <c-col md="2">
           <button cButton color="primary" variant="outline" class="float-end" size="sm"
@@ -14,7 +14,7 @@
       <table [striped]="true" cTable>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">N°</th>
             <th scope="col">Code</th>
             <th scope="col">Abreviation</th>
             <th scope="col">Désignation</th>
@@ -25,19 +25,33 @@
         </thead>
         <tbody>
           <tr *ngFor="let distinction of distinctions; index as i">
-            <td><span>{{i}}</span></td>
+            <td><span>{{i+1}}</span></td>
             <td><span>{{distinction.code}}</span></td>
             <td><span>{{distinction.abreviation}}</span></td>
             <td><span>{{distinction.libelle}}</span></td>
             <td><span>{{distinction.categoryDistinction}}</span></td>
             <td><span>{{distinction.referenceDecret}} du {{distinction.dateDecretCreation | date: "dd/MM/yyyy"}}</span></td>
+            
             <td>
+              <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(distinction)">
+                <svg cIcon name="cilPen" size="sm"></svg>
+              </button>
+              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                (click)="openModalDetail(distinction)">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                (click)="removeDistinction(distinction)">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td> 
+            <!-- <td>
               <div class="">
                 <button title="Modifier distinction" (click)="openAddEditModal(distinction)" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
                 <button title="Detail distinction" (click)="openModalDetail(distinction)" class=""><i class="fa fa-eye" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
                 <button title="Supprimer distinction" (click)="removeDistinction(distinction)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
               </div>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

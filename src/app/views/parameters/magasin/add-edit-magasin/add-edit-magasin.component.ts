@@ -6,6 +6,7 @@ import { Magasin,IMagasin } from 'src/app/entities/magasin.model';
 import { Depot,IDepot } from 'src/app/entities/depot.model';
 import { MagasinService } from 'src/app/services/magasin.service';
 import { DepotService } from 'src/app/services/depot.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-magasin',
@@ -75,6 +76,13 @@ export class AddEditMagasinComponent implements OnInit, OnDestroy {
     this.isSaving = false;
     this.activeModal.close();
     this.goBack();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 
   protected onSaveError(): void {

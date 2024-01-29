@@ -30,37 +30,37 @@ export const navItems: INavData[] = [
     authorities: ['ADMIN'],
     children: [
       {
-        name: 'Bénéficiaire',
+        name: 'Structure bénéficiaire',
         url: '/parametre/beneficiaire',
         authorities: ['ADMIN'],
       },
       {
-        name: 'Détenteurs',
+        name: 'Représentant',
         url: '/parametre/detenteur',
         authorities: ['ADMIN'],
       },
       {
-        name: 'Ordonnateurs',
+        name: 'Ordonnateur',
         url: '/parametre/ordonnateur',
         authorities: ['ADMIN'],
       },
       {
-        name: 'Médailles',
+        name: 'Médaille',
         url: '/parametre/medaille',
         authorities: ['ADMIN'],
       },
       {
-        name: 'Grades/Dignités',
+        name: 'Grade/Dignité',
         url: '/parametre/grade',
         authorities: ['ADMIN'],
       },
       {
-        name: 'Fournisseurs',
+        name: 'Fournisseur',
         url: '/parametre/fournisseur',
         authorities: ['ADMIN'],
       },
       {
-        name: 'Distinctions',
+        name: 'Distinction honnorifique',
         url: '/parametre/distinction',
         authorities: ['ADMIN'],
       },
@@ -70,7 +70,7 @@ export const navItems: INavData[] = [
         authorities: ['ADMIN'],
       },
       {
-        name: 'Magasins',
+        name: 'Magasin',
         url: '/parametre/magasin',
         authorities: ['ADMIN'],
       },

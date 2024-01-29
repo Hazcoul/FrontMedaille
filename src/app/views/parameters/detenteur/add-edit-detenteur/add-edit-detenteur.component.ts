@@ -7,6 +7,7 @@ import { Detenteur,IDetenteur } from 'src/app/entities/detenteur';
 import {Beneficiaire, IBeneficiaire} from 'src/app/entities/beneficiaire.model';
 import { DetenteurService } from 'src/app/services/detenteur.service';
 import {BeneficiaireService} from 'src/app/services/beneficiaire.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit-detenteur',
@@ -79,6 +80,13 @@ export class AddEditDetenteurComponent implements OnInit, OnDestroy {
     this.isSaving = false;
     this.activeModal.close();
     this.goBack();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Opération effectuée avec succès',
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 
   protected onSaveError(): void {
