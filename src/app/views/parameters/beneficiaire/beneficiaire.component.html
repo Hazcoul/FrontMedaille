@@ -4,7 +4,7 @@
       <c-col md="10">
         Structures Bénéficiaires
       </c-col>
-      <c-col md="2">
+      <c-col md="2" *appHasAnyAuthority="droit">
         <button cButton color="primary" variant="outline" class="float-end" size="sm"
           (click)="openAddEditModal()">Ajouter</button>
       </c-col>
@@ -18,10 +18,10 @@
             <th scope="col">N°</th>
             <th scope="col">Sigle</th>
             <th scope="col">Raison sociale</th>
-            <th scope="col">N° de téléphone fixe</th>
-            <th scope="col">N° de téléphone mobile</th>
+            <th scope="col">Téléphone fixe</th>
+            <!-->th scope="col">Téléphone mobile</th-->
             <th scope="col">Email</th>
-            <th scope="col">Action</th>
+            <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -42,13 +42,13 @@
             <td>
               <span>{{beneficiaire.telephoneFix}}</span>
             </td>
-            <td>
+            <!-->td>
               <span>{{beneficiaire.telephoneMobile}}</span>
-            </td>
+            </td-->
             <td>
               <span>{{beneficiaire.email}}</span>
             </td>
-            <td>
+            <td *appHasAnyAuthority="droit">
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(beneficiaire)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>

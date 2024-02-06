@@ -28,6 +28,7 @@ export class BeneficiaireComponent implements OnInit, OnDestroy {
   previousLabel = PREV_PAGE;
   predicate = 'idBeneficiaire';
   ascending!: boolean;
+  droit = "ADD_PARAM"
 
   constructor(
     private beneficiaireService: BeneficiaireService,

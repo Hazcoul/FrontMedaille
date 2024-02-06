@@ -28,6 +28,7 @@ export class DetenteurComponent implements OnInit, OnDestroy {
   previousLabel = PREV_PAGE;
   predicate = 'idDetenteur';
   ascending!: boolean;
+  droit = "ADD_PARAM"
 
   constructor(
     private DetenteurService: DetenteurService,

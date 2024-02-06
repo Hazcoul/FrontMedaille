@@ -33,3 +33,17 @@ $enable-rtl: true;
   background-size: cover;
   background-position: center center;
 }
+
+.sidebar {
+  --cui-sidebar-bg: #009d48 !important;
+  //--cui-sidebar-bg: #009d48 !important;
+}
+.header {
+  --cui-header-bg:#009d48 !important;
+}
+.footer {
+ // --cui-footer-bg: #0b5228 !important;
+ --cui-footer-bg:  #009d48 !important;
+
+}
+
