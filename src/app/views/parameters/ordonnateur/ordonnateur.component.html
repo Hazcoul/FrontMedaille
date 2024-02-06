@@ -4,7 +4,7 @@
       <c-col md="10">
         Ordonnateurs
       </c-col>
-      <c-col md="2">
+      <c-col md="2" *appHasAnyAuthority="droit">
         <button cButton color="primary" variant="outline" class="float-end" size="sm"
           (click)="openAddEditModal()">Ajouter</button>
       </c-col>
@@ -23,9 +23,10 @@
             <th scope="col">Prenom</th>
             <th scope="col">Fonction</th>
             <th scope="col">Telephone</th>
-            <th scope="col">Email</th>
+            <!-->th scope="col">Email</th-->
             <th scope="col">Titre Honorifique</th>
-            <th scope="col">Action</th>
+
+            <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -58,13 +59,13 @@
             <td>
               <span>{{ordonnateur.telephone}}</span>
             </td>
-            <td>
+            <!-->td>
               <span>{{ordonnateur.email}}</span>
-            </td>
+            </td-->
             <td>
               <span>{{ordonnateur.titreHonorifique}}</span>
             </td>
-            <td>
+            <td *appHasAnyAuthority="droit">
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(ordonnateur)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>

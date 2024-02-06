@@ -28,6 +28,7 @@ export class FournisseurComponent implements OnInit, OnDestroy {
   previousLabel = PREV_PAGE;
   predicate = 'idFournisseur';
   ascending!: boolean;
+  droit = "ADD_PARAM"
 
   constructor(
     private fournisseurService: FournisseurService,

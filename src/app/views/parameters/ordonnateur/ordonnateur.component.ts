@@ -28,6 +28,7 @@ export class OrdonnateurComponent implements OnInit, OnDestroy {
   previousLabel = PREV_PAGE;
   predicate = 'idOrdonnateur';
   ascending!: boolean;
+  droit = "ADD_PARAM"
 
   constructor(
     private ordonnateurService: OrdonnateurService,

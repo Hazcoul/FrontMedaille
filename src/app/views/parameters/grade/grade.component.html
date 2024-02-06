@@ -4,7 +4,7 @@
         <c-col md="10">
           Grades et Dignités
         </c-col>
-        <c-col md="2">
+        <c-col md="2" *appHasAnyAuthority="droit">
           <button cButton color="primary" variant="outline" class="float-end" size="sm"
             (click)="openAddEditModal()">Ajouter</button>
         </c-col>
@@ -18,7 +18,7 @@
             <th scope="col" width="20%">Code</th>
             <th scope="col" width="20%">Type</th>
             <th scope="col" width="40%">Désignation</th>
-            <th scope="col">Action</th>
+            <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -28,8 +28,7 @@
             <td><span>{{grade.typeGrade}}</span></td>
             <td><span>{{grade.libelle}}</span></td>
 
-
-            <td>
+            <td *appHasAnyAuthority="droit">
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(grade)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
