@@ -42,7 +42,7 @@ export const navItems: INavData[] = [
       {
         name: 'Représentant',
         url: '/parametre/detenteur',
-        authorities: ['ADMIN','GEST'],
+        authorities: ['ADD_PARAM','VIEW_PARAM'],
       },
       {
         name: 'Ordonnateur',
