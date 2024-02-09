@@ -15,7 +15,7 @@
             <table [striped]="true" cTable>
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">N°</th>
                     <th scope="col">Date</th>
                     <th scope="col">N° entrée</th>
                     <th scope="col">Exercice budgétaire</th>
@@ -76,6 +76,10 @@
                               <button [disabled]="entree.status == referentials.mvtStatus[1].valeur" class="btn btn-outline-danger btn-sm" 
                                 type="button" style="margin-left: 2px;" (click)="confirmDeleteItem(entree)">
                                 <i class="fa fa-remove"></i>
+                              </button>
+                              <button class="btn btn-outline-success btn-sm" type="button" style="margin-left: 2px;"
+                                (click)="confirmDeleteItem(entree)">
+                                <i class="fa fa-print"></i>
                               </button>
                         </td>
                     </tr>
