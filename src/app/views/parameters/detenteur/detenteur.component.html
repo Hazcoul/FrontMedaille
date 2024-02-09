@@ -4,7 +4,7 @@
       <c-col md="10">
         Représentants des structures bénéficiaires
       </c-col>
-      <c-col md="2">
+      <c-col md="2" *appHasAnyAuthority="droit">
         <button cButton color="primary" variant="outline" class="float-end" size="sm"
           (click)="openAddEditModal()">Ajouter</button>
       </c-col>
@@ -24,7 +24,7 @@
             <th scope="col">Telephone</th>
             <th scope="col">Email</th>
             <th scope="col">Structure</th>
-            <th scope="col">Action</th>
+            <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +60,7 @@
             <td>
               <span>{{detenteur.beneficiaire?.raisonSociale}}</span>
             </td>
-            <td>
+            <td *appHasAnyAuthority="droit">
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(detenteur)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>

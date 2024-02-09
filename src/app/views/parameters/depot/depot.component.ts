@@ -28,6 +28,7 @@ export class DepotComponent implements OnInit, OnDestroy {
   previousLabel = PREV_PAGE;
   predicate = 'idDepot';
   ascending!: boolean;
+  droit = "ADD_PARAM"
 
   constructor(
     private DepotService: DepotService,

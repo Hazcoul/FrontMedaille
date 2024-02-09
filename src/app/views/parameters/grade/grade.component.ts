@@ -28,6 +28,7 @@ export class GradeComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  droit = "ADD_PARAM"
 
   constructor(
     private gradeService: GradeService,

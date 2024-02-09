@@ -28,6 +28,7 @@ export class MagasinComponent implements OnInit, OnDestroy {
   previousLabel = PREV_PAGE;
   predicate = 'idMagasin';
   ascending!: boolean;
+  droit = "ADD_PARAM"
 
   constructor(
     private magasinService: MagasinService,
