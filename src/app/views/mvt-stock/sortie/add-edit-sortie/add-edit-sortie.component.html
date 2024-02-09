@@ -62,42 +62,92 @@
                         </fieldset>
                     </c-col>
                     <c-col md="8">
-                        <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
-                            <legend cLabel="col" class="pt-0">Lignes de la sortie</legend>
-                            <table [striped]="true" cTable>
-                                <thead>
-                                  <tr>
-                                    <th scope="col">N°</th>
-                                    <th scope="col">Médaille</th>
-                                    <th scope="col">Quantité</th>
-                                    <th scope="col">
-                                        <button cButton color="primary" variant="outline" size="sm"
-                                            (click)="openAddEditModal()">Nouvelle ligne</button>
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr *ngFor="let ligne of sortie.ligneSorties; index as i">
-                                    <td><span>{{i + 1}}</span></td>
-                                    <td>
-                                      <span>{{ligne.medaille?.nomComplet}}</span>
-                                    </td>
-                                    <td>
-                                      <span>{{ligne.quantiteLigne}}</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" (click)="openAddEditModal(ligne)">
-                                            <svg cIcon name="cilPen" size="sm"></svg>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 2px;"
-                                            (click)="removeLigne(ligne)">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </fieldset>
+                        <c-row>
+                            <c-col md="12">
+                                <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                    <legend cLabel="col" class="pt-0">Lignes de la sortie</legend>
+                                    <table [striped]="true" cTable>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">N°</th>
+                                            <th scope="col">Médaille</th>
+                                            <th scope="col">Quantité</th>
+                                            <th scope="col">
+                                                <button cButton color="primary" variant="outline" size="sm"
+                                                    (click)="openAddEditModal()">Nouvelle ligne</button>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let ligne of sortie.ligneSorties; index as i">
+                                            <td><span>{{i + 1}}</span></td>
+                                            <td>
+                                            <span>{{ligne.medaille?.nomComplet}}</span>
+                                            </td>
+                                            <td>
+                                            <span>{{ligne.quantiteLigne}}</span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-primary btn-sm" (click)="openAddEditModal(ligne)">
+                                                    <svg cIcon name="cilPen" size="sm"></svg>
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 2px;"
+                                                    (click)="removeLigne(ligne)">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </c-col>
+                            <c-col md="12">
+                                <fieldset class="mb-3 p-2" style="border: solid 1.5px; border-radius: 3px;">
+                                  <legend cLabel="col" class="pt-0">Pièces justificatives</legend>
+                                  <table [striped]="true" cTable>
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">N°</th>
+                                        <th scope="col">Type pièce</th>
+                                        <th scope="col">Référence</th>
+                                        <th scope="col">Pièce</th>
+                                        <th scope="col">
+                                            <button cButton color="primary" variant="outline" size="sm"
+                                                (click)="openAddEditPjModal()">Ajouter</button>
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let pj of pieceJointes; index as i">
+                                        <td><span>{{i + 1}}</span></td>
+                                        <td>
+                                          <span>{{pj.typePiece}}</span>
+                                        </td>
+                                        <td>
+                                          <span>{{pj.referencePiece}}</span>
+                                        </td>
+                                        <td>
+                                          <span>{{pj.lienPiece}}</span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" (click)="onPrevisualizePj(pj)"
+                                                *ngIf="pj.fileBase64Content">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" style="margin-left: 2px;" (click)="openAddEditPjModal(pj)">
+                                                <svg cIcon name="cilPen" size="sm"></svg>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 2px;"
+                                                (click)="removePj(pj)">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </fieldset>
+                              </c-col>
+                        </c-row>
                     </c-col>
                 </c-row>
             </div>

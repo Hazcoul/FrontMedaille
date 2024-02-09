@@ -10,17 +10,17 @@ export const navItems: INavData[] = [
   {
     name: 'Mouvement de stock',
     url:'#',
-    authorities: ['ADD_MVT','VIEW_MVT'],
+    authorities: ['ADMIN','ADD_MVT','VIEW_MVT'],
     children: [
       {
         name: 'Entree',
         url: '/mouvement/entree',
-        authorities: ['ADD_MVT','VIEW_MVT'],
+        authorities: ['ADMIN','ADD_MVT','VIEW_MVT'],
       },
       {
         name: 'Sortie',
         url: '/mouvement/sortie',
-        authorities: ['ADD_MVT','VIEW_MVT'],
+        authorities: ['ADMIN','ADD_MVT','VIEW_MVT'],
       },
      /* {
         name: 'Représentant',

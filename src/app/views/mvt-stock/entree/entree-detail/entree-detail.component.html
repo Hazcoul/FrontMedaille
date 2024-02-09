@@ -173,9 +173,42 @@
             <li [ngbNavItem]="3">
                 <button ngbNavLink>Pièces justificatives</button>
                 <ng-template ngbNavContent>
-                    <p>
-                        Pièces justificatives ici
-                    </p>
+                    <div class="table-responsive" *ngIf="pieceJointes && pieceJointes.length > 0">
+                        <table [striped]="true" cTable>
+                            <thead>
+                              <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">Type pièce</th>
+                                <th scope="col">Référence</th>
+                                <th scope="col">Pièce</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let pj of pieceJointes; index as i">
+                                <td><span>{{i + 1}}</span></td>
+                                <td>
+                                  <span>{{pj.typePiece}}</span>
+                                </td>
+                                <td>
+                                  <span>{{pj.referencePiece}}</span>
+                                </td>
+                                <td>
+                                  <span>{{pj.lienPiece}}</span>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="onPrevisualizePj(pj)"
+                                        *ngIf="pj.fileBase64Content">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="pieceJointes && pieceJointes.length == 0">
+                        <c-alert color="warning">Aucune pièces jointes associées à cette sortie!</c-alert>
+                    </div>
                     <hr>
                     <div>
                         <div class="float-end" *ngIf="entree!.status != referentials.mvtStatus[1].valeur">

@@ -9,6 +9,7 @@ import { SortieService } from 'src/app/services/sortie.service';
 import Swal from 'sweetalert2';
 import { RejeterSortieComponent } from '../rejeter-sortie/rejeter-sortie.component';
 import { ValiderSortieComponent } from '../valider-sortie/valider-sortie.component';
+import { IPieceJointe } from 'src/app/entities/piece-jointe.model';
 
 @Component({
   selector: 'app-sortie-detail',
@@ -20,6 +21,7 @@ export class SortieDetailComponent implements OnInit {
   referentials: any;
   sortie: ISortie | null = null;
   active = 1;
+  pieceJointes?: IPieceJointe[];
 
   constructor(
     private sortieService: SortieService,
@@ -46,7 +48,35 @@ export class SortieDetailComponent implements OnInit {
       this.sortie = sortie.body;
       this.sortie!.dateSortie = moment(this.sortie?.dateSortie).format('DD/MM/yyyy');
     })
+
+    if(this.sortie && this.sortie.idSortie) {
+      this.getAllPjForSortie(this.sortie.idSortie);
+    }
     
+  }
+
+  /**
+     * Get all pj for given sortie
+     */
+  getAllPjForSortie(id: number) {
+    this.referentialService.getAllPieceJointes(id, 'sortie').subscribe({
+      next: (res: HttpResponse<IPieceJointe[]>) => {
+        this.pieceJointes = res.body || [];
+        console.log('PIECE_JOINTES_G ', this.pieceJointes);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+  }
+
+  onPrevisualizePj(pieceJointe: IPieceJointe){
+    var binaryString = atob(pieceJointe.fileBase64Content!);
+    var bytes = new Uint8Array(binaryString.length);
+    for (var i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    let file = new Blob([bytes], { type: 'application/pdf' });            
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
   }
 
   goBack(): void {

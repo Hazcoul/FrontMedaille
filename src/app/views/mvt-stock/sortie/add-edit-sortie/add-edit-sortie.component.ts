@@ -19,6 +19,8 @@ import { DetenteurService } from 'src/app/services/detenteur.service';
 import { OrdonnateurService } from 'src/app/services/ordonnateur.service';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
+import { IPieceJointe } from 'src/app/entities/piece-jointe.model';
+import { AddEditPjComponent } from '../../add-edit-pj/add-edit-pj.component';
 
 @Component({
   selector: 'app-add-edit-sortie',
@@ -38,6 +40,8 @@ export class AddEditSortieComponent implements OnInit {
   selectedDetenteurId?: number | null;
   selectedBeneficiaireId?: number | null;
   selectedMagasinId?: number | null;
+  files?: File[];
+  pieceJointes?: IPieceJointe[];
 
   constructor(
     private sortieService: SortieService,
@@ -119,8 +123,33 @@ export class AddEditSortieComponent implements OnInit {
         },
         error: (e) => console.log('ERROR : ', e)
       })
+      this.getAllPjForSortie(idSortie);
     }
 
+  }
+
+  /**
+     * Get all pj for given sortie
+     */
+  getAllPjForSortie(id: number) {
+    this.referentialService.getAllPieceJointes(id, 'sortie').subscribe({
+      next: (res: HttpResponse<IPieceJointe[]>) => {
+        this.pieceJointes = res.body || [];
+        console.log('PIECE_JOINTES_G ', this.pieceJointes);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+  }
+
+  onPrevisualizePj(pieceJointe: IPieceJointe){
+    var binaryString = atob(pieceJointe.fileBase64Content!);
+    var bytes = new Uint8Array(binaryString.length);
+    for (var i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    let file = new Blob([bytes], { type: 'application/pdf' });            
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
   }
 
   openAddEditModal(ligneSortie?: ILigneSortie): void {
@@ -155,6 +184,41 @@ export class AddEditSortieComponent implements OnInit {
     return isRemoved;
   }
 
+  
+  openAddEditPjModal(pj?: IPieceJointe): void {
+    const modalRef = this.modalService.open(AddEditPjComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != pj) {
+      modalRef.componentInstance.pieceJointe = cloneDeep(pj);
+    }
+    modalRef.componentInstance.typeMvt = 'S';
+    modalRef.result.then((res) => {
+      if(undefined == this.pieceJointes){
+        this.pieceJointes = [];
+        this.files = [];
+      }
+      const foundIdxPj = this.pieceJointes!.findIndex((pj)=> pj.referencePiece == res.pieceJointe.referencePiece || pj.typePiece == res.pieceJointe.typePiece);
+      if (-1 != foundIdxPj) {
+        this.pieceJointes!.splice(foundIdxPj, 1);
+        this.files!.splice(foundIdxPj, 1);
+      }
+      this.pieceJointes!.push(res.pieceJointe);
+      this.files!.push(res.file);
+    },
+    error => {
+      console.log(error)
+    })
+  }
+
+  removePj(pj: IPieceJointe): boolean {
+    let isRemoved = false;
+    const foundIdxPj = this.pieceJointes!.findIndex((elem)=> elem.idPiece == pj.idPiece);
+    if (-1 != foundIdxPj) {
+      this.pieceJointes!.splice(foundIdxPj, 1);
+      isRemoved = true
+    }
+    return isRemoved;
+  }
+
   goBack(): void {
     this.router.navigate(['/mouvement/sortie']);
   }
@@ -168,9 +232,9 @@ export class AddEditSortieComponent implements OnInit {
       this.sortie.detenteur = this.detenteurs?.find((elem) => elem.idDetenteur === this.selectedDetenteurId);
     }
     if (this.sortie?.idSortie !== undefined) {
-      this.subscribeToSaveResponse(this.sortieService.update(this.sortie));
+      this.subscribeToSaveResponse(this.sortieService.update(this.sortie, this.pieceJointes!, this.files!));
     } else {
-      this.subscribeToSaveResponse(this.sortieService.create(this.sortie!));
+      this.subscribeToSaveResponse(this.sortieService.create(this.sortie!, this.pieceJointes!, this.files!));
     }
   }
 

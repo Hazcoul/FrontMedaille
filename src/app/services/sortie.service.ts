@@ -9,6 +9,7 @@ import { createRequestOption } from '../shared/util/request.util';
 import {FilterEntree} from "../entities/filterEntree.model";
 import {Entree} from "../entities/entree.model";
 import {LigneSortieImpression} from "../entities/ligne-sortie-impression.model";
+import { IPieceJointe } from '../entities/piece-jointe.model';
 
 
 type EntityResponseType = HttpResponse<ISortie>;
@@ -23,17 +24,41 @@ export class SortieService {
 
   constructor(protected http: HttpClient) {}
 
-  create(sortie: ISortie): Observable<EntityResponseType> {
+  create(sortie: ISortie, pieceJointes: IPieceJointe[], files: File[]): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(sortie);
+    const formData: FormData = new FormData();
+    for(let i = 0; i < files.length; i++ ) {
+      formData.append('pjFiles', files[i]);
+    }
+    formData.append('pjData', new Blob([JSON
+      .stringify(pieceJointes)], {
+      type: 'application/json'
+    }));
+    formData.append('data', new Blob([JSON
+        .stringify(copy)], {
+      type: 'application/json'
+    }));
     return this.http
-      .post<ISortie>(this.resourceUrl, copy, { observe: 'response' })
+      .post<ISortie>(this.resourceUrl, formData, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  update(sortie: ISortie): Observable<EntityResponseType> {
+  update(sortie: ISortie, pieceJointes: IPieceJointe[], files: File[]): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(sortie);
+    const formData: FormData = new FormData();
+    for(let i = 0; i < files.length; i++ ) {
+      formData.append('pjFiles', files[i]);
+    }
+    formData.append('pjData', new Blob([JSON
+      .stringify(pieceJointes)], {
+      type: 'application/json'
+    }));
+    formData.append('data', new Blob([JSON
+        .stringify(copy)], {
+      type: 'application/json'
+    }));
     return this.http
-      .put<ISortie>(this.resourceUrl, copy, { observe: 'response' })
+      .put<ISortie>(this.resourceUrl, formData, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
