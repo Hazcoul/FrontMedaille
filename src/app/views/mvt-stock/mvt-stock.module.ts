@@ -28,6 +28,7 @@ import { RejetEntreeComponent } from './entree/rejet-entree/rejet-entree.compone
 import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.component';
 import { ValiderSortieComponent } from './sortie/valider-sortie/valider-sortie.component';
 import { RejeterSortieComponent } from './sortie/rejeter-sortie/rejeter-sortie.component';
+import { AddEditPjComponent } from './add-edit-pj/add-edit-pj.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { RejeterSortieComponent } from './sortie/rejeter-sortie/rejeter-sortie.c
     RejetEntreeComponent,
     ValiderEntreeComponent,
     ValiderSortieComponent,
-    RejeterSortieComponent
+    RejeterSortieComponent,
+    AddEditPjComponent
   ],
     imports: [
         CommonModule,

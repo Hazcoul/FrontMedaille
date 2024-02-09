@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MedailleService } from '../../../../services/medaille.service';
 import { IMedaille } from 'src/app/entities/medaille.model';
 import { HttpResponse } from '@angular/common/http';
+import { ReferentialService } from 'src/app/services/referential.service';
 
 @Component({
   selector: 'app-add-edit-ligne-sortie',
@@ -18,16 +19,16 @@ export class AddEditLigneSortieComponent implements OnInit {
 
   constructor(
     private activeModal: NgbActiveModal,
-    private medailleService: MedailleService
+    private referentialService: ReferentialService
   ) {}
 
   ngOnInit(): void {
-      this.medailleService.query().subscribe({
-        next: (res: HttpResponse<IMedaille[]>) => {
-          this.medailles = res.body || [];
-        },
-        error: (e) => console.log('ERROR : ', e)
-      });
+    this.referentialService.getMedaillesForSelect().subscribe({
+      next: (res: HttpResponse<IMedaille[]>) => {
+        this.medailles = res.body || [];
+      },
+      error: (e) => console.log('ERROR : ', e)
+    });
   }
 
   save(): void {

@@ -6,8 +6,8 @@ import * as moment from 'moment';
 import {Entree, IEntree} from '../entities/entree.model';
 import { SERVER_API_URL } from '../app.constants';
 import { createRequestOption } from '../shared/util/request.util';
-import {Medaille} from "../entities/medaille.model";
 import {FilterEntree} from "../entities/filterEntree.model";
+import { IPieceJointe } from '../entities/piece-jointe.model';
 
 
 type EntityResponseType = HttpResponse<IEntree>;
@@ -22,17 +22,43 @@ export class EntreeService {
 
   constructor(protected http: HttpClient) {}
 
-  create(entree: IEntree): Observable<EntityResponseType> {
+  create(entree: IEntree, pieceJointes: IPieceJointe[], files: File[]): Observable<EntityResponseType> {
+    console.log('PIECE_JOINTES : ', pieceJointes);
     const copy = this.convertDateFromClient(entree);
+    const formData: FormData = new FormData();
+    for(let i = 0; i < files.length; i++ ) {
+      formData.append('pjFiles', files[i]);
+    }
+    formData.append('pjData', new Blob([JSON
+      .stringify(pieceJointes)], {
+      type: 'application/json'
+    }));
+    formData.append('data', new Blob([JSON
+        .stringify(copy)], {
+      type: 'application/json'
+    }));
+    console.log('FORM_DATA: ', formData.get('pjData'));
     return this.http
-      .post<IEntree>(this.resourceUrl, copy, { observe: 'response' })
+      .post<IEntree>(this.resourceUrl, formData, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  update(entree: IEntree): Observable<EntityResponseType> {
+  update(entree: IEntree, pieceJointes: IPieceJointe[], files: File[]): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(entree);
+    const formData: FormData = new FormData();
+    for(let i = 0; i < files.length; i++ ) {
+      formData.append('pjFiles', files[i]);
+      formData.append('pjData', new Blob([JSON
+        .stringify(pieceJointes[i])], {
+        type: 'application/json'
+      }));
+    }
+    formData.append('data', new Blob([JSON
+        .stringify(copy)], {
+      type: 'application/json'
+    }));
     return this.http
-      .put<IEntree>(this.resourceUrl, copy, { observe: 'response' })
+      .put<IEntree>(this.resourceUrl, formData, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

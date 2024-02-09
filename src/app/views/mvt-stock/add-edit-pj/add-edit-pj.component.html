@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Ajouter/Modifier une pièce justificative</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <c-row>
+                <c-col md="6">
+                    <label cLabel for="field_medaille">Selectionner le type de pièce :</label>
+                    <select aria-label="Small select example" cSelect sizing="sm" [(ngModel)]="pieceJointe.typePiece" name="medaille">
+                        <option *ngFor="let tp of typePieces" [ngValue]="tp?.valeur">{{tp?.libelle}}</option>
+                    </select>
+                </c-col>
+                <c-col md="6">
+                    <label cLabel for="field_raisonSociale">Référence de la pièce :</label>
+                    <input cFormControl sizing="sm" id="field_raisonSociale" type="text" 
+                        [(ngModel)]="pieceJointe.referencePiece" name="raisonSociale"/>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="12">
+                    <label cLabel for="field_telephoneFix">Charger la pièce :</label>
+                    <input cFormControl sizing="sm" id="field_justificatif" type="file" 
+                        class="file-input" name="justificatif" (change)="onFileChange($event)"/>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Ajouter</button>
+        </div>
+    </form>
+</div>

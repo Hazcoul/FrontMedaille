@@ -15,6 +15,8 @@ import { IFournisseur } from 'src/app/entities/fournisseur.model';
 import { IMagasin } from 'src/app/entities/magasin.model';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
+import { IPieceJointe } from '../../../../entities/piece-jointe.model';
+import { AddEditPjComponent } from '../../add-edit-pj/add-edit-pj.component';
 
 @Component({
   selector: 'app-add-edit-entree',
@@ -30,6 +32,8 @@ export class AddEditEntreeComponent implements OnInit {
   magasins?: IMagasin[];
   selectedFournisseurId?: number | null;
   selectedMagasinId?: number | null;
+  files?: File[];
+  pieceJointes?: IPieceJointe[];
 
   constructor(
     private entreeService: EntreeService,
@@ -38,7 +42,7 @@ export class AddEditEntreeComponent implements OnInit {
     private modalService: NgbModal,
     private referentialService: ReferentialService,
     private fournisseurService: FournisseurService,
-    private magasinService: MagasinService,
+    private magasinService: MagasinService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +62,7 @@ export class AddEditEntreeComponent implements OnInit {
         },
         error: (e) => console.log('ERROR : ', e)
       })
+      this.getAllPjForEntree(idEntree);
     }
 
     /**
@@ -92,6 +97,30 @@ export class AddEditEntreeComponent implements OnInit {
     })
   }
 
+  /**
+     * Get all pj for given entree
+     */
+  getAllPjForEntree(id: number) {
+    this.referentialService.getAllPieceJointes(id, 'entree').subscribe({
+      next: (res: HttpResponse<IPieceJointe[]>) => {
+        this.pieceJointes = res.body || [];
+        console.log('PIECE_JOINTES_G ', this.pieceJointes);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+  }
+
+  onPrevisualizePj(pieceJointe: IPieceJointe){
+    var binaryString = atob(pieceJointe.fileBase64Content!);
+    var bytes = new Uint8Array(binaryString.length);
+    for (var i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    let file = new Blob([bytes], { type: 'application/pdf' });            
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+  }
+
   openAddEditModal(ligneEntree?: ILigneEntree): void {
     const modalRef = this.modalService.open(AddEditLigneEntreeComponent, { size: 'lg', backdrop: 'static' });
     if(undefined != ligneEntree) {
@@ -122,6 +151,40 @@ export class AddEditEntreeComponent implements OnInit {
     }
     return isRemoved;
   }
+  
+  openAddEditPjModal(pj?: IPieceJointe): void {
+    const modalRef = this.modalService.open(AddEditPjComponent, { size: 'lg', backdrop: 'static' });
+    if(undefined != pj) {
+      modalRef.componentInstance.pieceJointe = cloneDeep(pj);
+    }
+    modalRef.componentInstance.typeMvt = 'E';
+    modalRef.result.then((res) => {
+      if(undefined == this.pieceJointes){
+        this.pieceJointes = [];
+        this.files = [];
+      }
+      const foundIdxPj = this.pieceJointes!.findIndex((pj)=> pj.referencePiece == res.pieceJointe.referencePiece || pj.typePiece == res.pieceJointe.typePiece);
+      if (-1 != foundIdxPj) {
+        this.pieceJointes!.splice(foundIdxPj, 1);
+        this.files!.splice(foundIdxPj, 1);
+      }
+      this.pieceJointes!.push(res.pieceJointe);
+      this.files!.push(res.file);
+    },
+    error => {
+      console.log(error)
+    })
+  }
+
+  removePj(pj: IPieceJointe): boolean {
+    let isRemoved = false;
+    const foundIdxPj = this.pieceJointes!.findIndex((elem)=> elem.idPiece == pj.idPiece);
+    if (-1 != foundIdxPj) {
+      this.pieceJointes!.splice(foundIdxPj, 1);
+      isRemoved = true
+    }
+    return isRemoved;
+  }
 
   goBack(): void {
     this.router.navigate(['/mouvement/entree']);
@@ -133,9 +196,9 @@ export class AddEditEntreeComponent implements OnInit {
     this.isSaving = true;
     if (this.entree?.idEntree !== undefined) {
       console.log('UPDATING : ', this.entree);
-      this.subscribeToSaveResponse(this.entreeService.update(this.entree));
+      this.subscribeToSaveResponse(this.entreeService.update(this.entree, this.pieceJointes!, this.files!));
     } else {
-      this.subscribeToSaveResponse(this.entreeService.create(this.entree!));
+      this.subscribeToSaveResponse(this.entreeService.create(this.entree!, this.pieceJointes!, this.files!));
     }
   }
 
