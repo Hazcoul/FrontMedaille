@@ -29,6 +29,7 @@ import { ValiderEntreeComponent } from './entree/valider-entree/valider-entree.c
 import { ValiderSortieComponent } from './sortie/valider-sortie/valider-sortie.component';
 import { RejeterSortieComponent } from './sortie/rejeter-sortie/rejeter-sortie.component';
 import { AddEditPjComponent } from './add-edit-pj/add-edit-pj.component';
+import { ConfirmePrintEtatComponent } from './confirme-print-etat/confirme-print-etat.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AddEditPjComponent } from './add-edit-pj/add-edit-pj.component';
     ValiderEntreeComponent,
     ValiderSortieComponent,
     RejeterSortieComponent,
-    AddEditPjComponent
+    AddEditPjComponent,
+    ConfirmePrintEtatComponent
   ],
     imports: [
         CommonModule,

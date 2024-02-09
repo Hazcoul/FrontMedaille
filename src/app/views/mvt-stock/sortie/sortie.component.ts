@@ -11,6 +11,7 @@ import { AddEditLigneSortieComponent } from './add-edit-ligne-sortie/add-edit-li
 import { ILigneSortie } from 'src/app/entities/ligne-sortie.model';
 import Swal from 'sweetalert2';
 import { ReferentialService } from 'src/app/services/referential.service';
+import { ConfirmePrintEtatComponent } from '../confirme-print-etat/confirme-print-etat.component';
 
 @Component({
   selector: 'app-sortie',
@@ -197,5 +198,27 @@ export class SortieComponent implements OnInit, OnDestroy {
   getStatusLabel(value: string): string {
     const found = this.referentials.mvtStatus.find((status: any) => status.valeur == value);
     return found.libelle;
+  }
+
+  imprimer(sortie: ISortie): void {
+    const modalRef = this.modalService.open(ConfirmePrintEtatComponent, { size: 'md', backdrop: 'static' });
+    modalRef.componentInstance.confirmeMsg = 'la sortie N° '.concat(sortie.numeroSortie!);
+    modalRef.result.then((format) => {
+      this.sortieService.generateEtat(sortie.idSortie!, format).subscribe({
+        next: response => {
+          console.log(response);
+          if (response !== null) {
+            const file = new Blob([response], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL, '_blank');
+          }
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+    },
+      error => console.log(error)
+    )
   }
 }

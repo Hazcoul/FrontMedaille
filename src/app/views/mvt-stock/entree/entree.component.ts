@@ -8,6 +8,7 @@ import { EntreeService } from '../../../services/entree.service';
 import { IEntree } from 'src/app/entities/entree.model';
 import Swal from 'sweetalert2';
 import { ReferentialService } from 'src/app/services/referential.service';
+import { ConfirmePrintEtatComponent } from '../confirme-print-etat/confirme-print-etat.component';
 
 @Component({
   selector: 'app-entree',
@@ -32,7 +33,8 @@ export class EntreeComponent implements OnInit, OnDestroy {
     private entreeService: EntreeService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private referentialService: ReferentialService
+    private referentialService: ReferentialService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit(): void {
@@ -179,5 +181,27 @@ export class EntreeComponent implements OnInit, OnDestroy {
   getStatusLabel(value: string): string {
     const found = this.referentials.mvtStatus.find((status: any) => status.valeur == value);
     return found.libelle;
+  }
+
+  imprimer(entree: IEntree): void {
+    const modalRef = this.modalService.open(ConfirmePrintEtatComponent, { size: 'md', backdrop: 'static' });
+    modalRef.componentInstance.confirmeMsg = 'l\'entrée N° '.concat(entree.numeroCmd!);
+    modalRef.result.then((format) => {
+      this.entreeService.generateEtat(entree.idEntree!, format).subscribe({
+        next: response => {
+          console.log(response);
+          if (response !== null) {
+            const file = new Blob([response], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL, '_blank');
+          }
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+    },
+      error => console.log(error)
+    )
   }
 }

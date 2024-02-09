@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="modal-header text-white">
+        <h4 class="modal-tile">Impression</h4>
+        <button style="color: white;" cButton class="close btn-outline-danger bg-danger" aria-label="Close" (click)="close();"> 
+            <span aria-hidden="true">X</span>
+        </button>
+    </div>
+    <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
+        <div class="modal-body">
+            <h5 class="text-center">Etes-vous sûr de vouloir imprimer {{ confirmeMsg }} ?</h5>
+            <c-row>
+                <c-col md="12">
+                    <label cLabel for="field_adresse">Selectionner le format de l'état :</label>
+                    <select aria-label="Small select example" cSelect sizing="sm" 
+                        [(ngModel)]="format" name="format" id="field_format">
+                        <option [ngValue]="'pdf'" selected>PDF</option>
+                        <option [ngValue]="'word'">Word</option>
+                    </select>
+                </c-col>
+            </c-row>
+        </div>
+        <div class="modal-footer">
+            <button cButton color="success" variant="outline" class="float-end" size="sm"
+                (click)="save()">Imprimer</button>
+            <button cButton color="warning" variant="outline" class="float-end" size="sm"
+                (click)="close()">Annuler</button>
+        </div>
+    </form>
+</div>

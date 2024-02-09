@@ -73,8 +73,12 @@
                 (click)="showItem(sortie)">
                 <i class="fa fa-eye"></i>
               </button>
-              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
-                (click)="confirmDeleteItem(sortie)">
+              <button [disabled]="sortie.status != referentials.mvtStatus[1].valeur" class="btn btn-outline-info btn-sm" 
+                type="button" style="margin-left: 2px;" (click)="imprimer(sortie)">
+                <i class="fa fa-print"></i>
+              </button>
+              <button [disabled]="sortie.status == referentials.mvtStatus[1].valeur" class="btn btn-outline-danger btn-sm" 
+                type="button" style="margin-left: 2px;" (click)="confirmDeleteItem(sortie)">
                 <i class="fa fa-remove"></i>
               </button>
             </td>

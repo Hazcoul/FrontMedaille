@@ -109,6 +109,7 @@ export class EntreeDetailComponent implements OnInit {
       }
     });
   }
+  
   valider(entree: IEntree): void {
     const modalRef = this.modalService.open(ValiderEntreeComponent, { size: 'md', backdrop: 'static' });
     modalRef.componentInstance.numEntree = entree.numeroCmd;

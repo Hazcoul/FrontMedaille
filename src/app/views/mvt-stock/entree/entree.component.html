@@ -69,8 +69,12 @@
                                 (click)="showItem(entree)">
                                 <i class="fa fa-eye"></i>
                               </button>
-                              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
-                                (click)="confirmDeleteItem(entree)">
+                              <button [disabled]="entree.status != referentials.mvtStatus[1].valeur" class="btn btn-outline-info btn-sm" 
+                                type="button" style="margin-left: 2px;" (click)="imprimer(entree)">
+                                <i class="fa fa-print"></i>
+                              </button>
+                              <button [disabled]="entree.status == referentials.mvtStatus[1].valeur" class="btn btn-outline-danger btn-sm" 
+                                type="button" style="margin-left: 2px;" (click)="confirmDeleteItem(entree)">
                                 <i class="fa fa-remove"></i>
                               </button>
                         </td>
