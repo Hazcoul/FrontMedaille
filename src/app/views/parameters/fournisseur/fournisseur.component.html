@@ -18,11 +18,10 @@
             <th scope="col">N°</th>
             <th scope="col">Sigle</th>
             <th scope="col">Libelle</th>
-            <th scope="col">Adresse</th>
-            <th scope="col">NumeroIfu</th>
-            <th scope="col">Personne ressource</th>
-            <th scope="col">TelephoneFixe</th>
+            <th scope="col">N°IFU</th>
+            <th scope="col">Contact</th>
             <th scope="col">Email</th>
+            <th scope="col">Personne ressource</th>
             <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
@@ -42,19 +41,16 @@
               <span>{{fournisseur.libelle}}</span>
             </td>
             <td>
-              <span>{{fournisseur.adresse}}</span>
-            </td>
-            <td>
               <span>{{fournisseur.numeroIfu}}</span>
-            </td>
-            <td>
-              <span>{{fournisseur.nomCompletPersonneRessource}} ({{fournisseur.telephonePersonneRessource}})</span>
             </td>
             <td>
               <span>{{fournisseur.telephoneFix}}</span>
             </td>
             <td>
               <span>{{fournisseur.email}}</span>
+            </td>
+            <td>
+              <span>{{fournisseur.nomCompletPersonneRessource}} : {{fournisseur.telephonePersonneRessource}}</span>
             </td>
             <td *appHasAnyAuthority="droit">
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(fournisseur)">

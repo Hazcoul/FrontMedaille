@@ -9,7 +9,7 @@
         <div class="modal-body">
             <c-row>
                 <c-col md="6">
-                    <label cLabel for="field_nomMagasin">Nom :</label>
+                    <label cLabel for="field_nomMagasin">Nom* :</label>
                     <input cFormControl sizing="sm" id="field_nomMagasin" type="text" 
                         [(ngModel)]="magasin.nomMagasin" name="nomMagasin"/>
                 </c-col>
@@ -19,7 +19,7 @@
                         [(ngModel)]="magasin.capacite" name="capacite"/>
                 </c-col>
                 <c-col md="3">
-                    <label cLabel for="field_depot">Dépot:</label>
+                    <label cLabel for="field_depot">Dépot* :</label>
                     <select aria-label="Small select example" cSelect sizing="sm" 
                         [(ngModel)]="selectedDepotId" name="depot" id="field_depot">
                         <option *ngFor="let depot of depots" [ngValue]="depot.idDepot">{{ depot.nomDepot }}</option>
