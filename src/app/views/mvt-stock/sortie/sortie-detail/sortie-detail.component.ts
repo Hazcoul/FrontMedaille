@@ -22,6 +22,7 @@ export class SortieDetailComponent implements OnInit {
   sortie: ISortie | null = null;
   active = 1;
   pieceJointes?: IPieceJointe[];
+  valide="VALIDE_MVT";
 
   constructor(
     private sortieService: SortieService,

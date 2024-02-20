@@ -22,6 +22,7 @@ export class EntreeDetailComponent implements OnInit {
   entree: IEntree | null = null;
   active = 1;
   pieceJointes?: IPieceJointe[];
+  valide="VALIDE_MVT";
 
   constructor(
     private entreeService: EntreeService,
