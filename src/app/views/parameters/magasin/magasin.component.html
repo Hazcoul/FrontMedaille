@@ -16,10 +16,11 @@
         <thead>
           <tr>
             <th scope="col">N°</th>
-            <th scope="col">Nom</th>
+            <th scope="col">Libellé</th>
             <th scope="col">Capacite</th>
-            <th scope="col">Description</th>
             <th scope="col">Dépot</th>
+            <th scope="col">Description</th>
+            
             <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
@@ -39,11 +40,12 @@
               <span>{{magasin.capacite}}</span>
             </td>
             <td>
-              <span>{{magasin.description}}</span>
-            </td>
-            <td>
               <span>{{magasin.depot?.nomDepot}}</span>
             </td>
+            <td>
+              <span>{{magasin.description}}</span>
+            </td>
+            
             <td *appHasAnyAuthority="droit">
               <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(magasin)">
                 <svg cIcon name="cilPen" size="sm"></svg>

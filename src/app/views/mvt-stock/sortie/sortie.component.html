@@ -4,7 +4,7 @@
       <c-col md="10">
           Sorties
       </c-col>
-      <c-col md="2">
+      <c-col md="2" *appHasAnyAuthority="droit">
         <button cButton color="primary" variant="outline" class="float-end" size="sm"
           [routerLink]="['/mouvement/sortie/nouvelle']">Ajouter</button>
       </c-col>
@@ -23,7 +23,7 @@
             <!-- <th scope="col">Détenteur</th> -->
             <th scope="col">Magasin</th>
             <th scope="col">Statut</th>
-            <th scope="col">Action</th>
+            <th scope="col" *appHasAnyAuthority="droit">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +64,7 @@
                   <c-badge color="danger">{{getStatusLabel(sortie.status!)}}</c-badge>
               </span>
             </td>
-            <td>
+            <td *appHasAnyAuthority="droit">
               <button [disabled]="sortie.status == referentials.mvtStatus[1].valeur" 
                 class="btn btn-outline-primary btn-sm" type="button" (click)="editItem(sortie)">
                 <svg cIcon name="cilPen" size="sm"></svg>

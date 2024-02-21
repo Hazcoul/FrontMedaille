@@ -270,12 +270,12 @@
                         <c-alert color="warning">Aucune pièces jointes associées à cette sortie!</c-alert>
                     </div>
                     <hr>
-                    <div>
+                    <div  *appHasAnyAuthority="valide">
                         <div class="float-end" *ngIf="sortie!.status != referentials.mvtStatus[1].valeur">
                             <button cButton color="primary" variant="outline" size="sm"
-                                (click)="rejeter(sortie!)">Rejeter l'entrée</button>
+                                (click)="rejeter(sortie!)">Rejeter la sortie</button>
                             <button cButton color="success" variant="outline" class="mx-2" size="sm"
-                                (click)="valider(sortie!)">Valider l'entrée</button>
+                                (click)="valider(sortie!)">Valider la sortie</button>
                         </div>
                     </div>
                 </ng-template>

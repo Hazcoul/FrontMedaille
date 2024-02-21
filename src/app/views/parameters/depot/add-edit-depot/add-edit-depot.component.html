@@ -8,9 +8,9 @@
     <form name="addEditForm" role="form" novalidate #addEditForm="ngForm">
         <div class="modal-body">
             <c-row>
-                <label cLabel for="field_nom">Nom :</label>
+                <label cLabel for="field_nom">Nom * :</label>
                 <input cFormControl sizing="sm" id="field_nom" type="text" 
-                        [(ngModel)]="depot.nomDepot" name="nom"/>
+                        [(ngModel)]="depot.nomDepot" name="nom" required placeholder="nom du depôt"/>
             </c-row>
             <c-row>
                 <label cLabel for="field_description">Description :</label>

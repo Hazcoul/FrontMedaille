@@ -9,7 +9,7 @@
         <div class="modal-body">
             <c-row>
                 <c-col md="6">
-                    <label cLabel for="field_code">Code :</label>
+                    <label cLabel for="field_code">Code* :</label>
                     <input cFormControl sizing="sm" id="field_code" type="text"
                         [(ngModel)]="distinction.code" name="code"/>
                 </c-col>
@@ -21,12 +21,12 @@
             </c-row>
             <c-row>
                 <c-col md="6">
-                    <label cLabel for="field_libelle">Désignation :</label>
+                    <label cLabel for="field_libelle">Désignation* :</label>
                     <input cFormControl sizing="sm" id="field_libelle" type="text"
                         [(ngModel)]="distinction.libelle" name="libelle"/>
                 </c-col>
               <c-col md="6">
-                <label cLabel for="field_categoryDistinction">Catégorie de distinction :</label>
+                <label cLabel for="field_categoryDistinction">Catégorie de distinction* :</label>
                 <ng-select [items]="categoryDistinctions"
                            name="categoryDistinctions"
                            id="field_categoryDistinction"

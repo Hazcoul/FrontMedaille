@@ -32,6 +32,7 @@ export class SortieComponent implements OnInit, OnDestroy {
   sortie: ISortie = new Sortie();
   nextLabel = NEXT_PAGE;
   previousLabel = PREV_PAGE;
+  droit = "ADD_MVT"
 
   constructor(
     private sortieService: SortieService,

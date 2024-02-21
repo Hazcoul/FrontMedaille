@@ -14,9 +14,9 @@
                         [(ngModel)]="beneficiaire.sigle" name="sigle"/>
                 </c-col>
                 <c-col md="6">
-                    <label cLabel for="field_raisonSociale">Raison sociale :</label>
+                    <label cLabel for="field_raisonSociale">Raison sociale * :</label>
                     <input cFormControl sizing="sm" id="field_raisonSociale" type="text" 
-                        [(ngModel)]="beneficiaire.raisonSociale" name="raisonSociale"/>
+                        [(ngModel)]="beneficiaire.raisonSociale" name="raisonSociale" required/>
                 </c-col>
             </c-row>
             <c-row>
