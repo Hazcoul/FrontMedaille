@@ -79,6 +79,10 @@ export class EntreeService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  deleteLine(id: number, idLine: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.resourceUrl}/${id}/lignes/${idLine}`, { observe: 'response' });
+  }
+
   protected convertDateFromClient(entree: IEntree): IEntree {
     const copy: IEntree = Object.assign({}, entree, {
       createdDate: entree.createdDate && entree.createdDate.isValid() ? entree.createdDate.toJSON() : undefined,

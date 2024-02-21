@@ -79,6 +79,10 @@ export class SortieService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  deleteLine(id: number, idLine: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.resourceUrl}/${id}/lignes/${idLine}`, { observe: 'response' });
+  }
+
   protected convertDateFromClient(sortie: ISortie): ISortie {
     const copy: ISortie = Object.assign({}, sortie, {
       createdDate: sortie.createdDate && sortie.createdDate.isValid() ? sortie.createdDate.toJSON() : undefined,

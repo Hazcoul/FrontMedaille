@@ -113,11 +113,6 @@ export class EntreeComponent implements OnInit, OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.delete(entree);
-        Swal.fire({
-          title: "Supprimé!",
-          text: "Element supprimé.",
-          icon: "success"
-        });
       }
     });
   }
@@ -125,9 +120,19 @@ export class EntreeComponent implements OnInit, OnDestroy {
   delete(entree: IEntree): void {
    this.entreeService.delete(entree.idEntree!).subscribe({
     next: (res) => {
-      this.loadPage();
+        this.loadPage();
     },
-    error: (e) =>console.log('ERROR : ', e)
+    error: (e) =>{
+      console.log('ERROR : ', e)
+      if(e.error && 'msg' in e.error) {
+        const msg = '' + e.error.msg;
+        Swal.fire({
+          icon: "error",
+          title: "Désolé!",
+          text: msg,
+        });
+      }
+    }
    })
   }
 

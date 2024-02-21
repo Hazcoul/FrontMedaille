@@ -174,11 +174,65 @@ export class AddEditSortieComponent implements OnInit {
     })
   }
 
+  confirmRemoveLine(ligneSortie: ILigneSortie): void {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "Cette action est irréversible!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.removeLigne(ligneSortie);
+      }
+    });
+  }
+
+  showToast(msg: string) : void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: msg
+    });
+  }
+
   removeLigne(ligneSortie: ILigneSortie): boolean {
     let isRemoved = false;
     const foundIdxLine = this.sortie.ligneSorties!.findIndex((line)=> line.idLigneSortie == ligneSortie.idLigneSortie);
     if (-1 != foundIdxLine) {
       this.sortie.ligneSorties!.splice(foundIdxLine, 1);
+      if(ligneSortie.idLigneSortie) {
+        this.sortieService.deleteLine(this.sortie.idSortie!, ligneSortie.idLigneSortie!).subscribe({
+          next: (res) => {
+              this.showToast('Ligne supprmée avec succès.');
+          },
+          error: (e) =>{
+            console.log('ERROR : ', e)
+            if(e.error && 'msg' in e.error) {
+              const msg = '' + e.error.msg;
+              Swal.fire({
+                icon: "error",
+                title: "Désolé!",
+                text: msg,
+              });
+            }
+          }
+         })
+      } else {
+        this.showToast('Ligne supprmée avec succès.');
+      }
       isRemoved = true
     }
     return isRemoved;

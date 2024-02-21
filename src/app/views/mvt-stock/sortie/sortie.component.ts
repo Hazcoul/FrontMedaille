@@ -131,7 +131,17 @@ export class SortieComponent implements OnInit, OnDestroy {
     next: (res) => {
       this.loadPage();
     },
-    error: (e) =>console.log('ERROR : ', e)
+    error: (e) => {
+      console.log('ERROR : ', e);
+      if(e.error && 'msg' in e.error) {
+        const msg = '' + e.error.msg;
+        Swal.fire({
+          icon: "error",
+          title: "Désolé!",
+          text: msg,
+        });
+      }
+    }
    })
   }
 
