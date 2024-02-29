@@ -121,6 +121,22 @@ export class UtilisateursComponent {
     });
   }
 
+  disableAccount(user: Utilisateur) {
+    Swal.fire({
+      title: "Etes-vous vraiment sûr?",
+      text: "L'utilisteur concerné ne pourra plus se connecter!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, procéder!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.disable(user);
+      }
+    });
+  }
+
   goToEditPage(user: Utilisateur){
     this.router.navigate(['pages','securite','utilisateurs','modification',user.id]);
   }
@@ -144,4 +160,22 @@ export class UtilisateursComponent {
        }
      })
    }
+
+  private disable(user: Utilisateur) {
+    this.utilisateurService.disableAccount(user.login!).subscribe(data=>{
+      if(data.body && data.body.code == "0"){
+        Swal.fire({
+          title: "",
+          text: data.body.msg,
+          icon: "success"
+        });
+      }else{
+        Swal.fire({
+          title: "",
+          text: data.body!.msg,
+          icon: "success"
+        });
+      }
+    })
+  }
 }
