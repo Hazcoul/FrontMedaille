@@ -12,6 +12,7 @@ export interface IUtilisateur {
   profilsObjet?: Profil[];
   titreHonorifique?: string;
   fonction?: string;
+  actif?: boolean
 }
 
 export class Utilisateur implements IUtilisateur {
@@ -27,5 +28,7 @@ export class Utilisateur implements IUtilisateur {
       public profilsobjet?: Profil[],
       public titreHonorifique?: string,
       public fonction?: string,
+      public actif?: boolean,
+
     ) {}
 }

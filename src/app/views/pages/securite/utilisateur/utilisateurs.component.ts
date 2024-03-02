@@ -151,12 +151,14 @@ export class UtilisateursComponent {
            text: data.body.msg,
            icon: "success"
          });
+         this.loadPage();
        }else{
          Swal.fire({
            title: "",
            text: data.body!.msg,
            icon: "success"
          });
+         this.loadPage();
        }
      })
    }
@@ -169,12 +171,14 @@ export class UtilisateursComponent {
           text: data.body.msg,
           icon: "success"
         });
+        this.loadPage();
       }else{
         Swal.fire({
           title: "",
           text: data.body!.msg,
           icon: "success"
         });
+        this.loadPage();
       }
     })
   }
