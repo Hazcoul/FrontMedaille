@@ -24,12 +24,9 @@ export class LoginComponent {
        this.authService.saveToken(response);
        this.authService.tokenDecode();
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
-        this.router.navigateByUrl(returnUrl);
-      //  console.warn(this.authService.getToken());
-      /* this.router.navigate(['/dashboard'])
-          .then(() => {
-            window.location.reload();
-          });*/
+        this.router.navigateByUrl(returnUrl).then(() => {
+          window.location.reload();
+        });
       },
       (error) => {
           console.warn("error",error);

@@ -57,6 +57,10 @@ export class UtilisateurService {
     return this.http.post<MResponse>(`${this.resourceUrl}/reset-password-by-admin/init`, login, { observe: 'response' });
   }
 
+  public disableAccount(login: string): Observable<HttpResponse<MResponse>> {
+    return this.http.post<MResponse>(`${this.resourceUrl}/disable-account`, login, { observe: 'response' });
+  }
+
   updatePasswd(resetPassword: ResetPassword): Observable<HttpResponse<MResponse>> {
     return this.http.post<MResponse>(`${this.resourceUrl}/reset-connect-password`, resetPassword,{ observe: 'response' })
   }

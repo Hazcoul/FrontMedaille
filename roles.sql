@@ -31,6 +31,10 @@ INSERT INTO public."privileges"
 (id, created_by, created_date, last_modified_by, last_modified_date, code, deleted, libelle)
 VALUES(7, 'Anonymous', '2024-01-27 22:50:40.991', NULL, '2024-01-27 22:50:40.991', 'VIEW_STAT', false, 'STATISTIQUE');
 
+INSERT INTO public."privileges"
+(id, created_by, created_date, last_modified_by, last_modified_date, code, deleted, libelle)
+VALUES(8, 'Anonymous', '2024-01-27 22:50:40.991', NULL, '2024-01-27 22:50:40.991', 'VALIDE_MVT', false, 'VALIDATION DES MOUVEMENTS');
+
 
 
 

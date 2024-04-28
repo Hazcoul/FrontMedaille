@@ -48,6 +48,7 @@
           <div class="">
             <button title="Modifier l'utilisateur" (click)="goToEditPage(user)" class=""><i class="fa fa fa-pencil" style="color: orange;margin-right: 12px" aria-hidden="true"></i></button>
             <button title="Activer le compte et initialiser le mot de passe" class="" (click)="resetAccountTodefault(user)"><i class="fa fa-key" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
+            <button [disabled]="!user.actif" title="Desactiver le compte" class="" (click)="disableAccount(user)"><i class="fa fa-lock" style="color: green;margin-right: 12px" aria-hidden="true"></i></button>
             <button title="Supprimer l'utilisateur" (click)="removeUser(user)"><i class="fa fa-remove" style="color: orangered" aria-hidden="true"></i></button>
           </div>
         </td>

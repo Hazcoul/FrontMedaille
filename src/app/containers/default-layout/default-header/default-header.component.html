@@ -12,8 +12,8 @@
         size="lg"
       ></svg>
     </button>
-    <c-header-nav class="d-none d-lg-flex me-auto">
-
+    <c-header-nav class="d-none d-lg-flex me-auto text-white">
+      {{utilisateur.nom +" "+ utilisateur.prenom }}
     </c-header-nav>
 
     <!--c-header-nav class="d-none d-lg-flex">
@@ -51,6 +51,7 @@
       cDropdownToggle
       class="py-0"
     >
+
       <c-avatar
         cTextColor="primary"
         shape="rounded-1"
@@ -59,20 +60,18 @@
         status="success"
       >
       </c-avatar>
+
     </button>
     <ul cDropdownMenu class="pt-0 pr-5 w-auto">
-      <!-->li>
-        <h6 cDropdownHeader class="bg-light fw-semibold py-2">Informations</h6>
-      </li-->
+      <li>
+        <h6 cDropdownHeader class="bg-light fw-semibold py-2 text-center">{{utilisateur.login}} </h6>
+      </li>
       <li>
         <button class="btn btn-success" (click)="logout()" cDropdownItem>
           <svg cIcon class="me-2" name="cilTask"></svg>
           Se deconnecter
         </button>
       </li>
-      <!-->li>
-        <h6 cDropdownHeader class="bg-light fw-semibold py-2">Configuration</h6>
-      </li-->
       <li>
         <button class="btn btn-success" (click)="goToProfile()" cDropdownItem>
           <svg cIcon class="me-2" name="cilTask"></svg>
