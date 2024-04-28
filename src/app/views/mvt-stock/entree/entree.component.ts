@@ -28,7 +28,7 @@ export class EntreeComponent implements OnInit, OnDestroy {
   predicate= 'idEntree';
   ascending!: boolean;
   ngbPaginationPage = 1;
-  droit = "ADD_MVT"
+  droit = "ADD_MVT";
 
   constructor(
     private entreeService: EntreeService,

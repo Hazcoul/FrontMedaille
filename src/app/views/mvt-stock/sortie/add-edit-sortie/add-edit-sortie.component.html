@@ -34,10 +34,19 @@
                                 </c-col>
                                 <c-col md="12">
                                     <label cLabel for="field_detenteur">Selectionner le représentant :</label>
-                                    <select aria-label="Small select example" cSelect sizing="sm" 
-                                        [(ngModel)]="selectedDetenteurId" name="detenteur" id="field_detenteur">
-                                        <option *ngFor="let detenteur of detenteurs" [ngValue]="detenteur.idDetenteur">{{ detenteur.matricule + ' / ' + detenteur.nom + '/' + detenteur.prenom}}</option>
-                                    </select>
+                                    <c-row>
+                                        <c-col md="10">
+                                            <select aria-label="Small select example" cSelect sizing="sm" 
+                                                [(ngModel)]="selectedDetenteurId" name="detenteur" id="field_detenteur">
+                                                <option *ngFor="let detenteur of detenteurs" [ngValue]="detenteur.idDetenteur">{{ detenteur.matricule + ' / ' + detenteur.nom + '/' + detenteur.prenom}}</option>
+                                            </select>
+                                        </c-col>
+                                        <c-col md="2">
+                                            <button class="btn btn-outline-primary btn-sm" type="button" title="Ajouter un représentant" (click)="addRepresentant()">
+                                                <i class="fa fa-plus"></i>
+                                          </button>
+                                        </c-col>
+                                    </c-row>
                                 </c-col>
                                 <c-col md="12">
                                     <label cLabel for="field_magasin">Selectionner le magasin :</label>

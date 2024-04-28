@@ -21,6 +21,8 @@ export class AddEditDetenteurComponent implements OnInit, OnDestroy {
   civilites = ['Monsieur','Madame','Moidemoiselle'];
   beneficiaires?: IBeneficiaire[];
   selectedBeneficiaireId?: number | null;
+  selectedBeneficiaireIdFromSortie?: number | null;
+  fromSortie = false;
 
   constructor(
     private detenteurService: DetenteurService,
@@ -42,6 +44,7 @@ export class AddEditDetenteurComponent implements OnInit, OnDestroy {
     this.beneficiaireService.query().subscribe({
       next: (res: HttpResponse<IBeneficiaire[]>) => {
         this.beneficiaires = res.body || [];
+        this.selectedBeneficiaireId = this.selectedBeneficiaireIdFromSortie;
       },
       error: (e) => console.log('ERROR : ', e)
     })
@@ -70,23 +73,25 @@ export class AddEditDetenteurComponent implements OnInit, OnDestroy {
     result.subscribe({
       next: (res) => {
         console.log("NEXT : ", res);
-        this.onSaveSuccess();
+        this.onSaveSuccess(res.body);
       },
       error: () => this.onSaveError()
     });
   }
 
-  protected onSaveSuccess(): void {
+  protected onSaveSuccess(detenteur: IDetenteur | null): void {
     this.isSaving = false;
-    this.activeModal.close();
-    this.goBack();
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Opération effectuée avec succès',
-      showConfirmButton: false,
-      timer: 3000,
-    });
+    this.activeModal.close(detenteur);
+    if(!this.fromSortie) {
+      this.goBack();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Opération effectuée avec succès',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   }
 
   protected onSaveError(): void {

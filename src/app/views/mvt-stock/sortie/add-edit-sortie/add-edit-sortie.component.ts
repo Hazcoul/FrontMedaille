@@ -21,6 +21,7 @@ import * as moment from 'moment';
 import Swal from 'sweetalert2';
 import { IPieceJointe } from 'src/app/entities/piece-jointe.model';
 import { AddEditPjComponent } from '../../add-edit-pj/add-edit-pj.component';
+import { AddEditDetenteurComponent } from 'src/app/views/parameters/detenteur/add-edit-detenteur/add-edit-detenteur.component';
 
 @Component({
   selector: 'app-add-edit-sortie',
@@ -87,15 +88,8 @@ export class AddEditSortieComponent implements OnInit {
       },
       error: (e) => console.log('ERROR : ', e)
     })
-    /**
-     * Get all detenteurs
-     */
-    this.detenteurService.query().subscribe({
-      next: (res: HttpResponse<IDetenteur[]>) => {
-        this.detenteurs = res.body || [];
-      },
-      error: (e) => console.log('ERROR : ', e)
-    })
+    
+    this.getDetenteurs();
     /**
      * Get all ordonnateurs
      */
@@ -129,6 +123,18 @@ export class AddEditSortieComponent implements OnInit {
   }
 
   /**
+   * Get all detenteurs
+  */
+  getDetenteurs(): void {
+    this.detenteurService.query().subscribe({
+      next: (res: HttpResponse<IDetenteur[]>) => {
+        this.detenteurs = res.body || [];
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
+  }
+
+  /**
      * Get all pj for given sortie
      */
   getAllPjForSortie(id: number) {
@@ -150,6 +156,28 @@ export class AddEditSortieComponent implements OnInit {
     let file = new Blob([bytes], { type: 'application/pdf' });            
     var fileURL = URL.createObjectURL(file);
     window.open(fileURL);
+  }
+
+  addRepresentant() : void {
+    if(this.selectedBeneficiaireId) {
+      const modalRef = this.modalService.open(AddEditDetenteurComponent, { size: 'lg', backdrop: 'static' });
+      modalRef.componentInstance.fromSortie = true;
+      modalRef.componentInstance.selectedBeneficiaireIdFromSortie = this.selectedBeneficiaireId;
+      modalRef.result.then((res) => {
+        console.log('REPRESENTANT: ', res);
+        this.getDetenteurs();
+        this.selectedDetenteurId = res.idDetenteur;
+      },
+      error => {
+        console.log(error)
+      })
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Désolé!",
+        text: "Veuillez selectionner la structure bénéficiaire!",
+      });
+    }
   }
 
   openAddEditModal(ligneSortie?: ILigneSortie): void {
@@ -237,7 +265,6 @@ export class AddEditSortieComponent implements OnInit {
     }
     return isRemoved;
   }
-
   
   openAddEditPjModal(pj?: IPieceJointe): void {
     const modalRef = this.modalService.open(AddEditPjComponent, { size: 'lg', backdrop: 'static' });
