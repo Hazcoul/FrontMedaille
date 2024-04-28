@@ -48,11 +48,11 @@ export class EntreeService {
     const formData: FormData = new FormData();
     for(let i = 0; i < files.length; i++ ) {
       formData.append('pjFiles', files[i]);
-      formData.append('pjData', new Blob([JSON
-        .stringify(pieceJointes[i])], {
-        type: 'application/json'
-      }));
     }
+    formData.append('pjData', new Blob([JSON
+      .stringify(pieceJointes)], {
+      type: 'application/json'
+    }));
     formData.append('data', new Blob([JSON
         .stringify(copy)], {
       type: 'application/json'

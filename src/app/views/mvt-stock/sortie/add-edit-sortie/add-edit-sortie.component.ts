@@ -275,6 +275,8 @@ export class AddEditSortieComponent implements OnInit {
     modalRef.result.then((res) => {
       if(undefined == this.pieceJointes){
         this.pieceJointes = [];
+      }
+      if(undefined == this.files) {
         this.files = [];
       }
       const foundIdxPj = this.pieceJointes!.findIndex((pj)=> pj.referencePiece == res.pieceJointe.referencePiece || pj.typePiece == res.pieceJointe.typePiece);

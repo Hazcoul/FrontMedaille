@@ -215,6 +215,8 @@ export class AddEditEntreeComponent implements OnInit {
     modalRef.result.then((res) => {
       if(undefined == this.pieceJointes){
         this.pieceJointes = [];
+      }
+      if(undefined == this.files) {
         this.files = [];
       }
       const foundIdxPj = this.pieceJointes!.findIndex((pj)=> pj.referencePiece == res.pieceJointe.referencePiece || pj.typePiece == res.pieceJointe.typePiece);
@@ -249,7 +251,8 @@ export class AddEditEntreeComponent implements OnInit {
     this.entree.magasin = this.magasins?.find((elem) => elem.idMagasin === this.selectedMagasinId);
     this.isSaving = true;
     if (this.entree?.idEntree !== undefined) {
-      console.log('UPDATING : ', this.entree);
+      console.log('UPDATING_ENTREE : ', this.entree);
+      console.log('UPDATING_PJ : ', this.pieceJointes);
       this.subscribeToSaveResponse(this.entreeService.update(this.entree, this.pieceJointes!, this.files!));
     } else {
       this.subscribeToSaveResponse(this.entreeService.create(this.entree!, this.pieceJointes!, this.files!));
