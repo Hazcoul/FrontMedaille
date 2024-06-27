@@ -140,6 +140,24 @@ export class MedailleComponent implements OnInit, OnDestroy {
     });
   }
 
+  showToast(msg: string) : void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: msg
+    });
+  }
+
   delete(medaille: Medaille) {
     this.medailleService.delete(medaille.idMedaille!).subscribe(() => {
       this.loadPage();
@@ -153,6 +171,7 @@ export class MedailleComponent implements OnInit, OnDestroy {
 
     }, (error) => {
       console.error("medaille " + JSON.stringify(error));
+      this.showToast(error.error.msg)
     });
   }
 

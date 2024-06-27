@@ -18,7 +18,7 @@
                     <th scope="col">N°</th>
                     <th scope="col">Date</th>
                     <th scope="col">N° entrée</th>
-                    <th scope="col">Exercice budgétaire</th>
+                    <!--th scope="col">Exercice budgétaire</th>-->
                     <th scope="col">Magasin</th>
                     <th scope="col">Fournisseur</th>
                     <th scope="col">Statut</th>
@@ -40,9 +40,9 @@
                         <td>
                             <span>{{entree.numeroCmd}}</span>
                         </td>
-                        <td>
+                        <!--td>
                             <span>{{entree.exerciceBudgetaire}}</span>
-                        </td>
+                        </td>-->
                         <td>
                             <span>{{entree.magasin?.nomMagasin}}</span>
                         </td>
@@ -61,19 +61,19 @@
                             </span>
                         </td>
                         <td *appHasAnyAuthority="droit">
-                            <button [disabled]="entree.status == referentials.mvtStatus[1].valeur"
+                            <button [disabled]="entree.status == referentials.mvtStatus[1].valeur" title="Modifier"
                                 class="btn btn-outline-primary btn-sm" type="button" (click)="editItem(entree)">
                                 <svg cIcon name="cilPen" size="sm"></svg>
                               </button>
-                              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                              <button title="Détails" class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
                                 (click)="showItem(entree)">
                                 <i class="fa fa-eye"></i>
                               </button>
-                              <button [disabled]="entree.status != referentials.mvtStatus[1].valeur" class="btn btn-outline-success btn-sm" 
+                              <button [disabled]="entree.status != referentials.mvtStatus[1].valeur" title="Imprimer" class="btn btn-outline-success btn-sm" 
                                 type="button" style="margin-left: 2px;" (click)="imprimer(entree)">
                                 <i class="fa fa-print"></i>
                               </button>
-                              <button [disabled]="entree.status == referentials.mvtStatus[1].valeur" class="btn btn-outline-danger btn-sm" 
+                              <button [disabled]="entree.status == referentials.mvtStatus[1].valeur" title="Supprimer" class="btn btn-outline-danger btn-sm" 
                                 type="button" style="margin-left: 2px;" (click)="confirmDeleteItem(entree)">
                                 <i class="fa fa-remove"></i>
                               </button>

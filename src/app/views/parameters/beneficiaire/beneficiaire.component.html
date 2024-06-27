@@ -49,14 +49,14 @@
               <span>{{beneficiaire.email}}</span>
             </td>
             <td *appHasAnyAuthority="droit">
-              <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(beneficiaire)">
+              <button title="Modifier" class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(beneficiaire)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+              <button title="Afficher Détail" class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
                 (click)="openDetailModal(beneficiaire)">
                 <i class="fa fa-eye"></i>
               </button>
-              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+              <button title="Supprimer" class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
                 (click)="confirmDeleteItem(beneficiaire)">
                 <i class="fa fa-remove"></i>
               </button>

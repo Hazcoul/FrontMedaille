@@ -25,6 +25,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let distinction of distinctions; index as i">
+
+          <!--tr *ngFor="let distinction of distinctions
+            | paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: page,
+                totalItems: totalItems
+                }; index as i"-->
+
             <td><span>{{i+1}}</span></td>
             <td><span>{{distinction.code}}</span></td>
             <td><span>{{distinction.abreviation}}</span></td>
@@ -33,14 +42,14 @@
             <td><span>{{distinction.referenceDecret}} du {{distinction.dateDecretCreation | date: "dd/MM/yyyy"}}</span></td>
             
             <td *appHasAnyAuthority="droit">
-              <button class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(distinction)">
+              <button title="Modifier" class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(distinction)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+              <button title="Afficher les détails" class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
                 (click)="openModalDetail(distinction)">
                 <i class="fa fa-eye"></i>
               </button>
-              <button class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+              <button title="Supprimer" class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
                 (click)="removeDistinction(distinction)">
                 <i class="fa fa-remove"></i>
               </button>

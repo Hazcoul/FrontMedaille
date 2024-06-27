@@ -18,8 +18,8 @@
             <th scope="col">N°</th>
             <th scope="col">Date</th>
             <th scope="col">N° sortie</th>
-            <th scope="col">Ordonnateur</th>
-            <th scope="col">Bénéficiaire</th>
+            <!--th scope="col">Ordonnateur</th>-->
+            <th scope="col">Structure bénéficiaire</th>
             <!-- <th scope="col">Détenteur</th> -->
             <th scope="col">Magasin</th>
             <th scope="col">Statut</th>
@@ -41,11 +41,11 @@
             <td>
               <span>{{sortie.numeroSortie}}</span>
             </td>
-            <td>
+            <!--td>
               <span>{{sortie.ordonnateur?.matricule}}</span>
-            </td>
+            </td>-->
             <td>
-              <span>{{sortie.beneficiaire?.raisonSociale}}</span>
+              <span>{{sortie.beneficiaire?.sigle}}</span>
             </td>
             <!-- <td>
               <span>{{sortie.detenteur?.matricule}}</span>
@@ -66,18 +66,18 @@
             </td>
             <td *appHasAnyAuthority="droit">
               <button [disabled]="sortie.status == referentials.mvtStatus[1].valeur" 
-                class="btn btn-outline-primary btn-sm" type="button" (click)="editItem(sortie)">
+              title="Modifier" class="btn btn-outline-primary btn-sm" type="button" (click)="editItem(sortie)">
                 <svg cIcon name="cilPen" size="sm"></svg>
               </button>
-              <button class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+              <button title="Détails" class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
                 (click)="showItem(sortie)">
                 <i class="fa fa-eye"></i>
               </button>
-              <button [disabled]="sortie.status != referentials.mvtStatus[1].valeur" class="btn btn-outline-success btn-sm" 
+              <button [disabled]="sortie.status != referentials.mvtStatus[1].valeur" title="Imprimer" class="btn btn-outline-success btn-sm" 
                 type="button" style="margin-left: 2px;" (click)="imprimer(sortie)">
                 <i class="fa fa-print"></i>
               </button>
-              <button [disabled]="sortie.status == referentials.mvtStatus[1].valeur" class="btn btn-outline-danger btn-sm" 
+              <button [disabled]="sortie.status == referentials.mvtStatus[1].valeur" title="Supprimer" class="btn btn-outline-danger btn-sm" 
                 type="button" style="margin-left: 2px;" (click)="confirmDeleteItem(sortie)">
                 <i class="fa fa-remove"></i>
               </button>
