@@ -26,13 +26,15 @@ export class EntreeService {
     console.log('PIECE_JOINTES : ', pieceJointes);
     const copy = this.convertDateFromClient(entree);
     const formData: FormData = new FormData();
-    for(let i = 0; i < files.length; i++ ) {
-      formData.append('pjFiles', files[i]);
+    if(files && files.length >0){
+      for(let i = 0; i < files.length; i++ ) {
+        formData.append('pjFiles', files[i]);
+      }
+      formData.append('pjData', new Blob([JSON
+        .stringify(pieceJointes)], {
+        type: 'application/json'
+      }));
     }
-    formData.append('pjData', new Blob([JSON
-      .stringify(pieceJointes)], {
-      type: 'application/json'
-    }));
     formData.append('data', new Blob([JSON
         .stringify(copy)], {
       type: 'application/json'
@@ -46,13 +48,15 @@ export class EntreeService {
   update(entree: IEntree, pieceJointes: IPieceJointe[], files: File[]): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(entree);
     const formData: FormData = new FormData();
-    for(let i = 0; i < files.length; i++ ) {
-      formData.append('pjFiles', files[i]);
+    if(files && files.length >0){
+      for(let i = 0; i < files.length; i++ ) {
+        formData.append('pjFiles', files[i]);
+      }
+      formData.append('pjData', new Blob([JSON
+        .stringify(pieceJointes)], {
+        type: 'application/json'
+      }));
     }
-    formData.append('pjData', new Blob([JSON
-      .stringify(pieceJointes)], {
-      type: 'application/json'
-    }));
     formData.append('data', new Blob([JSON
         .stringify(copy)], {
       type: 'application/json'

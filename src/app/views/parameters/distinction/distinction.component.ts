@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { DistinctionService } from '../../../services/distinction.service';
 import { IDistinction} from '../../../entities/distinction.model';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditDistinctionComponent } from './add-edit-distinction/add-edit-distinction.component';
 import { cloneDeep } from 'lodash-es';
@@ -26,6 +26,8 @@ export class DistinctionComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
@@ -44,6 +46,16 @@ export class DistinctionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log('Dans ben com, ngOnDestroy');
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
   }
 
   loadPage(page?: number, dontNavigate?: boolean): void {

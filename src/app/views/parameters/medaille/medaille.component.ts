@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MedailleService } from '../../../services/medaille.service';
 import {IMedaille, Medaille} from '../../../entities/medaille.model';
-import { ITEMS_PER_PAGE } from '../../../shared/constants/pagination.constant';
+import { ITEMS_PER_PAGE, NEXT_PAGE, PREV_PAGE } from '../../../shared/constants/pagination.constant';
 import Swal from "sweetalert2";
 import {cloneDeep} from "lodash-es";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -26,6 +26,8 @@ export class MedailleComponent implements OnInit, OnDestroy {
   predicate='idMedaille';
   ascending!: boolean;
   ngbPaginationPage = 1;
+  nextLabel = NEXT_PAGE;
+  previousLabel = PREV_PAGE;
   droit = "ADD_PARAM"
 
   constructor(
@@ -175,5 +177,14 @@ export class MedailleComponent implements OnInit, OnDestroy {
     });
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.loadPage();
+  }
+  onTableSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
+    this.loadPage();
+  }
 
 }

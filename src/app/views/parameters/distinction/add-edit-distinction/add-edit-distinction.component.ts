@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Distinction,IDistinction } from 'src/app/entities/distinction.model';
 import { DistinctionService } from 'src/app/services/distinction.service';
+import { ReferentialService } from 'src/app/services/referential.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,15 +16,25 @@ export class AddEditDistinctionComponent implements OnInit, OnDestroy {
 
   isSaving = false;
   distinction: IDistinction = new Distinction();
-  categoryDistinctions = ['Ordres nationaux','Ordres spécifiques','Médailles'];
+  referentials: any;
 
   constructor(
     private distinctionService: DistinctionService,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
+    private referentialService: ReferentialService
   ) {}
 
   ngOnInit(): void {
-
+    /**
+     * Get all referentials
+     */
+     this.referentialService.query().subscribe({
+      next: (res: HttpResponse<any>) => {
+        this.referentials = res.body || [];
+        console.log('REFERENTIALS : ', this.referentials);
+      },
+      error: (e) => console.log('ERROR : ', e)
+    })
   }
 
   ngOnDestroy(): void {

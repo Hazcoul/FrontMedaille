@@ -77,3 +77,4 @@ INSERT INTO public.utilisateur_profil
 VALUES(1, 1);
 
 
+alter table public.medailles add constraint IDX_UNIQUE_MEDAILLE_FULLNAME unique (nom_complet);

@@ -12,8 +12,9 @@
       </c-col>
     </c-row>
   </c-card-header>
+
   <c-card-body>
-    <c-row>
+    <!-- <c-row>
       <c-col md="3" *ngFor="let item of medailles">
         <ul >
           <li class="card" style="height: 400px">
@@ -30,7 +31,69 @@
           </li>
         </ul>
       </c-col>
-    </c-row>
+    </c-row> -->
+    
+    <div *ngIf="medailles && medailles.length > 0">
+      <table [striped]="true" cTable>
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Code</th>
+            <th scope="col">Désignation</th>
+            <th scope="col">Stock</th>
+            <th scope="col" *appHasAnyAuthority="droit">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medaille of medailles
+            | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }; index as i">
+            <td><span>{{i + 1}}</span></td>
+            <td>
+              <span>{{medaille.code}}</span>
+            </td>
+            <td>
+              <span>{{medaille.nomComplet}}</span>
+            </td>
+            <td>
+              <span>{{medaille.stock}}</span>
+            </td>
+           
+            <td *appHasAnyAuthority="droit">
+              <button title="Modifier" class="btn btn-outline-primary btn-sm" type="button" (click)="openAddEditModal(medaille)">
+                <svg cIcon name="cilPen" size="sm"></svg>
+              </button>
+              <button title="Afficher Détail" class="btn btn-outline-info btn-sm" type="button" style="margin-left: 2px;" 
+                (click)="openModalDetail(medaille)">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button title="Supprimer" class="btn btn-outline-danger btn-sm" type="button" style="margin-left: 2px;"
+                (click)="removeMedaille(medaille)">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end">
+        <pagination-controls
+          previousLabel= "{{previousLabel}}"
+          nextLabel= "{{nextLabel}}"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+    <div *ngIf="medailles && medailles.length == 0">
+      <c-alert color="warning">Aucun enregistrement trouvé!</c-alert>
+    </div>
 
   </c-card-body>
+
+  
+
 </c-card>

@@ -69,12 +69,12 @@ export class CreateUpdateMedailleComponent {
             timer: 1500,
           });
           this.activeModal.close(true);        },
-        error: (error) => {
+        error: (error: any) => {
           console.error("error" + JSON.stringify(error));
           Swal.fire({
             position: 'center',
             icon: 'warning',
-            title: "Une erreur est survenue lors de l'enregistrement",
+            title: error.error.msg,
             showConfirmButton: false,
             timer: 1500,
           });

@@ -27,9 +27,11 @@
                 </c-col>
               <c-col md="6">
                 <label cLabel for="field_categoryDistinction">Catégorie de distinction* :</label>
-                <ng-select [items]="categoryDistinctions"
+                <ng-select [items]="referentials?.typeDistinctions"
                            name="categoryDistinctions"
                            id="field_categoryDistinction"
+                           bindValue="valeur"
+                           bindLabel="libelle"
                            [multiple]=false
                            [(ngModel)]="distinction.categoryDistinction">
                 </ng-select>
